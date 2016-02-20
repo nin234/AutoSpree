@@ -187,7 +187,7 @@
     {
         fieldNames = [NSArray arrayWithObjects:@"Viewed", @"Price", @"Make", @"Year", @"Model", @"Miles", @"Color", nil];
     }
-    NSLog(@"Sortoption cellforRowAtIndexPath %d", indexPath.row);
+    NSLog(@"Sortoption cellforRowAtIndexPath %ld", (long)indexPath.row);
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
@@ -198,7 +198,7 @@
     {
         cell.accessoryType = UITableViewCellAccessoryNone;  
         NSArray *pVws = [cell.contentView subviews];
-        int cnt = [pVws count];
+        NSUInteger cnt = [pVws count];
         for (NSUInteger i=0; i < cnt; ++i)
         {
             [[pVws objectAtIndex:i] removeFromSuperview];
@@ -393,7 +393,7 @@
     if (newCell.accessoryType == UITableViewCellAccessoryNone)
     {
         newCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        pDlg.sortIndx =  indexPath.row;
+        pDlg.sortIndx =  (int)indexPath.row;
     }
     UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
     if (oldCell.accessoryType == UITableViewCellAccessoryCheckmark) 

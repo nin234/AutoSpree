@@ -73,7 +73,7 @@ const NSInteger EDITING_HORIZONTAL_OFFSET_1 = 35;
 -(NSArray *) getSelectedFriends
 {
     NSUInteger cnt = [seletedItems count];
-    NSLog(@"Selected %d friends to share with", cnt);
+    NSLog(@"Selected %lu friends to share with", (unsigned long)cnt);
     NSMutableArray *selFrnds = [[NSMutableArray alloc] initWithCapacity:cnt];
     for (NSUInteger i=0; i < cnt; ++i)
     {
@@ -235,7 +235,7 @@ const NSInteger EDITING_HORIZONTAL_OFFSET_1 = 35;
     else
     {
         NSArray *pVws = [cell.contentView subviews];
-        int cnt = [pVws count];
+        NSUInteger cnt = [pVws count];
         for (NSUInteger i=0; i < cnt; ++i)
         {
             [[pVws objectAtIndex:i] removeFromSuperview];

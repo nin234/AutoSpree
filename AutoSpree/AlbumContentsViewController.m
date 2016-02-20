@@ -150,7 +150,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
             {
                 NSString *pFil = [fileURL lastPathComponent];
                 char szFileNo[64];
-                int size = strcspn([pFil UTF8String], ".");
+                unsigned long size = strcspn([pFil UTF8String], ".");
                 if (size)
                 {
                     strncpy(szFileNo, [pFil UTF8String], size);
@@ -164,7 +164,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
             {
                 NSString *pFil = [fileURL lastPathComponent];
                 char szFileNo[64];
-                int size = strcspn([pFil UTF8String], ".");
+                unsigned long size = strcspn([pFil UTF8String], ".");
                 if (size)
                 {
                     strncpy(szFileNo, [pFil UTF8String], size);
@@ -229,7 +229,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
     }
     tnailsquery = [NSArray arrayWithArray:indexes];
     nPicCnt = [thumbnails count];
-     NSLog(@"Processed iCloud query results no of items %d nPicCnt %d\n", [queryResults count], nPicCnt);
+     NSLog(@"Processed iCloud query results no of items %lu nPicCnt %lu\n", (unsigned long)[queryResults count], (unsigned long)nPicCnt);
     gotqueryres = true;
     [self.tableView reloadData];
     [query enableUpdates];
@@ -283,7 +283,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
             if ([isReg boolValue] == YES)
             {
                 NSString *pFil = [fileurl lastPathComponent];
-                int size = strcspn([pFil UTF8String], ".");
+                unsigned long size = strcspn([pFil UTF8String], ".");
                 if (size)
                 {
                     strncpy(szFileNo, [pFil UTF8String], size);
@@ -317,7 +317,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
         }]];
     }
     
-    printf("No of pictures %d\n", nPicCnt);
+    printf("No of pictures %lu\n", (unsigned long)nPicCnt);
     NSUInteger noOfIdxes = [thumbnails count];
     NSLog(@"Image index array ");
     for (NSUInteger i=0 ; i < noOfIdxes; ++i)
@@ -485,7 +485,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
     NSUInteger lastPhotoInCell  = firstPhotoInCell + 4;
     
     if (nPicCnt <= firstPhotoInCell) {
-        NSLog(@"We are out of range, asking to start with photo %d but we only have %d", firstPhotoInCell, nPicCnt);
+        NSLog(@"We are out of range, asking to start with photo %lu but we only have %lu", (unsigned long)firstPhotoInCell, (unsigned long)nPicCnt);
         return nil;
     }
     
@@ -570,7 +570,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
 
 -(void) deletedPhotoAtIndx:(NSUInteger)nIndx
 {
-    NSLog(@"Removing thumbnail at index %d\n", nIndx);
+    NSLog(@"Removing thumbnail at index %lu\n", (unsigned long)nIndx);
     NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[thumbnails count]];
     NSUInteger cnt = [thumbnails count];
     for (NSUInteger i=0 ; i < cnt; ++i)
@@ -579,7 +579,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
             [tmp addObject:[thumbnails objectAtIndex:i]];
     }
     thumbnails = [NSArray arrayWithArray:tmp];
-    NSLog(@"Removed thumbnail at index %d\n", nIndx);
+    NSLog(@"Removed thumbnail at index %lu\n", (unsigned long)nIndx);
      --nPicCnt;
     [self.tableView reloadData];
     return; 
@@ -617,7 +617,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
                 movUrl = [pFlUrl URLByAppendingPathComponent:pFlImgName isDirectory:NO];
             }
             
-            NSLog(@"Attaching object at index %d  image file %@ movie file %@ \n", i,  imgUrl, movUrl);
+            NSLog(@"Attaching object at index %lu  image file %@ movie file %@ \n", (unsigned long)i,  imgUrl, movUrl);
             if ([imgUrl checkResourceIsReachableAndReturnError:&err] == YES)
             {
                 [attchments addObject:imgUrl];
@@ -631,7 +631,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
         }
         
     }
-    NSLog(@"Attached %d urls photoSel count %d\n", [attchments count], [photoSel count]);
+    NSLog(@"Attached %lu urls photoSel count %lu\n", (unsigned long)[attchments count], (unsigned long)[photoSel count]);
     return;
 }
 #pragma mark -
@@ -678,7 +678,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
                 movUrl = [pFlUrl URLByAppendingPathComponent:pFlImgName isDirectory:NO];
             }
 		
-            NSLog(@"Attaching object at index %d  image file %@ movie file %@ \n", nAsstIndx,  imgUrl, movUrl);
+            NSLog(@"Attaching object at index %lu  image file %@ movie file %@ \n", (unsigned long)nAsstIndx,  imgUrl, movUrl);
             if ([imgUrl checkResourceIsReachableAndReturnError:&err] == YES)
             {
                 NSLog(@"Image Url so can be selected %@\n", imgUrl);
@@ -874,7 +874,7 @@ Copyright (C) 2011 Apple Inc. All Rights Reserved.
 
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    printf("Clicked button at index %d\n", buttonIndex);
+    printf("Clicked button at index %ld\n", (long)buttonIndex);
     
     switch (buttonIndex)
     {

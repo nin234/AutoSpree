@@ -48,7 +48,7 @@
     [query disableUpdates];
      AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *queryResults = [query results];
-    NSLog(@"Processing iCloud query results no of items %d for album %@\n", [queryResults count], pDlg.pAlName);
+    NSLog(@"Processing iCloud query results no of items %lu for album %@\n", (unsigned long)[queryResults count], pDlg.pAlName);
     NSMutableArray *thumbindexes = [[NSMutableArray alloc] initWithCapacity:[queryResults count]];
     
     for (NSMetadataItem *result in queryResults) 
@@ -72,7 +72,7 @@
             {
                 NSString *pFil = [fileURL lastPathComponent];
                 char szFileNo[64];
-                int size = strcspn([pFil UTF8String], ".");
+                unsigned long size = strcspn([pFil UTF8String], ".");
                 if (size)
                 {
                     strncpy(szFileNo, [pFil UTF8String], size);
@@ -169,7 +169,7 @@
                 if ([isReg boolValue] == YES)
                 {
                     NSString *pFil = [fileurl lastPathComponent];
-                    int size = strcspn([pFil UTF8String], ".");
+                    unsigned long size = strcspn([pFil UTF8String], ".");
                     if (size)
                     {
                         strncpy(szFileNo, [pFil UTF8String], size);
@@ -334,7 +334,7 @@
     static NSString *CellIdentifier = @"itemdetail";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    printf("Drawing row %d\n", indexPath.row);
+    printf("Drawing row %ld\n", (long)indexPath.row);
     
     if(indexPath.section == 0) 
     {
@@ -346,7 +346,7 @@
         else
         {
             NSArray *pVws = [cell.contentView subviews];
-            int cnt = [pVws count];
+            NSUInteger cnt = [pVws count];
             for (NSUInteger i=0; i < cnt; ++i)
             {
                 [[pVws objectAtIndex:i] removeFromSuperview];

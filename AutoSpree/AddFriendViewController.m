@@ -205,7 +205,7 @@
     else
     {
         NSArray *pVws = [cell.contentView subviews];
-        int cnt = [pVws count];
+        NSUInteger cnt = [pVws count];
         for (NSUInteger i=0; i < cnt; ++i)
         {
             [[pVws objectAtIndex:i] removeFromSuperview];
