@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB00E4991C79108900E898F7 /* AutoSpreeShareMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = DB00E4951C79108900E898F7 /* AutoSpreeShareMgr.m */; };
+		DB00E49A1C79108900E898F7 /* AutoSpreeDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = DB00E4971C79108900E898F7 /* AutoSpreeDecoder.m */; };
+		DB00E49F1C79112300E898F7 /* AutoSpreeTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = DB00E49E1C79112300E898F7 /* AutoSpreeTranslator.m */; };
+		DB00E4A51C791B8600E898F7 /* libsharing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB881C901C67BBC900A2D0EA /* libsharing.a */; };
 		DB1215111780B88900960FBB /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1215101780B88900960FBB /* KeychainItemWrapper.m */; };
 		DB32A9691784C50200C9700B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB32A9681784C50200C9700B /* Security.framework */; };
 		DB51F69D1ADD35F000C3ADB7 /* InAppPurchase.m in Sources */ = {isa = PBXBuildFile; fileRef = DB51F69C1ADD35F000C3ADB7 /* InAppPurchase.m */; };
@@ -106,6 +110,13 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
+		DB00E4A11C791B7B00E898F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB881C8A1C67BBC800A2D0EA /* sharing.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DB881C391C5F0E4A00A2D0EA;
+			remoteInfo = sharing;
+		};
 		DB858FAE15D206240075CBC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DB858F7F15D206230075CBC6 /* Project object */;
@@ -123,6 +134,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB00E4951C79108900E898F7 /* AutoSpreeShareMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSpreeShareMgr.m; sourceTree = "<group>"; };
+		DB00E4961C79108900E898F7 /* AutoSpreeShareMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoSpreeShareMgr.h; sourceTree = "<group>"; };
+		DB00E4971C79108900E898F7 /* AutoSpreeDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSpreeDecoder.m; sourceTree = "<group>"; };
+		DB00E4981C79108900E898F7 /* AutoSpreeDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoSpreeDecoder.h; sourceTree = "<group>"; };
+		DB00E49D1C79112300E898F7 /* AutoSpreeTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoSpreeTranslator.h; sourceTree = "<group>"; };
+		DB00E49E1C79112300E898F7 /* AutoSpreeTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSpreeTranslator.m; sourceTree = "<group>"; };
 		DB12150F1780B86500960FBB /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		DB1215101780B88900960FBB /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		DB32A9681784C50200C9700B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -249,6 +266,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB00E4A51C791B8600E898F7 /* libsharing.a in Frameworks */,
 				DB51F6A21ADDC91E00C3ADB7 /* StoreKit.framework in Frameworks */,
 				DB32A9691784C50200C9700B /* Security.framework in Frameworks */,
 				DB7F47A616AE3D44000DD164 /* Social.framework in Frameworks */,
@@ -335,6 +353,12 @@
 			children = (
 				DB51F69C1ADD35F000C3ADB7 /* InAppPurchase.m */,
 				DB51F69A1ADD35DE00C3ADB7 /* InAppPurchase.h */,
+				DB00E49D1C79112300E898F7 /* AutoSpreeTranslator.h */,
+				DB00E49E1C79112300E898F7 /* AutoSpreeTranslator.m */,
+				DB00E4951C79108900E898F7 /* AutoSpreeShareMgr.m */,
+				DB00E4961C79108900E898F7 /* AutoSpreeShareMgr.h */,
+				DB00E4971C79108900E898F7 /* AutoSpreeDecoder.m */,
+				DB00E4981C79108900E898F7 /* AutoSpreeDecoder.h */,
 				DB598BD9169E5A930073CB2A /* LocalItem.h */,
 				DB598BDA169E5A930073CB2A /* LocalItem.m */,
 				DBB16A6D17A724A100C46AC0 /* Constants.h */,
@@ -487,6 +511,7 @@
 				DB62BF0E15D52C1800799582 /* PBXBuildRule */,
 			);
 			dependencies = (
+				DB00E4A21C791B7B00E898F7 /* PBXTargetDependency */,
 			);
 			name = AutoSpree;
 			productName = AutoSpree;
@@ -642,18 +667,21 @@
 				DB858FD215D256820075CBC6 /* AddViewController.m in Sources */,
 				DB858FD415D256820075CBC6 /* AlbumContentsTableViewCell.m in Sources */,
 				DB858FD615D256820075CBC6 /* AlbumContentsViewController.m in Sources */,
+				DB00E49F1C79112300E898F7 /* AutoSpreeTranslator.m in Sources */,
 				DB858FDE15D256F20075CBC6 /* DisplayViewController.m in Sources */,
 				DB858FE015D256F20075CBC6 /* EditViewController.m in Sources */,
 				DB858FE715D257E20075CBC6 /* Item.m in Sources */,
 				DB85900415D2586C0075CBC6 /* MainListViewController.m in Sources */,
 				DB85900615D2586C0075CBC6 /* MainViewController.m in Sources */,
 				DB85900815D2586C0075CBC6 /* MapViewController.m in Sources */,
+				DB00E49A1C79108900E898F7 /* AutoSpreeDecoder.m in Sources */,
 				DB85900A15D2586C0075CBC6 /* MySlider.m in Sources */,
 				DB85900B15D2586C0075CBC6 /* NotesViewController.m in Sources */,
 				DB85900D15D2586C0075CBC6 /* Photo.m in Sources */,
 				DB85900E15D2586C0075CBC6 /* PhotoDisplayViewController.m in Sources */,
 				DB85901015D2586C0075CBC6 /* SlideScrollView.m in Sources */,
 				DB85901115D2586C0075CBC6 /* SortOptionViewController.m in Sources */,
+				DB00E4991C79108900E898F7 /* AutoSpreeShareMgr.m in Sources */,
 				DB85901315D2586C0075CBC6 /* TapDetectingImageView.m in Sources */,
 				DB85901415D2586C0075CBC6 /* ThumbnailImageView.m in Sources */,
 				DB598BDB169E5A930073CB2A /* LocalItem.m in Sources */,
@@ -679,6 +707,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DB00E4A21C791B7B00E898F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = sharing;
+			targetProxy = DB00E4A11C791B7B00E898F7 /* PBXContainerItemProxy */;
+		};
 		DB858FAF15D206240075CBC6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DB858F8715D206230075CBC6 /* AutoSpree */;
@@ -799,7 +832,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoSpree/AutoSpree-Prefix.pch";
 				GCC_STRICT_ALIASING = NO;
-				"HEADER_SEARCH_PATHS[arch=*]" = /Users/nin234/projects/xmlrpc;
+				"HEADER_SEARCH_PATHS[arch=*]" = /Users/nin234/projects/sharing;
 				INFOPLIST_FILE = "AutoSpree/AutoSpree-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
 				"OTHER_CFLAGS[arch=*]" = "";
@@ -828,7 +861,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoSpree/AutoSpree-Prefix.pch";
 				GCC_STRICT_ALIASING = NO;
-				"HEADER_SEARCH_PATHS[arch=*]" = /Users/nin234/projects/xmlrpc;
+				"HEADER_SEARCH_PATHS[arch=*]" = /Users/nin234/projects/sharing;
 				INFOPLIST_FILE = "AutoSpree/AutoSpree-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (

@@ -13,8 +13,6 @@
 #import "MainViewController.h"
 #import "ShareItems.h"
 #import "FriendDetails.h"
-#import "XMLRPCRequest.h"
-#import "XMLRPCConnection.h"
 #import "AVFoundation/AVAssetImageGenerator.h"
 #import "AVFoundation/AVAsset.h"
 #import "AVFoundation/AVTime.h"
