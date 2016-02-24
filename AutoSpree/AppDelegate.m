@@ -15,9 +15,9 @@
 #import <MapKit/MapKit.h>
 #import <Social/SLComposeViewController.h>
 #import <Social/SLServiceTypes.h>
-#import "FriendDetails.h"
+#import <sharing/FriendDetails.h>
 #import "SelectFriendViewController.h"
-#import "AddFriendViewController.h"
+#import <sharing/AddFriendViewController.h>
 
 
 
@@ -556,13 +556,7 @@
 -(void) friendsAddDelDone
 {
     
-    AddFriendViewController *addFr = (AddFriendViewController *)[self.navViewController popViewControllerAnimated:NO];
-    if (addFr.bInDeleteFrnd)
-    {
-        [self.navViewController popViewControllerAnimated:NO];
-        [self shareSelFrnds];
-    }
-    return;
+      return;
 }
 
 

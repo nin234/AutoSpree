@@ -14,7 +14,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include "string.h"
-#import "NotesViewController.h"
+#import "common/NotesViewController.h"
 #include <math.h>
 
 @implementation DisplayViewController
@@ -653,6 +653,7 @@
         //  albumContentsViewController.assetsGroup = group_;
         notesViewController.notes.editable = NO;
         [notesViewController setTitle:title];
+        notesViewController.notesTxt = pDlg.selectedItem.notes;
         [self.navigationController pushViewController:notesViewController animated:NO];   
     }
 }
