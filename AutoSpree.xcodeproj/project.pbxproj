@@ -16,7 +16,6 @@
 		DB51F6A21ADDC91E00C3ADB7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB51F6A11ADDC91E00C3ADB7 /* StoreKit.framework */; };
 		DB598BDB169E5A930073CB2A /* LocalItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DB598BDA169E5A930073CB2A /* LocalItem.m */; };
 		DB598BDE169E5B460073CB2A /* DataOps.m in Sources */ = {isa = PBXBuildFile; fileRef = DB598BDD169E5B460073CB2A /* DataOps.m */; };
-		DB5F3EDA1C720E5E003DA1C3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5F3ED91C720E5E003DA1C3 /* HomeViewController.m */; };
 		DB62C074160746F700799582 /* ASpree_57-jpg.png in Resources */ = {isa = PBXBuildFile; fileRef = DB62C073160746F700799582 /* ASpree_57-jpg.png */; };
 		DB62C0771607470300799582 /* ASpree_114-jpg.png in Resources */ = {isa = PBXBuildFile; fileRef = DB62C0761607470300799582 /* ASpree_114-jpg.png */; };
 		DB62C0DC160C8B6F00799582 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB62C0DB160C8B6F00799582 /* Default@2x.png */; };
@@ -145,8 +144,6 @@
 		DB598BDA169E5A930073CB2A /* LocalItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalItem.m; sourceTree = "<group>"; };
 		DB598BDC169E5B460073CB2A /* DataOps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataOps.h; sourceTree = "<group>"; };
 		DB598BDD169E5B460073CB2A /* DataOps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataOps.m; sourceTree = "<group>"; };
-		DB5F3ED81C720E5E003DA1C3 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		DB5F3ED91C720E5E003DA1C3 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		DB62C073160746F700799582 /* ASpree_57-jpg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ASpree_57-jpg.png"; path = "Images/ASpree_57-jpg.png"; sourceTree = "<group>"; };
 		DB62C0761607470300799582 /* ASpree_114-jpg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ASpree_114-jpg.png"; path = "Images/ASpree_114-jpg.png"; sourceTree = "<group>"; };
 		DB62C0DB160C8B6F00799582 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -361,8 +358,6 @@
 				DBB16A6917A3382100C46AC0 /* SelectFriendViewController.m */,
 				DB858F9D15D206240075CBC6 /* AppDelegate.h */,
 				DB858F9E15D206240075CBC6 /* AppDelegate.m */,
-				DB5F3ED81C720E5E003DA1C3 /* HomeViewController.h */,
-				DB5F3ED91C720E5E003DA1C3 /* HomeViewController.m */,
 				DBB16A4017A2040400C46AC0 /* ShareItems.h */,
 				DBB16A4117A2040400C46AC0 /* ShareItems.m */,
 				DB858FD815D256F20075CBC6 /* DisplayViewController.h */,
@@ -632,7 +627,6 @@
 				DB00E4991C79108900E898F7 /* AutoSpreeShareMgr.m in Sources */,
 				DB598BDB169E5A930073CB2A /* LocalItem.m in Sources */,
 				DB598BDE169E5B460073CB2A /* DataOps.m in Sources */,
-				DB5F3EDA1C720E5E003DA1C3 /* HomeViewController.m in Sources */,
 				DBB16A4217A2040400C46AC0 /* ShareItems.m in Sources */,
 				DBB16A6B17A3382200C46AC0 /* SelectFriendViewController.m in Sources */,
 			);
