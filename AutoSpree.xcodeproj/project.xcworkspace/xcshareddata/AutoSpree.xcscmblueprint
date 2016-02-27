@@ -5,12 +5,14 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "9657CDFAF5560EDBEC5BD15EACCA678C80183690" : 0,
-    "FE354231D10C7BBBC1DAF0FE58CBD4A59CDC15BF" : 0
+    "FE354231D10C7BBBC1DAF0FE58CBD4A59CDC15BF" : 0,
+    "BCF880535D59163224321F78BEAAABB568CD1E59" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D1A21D64-D928-403F-B205-AF34C325CD4D",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "9657CDFAF5560EDBEC5BD15EACCA678C80183690" : "sharing\/",
-    "FE354231D10C7BBBC1DAF0FE58CBD4A59CDC15BF" : "AutoSpree\/"
+    "FE354231D10C7BBBC1DAF0FE58CBD4A59CDC15BF" : "AutoSpree\/",
+    "BCF880535D59163224321F78BEAAABB568CD1E59" : "common\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "AutoSpree",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -20,6 +22,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "\/Users\/nin234\/Dropbox\/git\/sharing",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9657CDFAF5560EDBEC5BD15EACCA678C80183690"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "\/Users\/nin234\/Dropbox\/git\/common\/",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BCF880535D59163224321F78BEAAABB568CD1E59"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "\/Users\/nin234\/Dropbox\/git\/AutoSpree\/",

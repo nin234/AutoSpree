@@ -13,7 +13,6 @@
 		DB00E4A51C791B8600E898F7 /* libsharing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB881C901C67BBC900A2D0EA /* libsharing.a */; };
 		DB00E4DE1C7B3C1200E898F7 /* libcommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00E4DA1C7B3A1E00E898F7 /* libcommon.a */; };
 		DB32A9691784C50200C9700B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB32A9681784C50200C9700B /* Security.framework */; };
-		DB51F69D1ADD35F000C3ADB7 /* InAppPurchase.m in Sources */ = {isa = PBXBuildFile; fileRef = DB51F69C1ADD35F000C3ADB7 /* InAppPurchase.m */; };
 		DB51F6A21ADDC91E00C3ADB7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB51F6A11ADDC91E00C3ADB7 /* StoreKit.framework */; };
 		DB598BDB169E5A930073CB2A /* LocalItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DB598BDA169E5A930073CB2A /* LocalItem.m */; };
 		DB598BDE169E5B460073CB2A /* DataOps.m in Sources */ = {isa = PBXBuildFile; fileRef = DB598BDD169E5B460073CB2A /* DataOps.m */; };
@@ -40,8 +39,6 @@
 		DB858FB815D206240075CBC6 /* AutoSpreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FB715D206240075CBC6 /* AutoSpreeTests.m */; };
 		DB858FD215D256820075CBC6 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FC915D256820075CBC6 /* AddViewController.m */; };
 		DB858FD315D256820075CBC6 /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FCA15D256820075CBC6 /* AddViewController.xib */; };
-		DB858FD415D256820075CBC6 /* AlbumContentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FCC15D256820075CBC6 /* AlbumContentsTableViewCell.m */; };
-		DB858FD515D256820075CBC6 /* AlbumContentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FCD15D256820075CBC6 /* AlbumContentsTableViewCell.xib */; };
 		DB858FD615D256820075CBC6 /* AlbumContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FCF15D256820075CBC6 /* AlbumContentsViewController.m */; };
 		DB858FD715D256820075CBC6 /* AlbumContentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FD015D256820075CBC6 /* AlbumContentsViewController.xib */; };
 		DB858FDE15D256F20075CBC6 /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FD915D256F20075CBC6 /* DisplayViewController.m */; };
@@ -53,8 +50,6 @@
 		DB85900515D2586C0075CBC6 /* MainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FEA15D2586B0075CBC6 /* MainListViewController.xib */; };
 		DB85900615D2586C0075CBC6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FEC15D2586B0075CBC6 /* MainViewController.m */; };
 		DB85900715D2586C0075CBC6 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FED15D2586B0075CBC6 /* MainViewController.xib */; };
-		DB85900815D2586C0075CBC6 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FEF15D2586B0075CBC6 /* MapViewController.m */; };
-		DB85900915D2586C0075CBC6 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FF015D2586B0075CBC6 /* MapViewController.xib */; };
 		DB85900E15D2586C0075CBC6 /* PhotoDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FF915D2586B0075CBC6 /* PhotoDisplayViewController.m */; };
 		DB85900F15D2586C0075CBC6 /* PhotoDisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FFA15D2586B0075CBC6 /* PhotoDisplayViewController.xib */; };
 		DB85901115D2586C0075CBC6 /* SortOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FFE15D2586B0075CBC6 /* SortOptionViewController.m */; };
@@ -145,8 +140,6 @@
 		DB00E49E1C79112300E898F7 /* AutoSpreeTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSpreeTranslator.m; sourceTree = "<group>"; };
 		DB00E4D41C7B3A1D00E898F7 /* common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = common.xcodeproj; path = ../common/common.xcodeproj; sourceTree = "<group>"; };
 		DB32A9681784C50200C9700B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		DB51F69A1ADD35DE00C3ADB7 /* InAppPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchase.h; sourceTree = "<group>"; };
-		DB51F69C1ADD35F000C3ADB7 /* InAppPurchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchase.m; sourceTree = "<group>"; };
 		DB51F6A11ADDC91E00C3ADB7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DB598BD9169E5A930073CB2A /* LocalItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalItem.h; sourceTree = "<group>"; };
 		DB598BDA169E5A930073CB2A /* LocalItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalItem.m; sourceTree = "<group>"; };
@@ -182,9 +175,6 @@
 		DB858FC815D256820075CBC6 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		DB858FC915D256820075CBC6 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 		DB858FCA15D256820075CBC6 /* AddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
-		DB858FCB15D256820075CBC6 /* AlbumContentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumContentsTableViewCell.h; sourceTree = "<group>"; };
-		DB858FCC15D256820075CBC6 /* AlbumContentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumContentsTableViewCell.m; sourceTree = "<group>"; };
-		DB858FCD15D256820075CBC6 /* AlbumContentsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumContentsTableViewCell.xib; sourceTree = "<group>"; };
 		DB858FCE15D256820075CBC6 /* AlbumContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumContentsViewController.h; sourceTree = "<group>"; };
 		DB858FCF15D256820075CBC6 /* AlbumContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumContentsViewController.m; sourceTree = "<group>"; };
 		DB858FD015D256820075CBC6 /* AlbumContentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumContentsViewController.xib; sourceTree = "<group>"; };
@@ -202,9 +192,6 @@
 		DB858FEB15D2586B0075CBC6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		DB858FEC15D2586B0075CBC6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		DB858FED15D2586B0075CBC6 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		DB858FEE15D2586B0075CBC6 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		DB858FEF15D2586B0075CBC6 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		DB858FF015D2586B0075CBC6 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		DB858FF815D2586B0075CBC6 /* PhotoDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDisplayViewController.h; sourceTree = "<group>"; };
 		DB858FF915D2586B0075CBC6 /* PhotoDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDisplayViewController.m; sourceTree = "<group>"; };
 		DB858FFA15D2586B0075CBC6 /* PhotoDisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoDisplayViewController.xib; sourceTree = "<group>"; };
@@ -240,7 +227,6 @@
 		DBB16A6D17A724A100C46AC0 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DBB16A7F17B8441C00C46AC0 /* IphoneButton_Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IphoneButton_Green.png; path = Images/IphoneButton_Green.png; sourceTree = "<group>"; };
 		DBB16A8017B8441D00C46AC0 /* IphoneButton_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IphoneButton_White.png; path = Images/IphoneButton_White.png; sourceTree = "<group>"; };
-		DBE930B21A9F495200496161 /* textdefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = textdefs.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,8 +329,6 @@
 		DB858F9415D206230075CBC6 /* AutoSpree */ = {
 			isa = PBXGroup;
 			children = (
-				DB51F69C1ADD35F000C3ADB7 /* InAppPurchase.m */,
-				DB51F69A1ADD35DE00C3ADB7 /* InAppPurchase.h */,
 				DB00E49D1C79112300E898F7 /* AutoSpreeTranslator.h */,
 				DB00E49E1C79112300E898F7 /* AutoSpreeTranslator.m */,
 				DB00E4951C79108900E898F7 /* AutoSpreeShareMgr.m */,
@@ -360,9 +344,6 @@
 				DB858FEB15D2586B0075CBC6 /* MainViewController.h */,
 				DB858FEC15D2586B0075CBC6 /* MainViewController.m */,
 				DB858FED15D2586B0075CBC6 /* MainViewController.xib */,
-				DB858FEE15D2586B0075CBC6 /* MapViewController.h */,
-				DB858FEF15D2586B0075CBC6 /* MapViewController.m */,
-				DB858FF015D2586B0075CBC6 /* MapViewController.xib */,
 				DB598BDD169E5B460073CB2A /* DataOps.m */,
 				DB598BDC169E5B460073CB2A /* DataOps.h */,
 				DB858FF815D2586B0075CBC6 /* PhotoDisplayViewController.h */,
@@ -371,7 +352,6 @@
 				DB858FFD15D2586B0075CBC6 /* SortOptionViewController.h */,
 				DB858FFE15D2586B0075CBC6 /* SortOptionViewController.m */,
 				DB858FFF15D2586C0075CBC6 /* SortOptionViewController.xib */,
-				DBE930B21A9F495200496161 /* textdefs.h */,
 				DB858FA015D206240075CBC6 /* AutoSpree.xcdatamodeld */,
 				DB858FC115D206640075CBC6 /* AutoSpree.entitlements */,
 				DB858FE515D257E20075CBC6 /* Item.h */,
@@ -394,9 +374,6 @@
 				DB858FC815D256820075CBC6 /* AddViewController.h */,
 				DB858FC915D256820075CBC6 /* AddViewController.m */,
 				DB858FCA15D256820075CBC6 /* AddViewController.xib */,
-				DB858FCB15D256820075CBC6 /* AlbumContentsTableViewCell.h */,
-				DB858FCC15D256820075CBC6 /* AlbumContentsTableViewCell.m */,
-				DB858FCD15D256820075CBC6 /* AlbumContentsTableViewCell.xib */,
 				DB858FCE15D256820075CBC6 /* AlbumContentsViewController.h */,
 				DB858FCF15D256820075CBC6 /* AlbumContentsViewController.m */,
 				DB858FD015D256820075CBC6 /* AlbumContentsViewController.xib */,
@@ -579,13 +556,11 @@
 			files = (
 				DB858F9915D206230075CBC6 /* InfoPlist.strings in Resources */,
 				DB858FD315D256820075CBC6 /* AddViewController.xib in Resources */,
-				DB858FD515D256820075CBC6 /* AlbumContentsTableViewCell.xib in Resources */,
 				DB858FD715D256820075CBC6 /* AlbumContentsViewController.xib in Resources */,
 				DB858FDF15D256F20075CBC6 /* DisplayViewController.xib in Resources */,
 				DB858FE115D256F20075CBC6 /* EditViewController.xib in Resources */,
 				DB85900515D2586C0075CBC6 /* MainListViewController.xib in Resources */,
 				DB85900715D2586C0075CBC6 /* MainViewController.xib in Resources */,
-				DB85900915D2586C0075CBC6 /* MapViewController.xib in Resources */,
 				DB85900F15D2586C0075CBC6 /* PhotoDisplayViewController.xib in Resources */,
 				DB85901215D2586C0075CBC6 /* SortOptionViewController.xib in Resources */,
 				DB85903915D26B160075CBC6 /* camera1.png in Resources */,
@@ -644,7 +619,6 @@
 				DB858F9F15D206240075CBC6 /* AppDelegate.m in Sources */,
 				DB858FA215D206240075CBC6 /* AutoSpree.xcdatamodeld in Sources */,
 				DB858FD215D256820075CBC6 /* AddViewController.m in Sources */,
-				DB858FD415D256820075CBC6 /* AlbumContentsTableViewCell.m in Sources */,
 				DB858FD615D256820075CBC6 /* AlbumContentsViewController.m in Sources */,
 				DB00E49F1C79112300E898F7 /* AutoSpreeTranslator.m in Sources */,
 				DB858FDE15D256F20075CBC6 /* DisplayViewController.m in Sources */,
@@ -652,7 +626,6 @@
 				DB858FE715D257E20075CBC6 /* Item.m in Sources */,
 				DB85900415D2586C0075CBC6 /* MainListViewController.m in Sources */,
 				DB85900615D2586C0075CBC6 /* MainViewController.m in Sources */,
-				DB85900815D2586C0075CBC6 /* MapViewController.m in Sources */,
 				DB00E49A1C79108900E898F7 /* AutoSpreeDecoder.m in Sources */,
 				DB85900E15D2586C0075CBC6 /* PhotoDisplayViewController.m in Sources */,
 				DB85901115D2586C0075CBC6 /* SortOptionViewController.m in Sources */,
@@ -662,7 +635,6 @@
 				DB5F3EDA1C720E5E003DA1C3 /* HomeViewController.m in Sources */,
 				DBB16A4217A2040400C46AC0 /* ShareItems.m in Sources */,
 				DBB16A6B17A3382200C46AC0 /* SelectFriendViewController.m in Sources */,
-				DB51F69D1ADD35F000C3ADB7 /* InAppPurchase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
