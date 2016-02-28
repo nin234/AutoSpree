@@ -7,7 +7,7 @@
 //
 
 
-#import "AlbumContentsViewController.h"
+#import "common/AlbumContentsViewController.h"
 #import "DisplayViewController.h"
 #import "AppDelegate.h"
 #import "common/MapViewController.h"
@@ -619,11 +619,13 @@
         AlbumContentsViewController *albumContentsViewController = [[AlbumContentsViewController alloc] initWithNibName:@"AlbumContentsViewController" bundle:nil];
         NSLog(@"Pushing AlbumContents view controller %s %d\n" , __FILE__, __LINE__);
       //  albumContentsViewController.assetsGroup = group_;
-        
+        [albumContentsViewController setPFlMgr:pDlg.pFlMgr];
+        [albumContentsViewController setPAlName:pDlg.pAlName];
+        [albumContentsViewController setNavViewController:pDlg.navViewController];
         [albumContentsViewController setDelphoto:false];
         [self.navigationController pushViewController:albumContentsViewController animated:NO];
        
-        [albumContentsViewController  setTitle2:title];
+        [albumContentsViewController  setTitle:title];
        pDlg.navViewController.navigationBar.topItem.title = [NSString stringWithString:title];
         
     }

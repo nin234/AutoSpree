@@ -8,7 +8,6 @@
 
 #import "MainListViewController.h"
 #import "MainViewController.h"
-#import "AlbumContentsViewController.h"
 #import "AppDelegate.h"
 #import "LocalItem.h"
 #import "DisplayViewController.h"
@@ -368,6 +367,9 @@ const NSInteger EDITING_HORIZONTAL_OFFSET = 35;
             albumContentsViewController = [[AlbumContentsViewController alloc] initWithNibName:@"AlbumContentsViewController" bundle:nil];
                 NSLog(@"Pushing AlbumContents view controller %s %d\n" , __FILE__, __LINE__);
                 //  albumContentsViewController.assetsGroup = group_;
+            [albumContentsViewController setDelphoto:true];
+            [albumContentsViewController setPFlMgr:pDlg.pFlMgr];
+            [albumContentsViewController setPAlName:pDlg.pAlName];
             [albumContentsViewController setEmailphoto:true];
             [albumContentsViewController setPhotoreqsource:source];
             [albumContentsViewController setName:item.name];
