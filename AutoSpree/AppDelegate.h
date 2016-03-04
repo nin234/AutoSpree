@@ -19,6 +19,7 @@
 #import "common/KeychainItemWrapper.h"
 #import "common/InAppPurchase.h"
 #import "AutoSpreeShareMgr.h"
+#import "common/MainViewController.h"
 
 
 #define   PHOTOREQSOURCE_FB 1
@@ -26,7 +27,7 @@
 #define PHOTOREQSOURCE_SHARE 2
 #define AWS_AUTOSPREE_APPID 1
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate,InAppPurchaseDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate,InAppPurchaseDelegate, MainViewControllerDelegate, MainListViewControllerDelegate>
 {
     NSMetadataQuery *query;
     MKMapView    *mapView;
@@ -138,7 +139,6 @@
 -(NSArray *)itemsToDownLoad;
 -(void) removeFromDownLoadItems:(NSString *)item;
 -(void) removeAllDownLoadItems;
--(void) downloadItemsOnStartupActive:(bool) bActive;
 -(void) friendsAddDelDone;
 -(void) switchRootView;
 

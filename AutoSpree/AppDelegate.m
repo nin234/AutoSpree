@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
+#import "common/MainViewController.h"
 #import "AddViewController.h"
 #import "EditViewController.h"
 #import "DisplayViewController.h"
@@ -17,10 +17,7 @@
 #import <Social/SLServiceTypes.h>
 #import <sharing/FriendDetails.h>
 #import <sharing/AddFriendViewController.h>
-
-
-
-
+#import "SortOptionViewController.h"
 
 @implementation AppDelegate
 
@@ -84,6 +81,130 @@
 @synthesize tabBarController;
 @synthesize pShrMgr;
 
+- (NSString *) getAlbumDir: (NSString *) album_name
+{
+    NSString *pHdir = NSHomeDirectory();
+    NSString *pAlbums = @"/Documents/albums";
+    NSString *pAlbumsDir = [pHdir stringByAppendingString:pAlbums];
+    pAlbumsDir = [pAlbumsDir stringByAppendingString:@"/"];
+    NSString *pNewAlbum = [pAlbumsDir stringByAppendingString:album_name];
+    NSURL *url = [NSURL fileURLWithPath:pNewAlbum isDirectory:YES];
+    return [url absoluteString];
+}
+
+-(void) setAlbumName:(id) item albumcntrl:(AlbumContentsViewController *) cntrl
+{
+    LocalItem *itm = item;
+    if (selectedItem.icloudsync == YES)
+        pAlName = itm.album_name;
+    else
+        pAlName  = [self getAlbumDir:itm.album_name];
+    [cntrl setPFlMgr:pFlMgr];
+    [cntrl setPAlName:pAlName];
+    [cntrl setName:itm.name];
+    if (itm.street != nil)
+        [cntrl setStreet:itm.street];
+    return;
+}
+
+-(void) photoActions:(int) source
+{
+    switch (source)
+    {
+        case PHOTOREQSOURCE_EMAIL:
+            [self emailRightNow];
+            break;
+            
+        case PHOTOREQSOURCE_SHARE:
+            [self shareSelFrnds];
+            break;
+            
+        case PHOTOREQSOURCE_FB:
+            [self fbshareRightNow];
+            break;
+            
+        default:
+            break;
+    }
+    
+
+    return;
+}
+
+-(void) initRefresh
+{
+    if (bInitRefresh)
+    {
+        bInitRefresh = false;
+        NSLog(@"AppDelegate.bInitRefresh set to false");
+    }
+    else
+    {
+        dataSync.refreshNow = true;
+        NSLog(@"Setting AppDelegate.dataSync.refreshNow to true");
+    }
+    return;
+}
+
+-(void) searchStrSet:(NSString *)text
+{
+    pSearchStr = text;
+    dataSync.refreshNow = true;
+    return;
+}
+
+-(void) searchStrReset
+{
+    pSearchStr = nil;
+    dataSync.refreshNow = true;
+    return;
+}
+
+-(NSString *) getLabelTxt:(id) itm
+{
+    LocalItem *item = itm;
+    NSString *labtxt = item.name;
+    labtxt = [labtxt stringByAppendingString:@" - "];
+    if (item.year != 3000 && item.model != nil)
+        labtxt = [labtxt stringByAppendingFormat:@" %d ", item.year];
+    if (item.model != nil && item.color != nil)
+    {
+        labtxt = [labtxt stringByAppendingString:item.color];
+        labtxt = [labtxt stringByAppendingString:@" "];
+    }
+    if (item.model != nil)
+        labtxt = [labtxt stringByAppendingString:item.model];
+    return labtxt;
+}
+
+-(void) pushSortOptionViewController
+{
+    SortOptionViewController *aViewController = [[SortOptionViewController alloc]
+                                                 initWithNibName:nil bundle:nil];
+    [self.navViewController pushViewController:aViewController animated:YES];
+
+    return;
+}
+
+-(void) pushDisplayViewController:(id) itm indx:(int)Indx
+{
+    LocalItem *item = itm;
+    selectedItem = item;
+    editItem = item;
+    selectIndx = Indx;
+    editIndx = Indx;
+    if (selectedItem.icloudsync == YES)
+        pAlName = selectedItem.album_name;
+    else
+        pAlName = [self getAlbumDir:selectedItem.album_name];
+    NSLog(@"Setting pDlg.pAlName=%@", pAlName);
+    
+    DisplayViewController *aViewController = [[DisplayViewController alloc]
+                                              initWithNibName:nil bundle:nil];
+    [self.navViewController pushViewController:aViewController animated:YES];
+    return;
+}
+
 -(void) populateOneMonth
 {
     oneMonth = 30*24*60*60*1000000;
@@ -103,79 +224,6 @@
     [self.navViewController popViewControllerAnimated:YES];
     
     
-}
-
-- (NSMetadataQuery*) imagesQuery 
-{
-    NSMetadataQuery* aQuery = [[NSMetadataQuery alloc] init];
-    if (aQuery) 
-    {
-        // Search the Documents subdirectory only.
-       // AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        //  NSURL *albumurl = [NSURL URLWithString:pDlg.pAlName];
-        // [aQuery setSearchScopes:[NSArray
-        //       arrayWithObject:albumurl]];
-        [aQuery setSearchScopes:[NSArray
-                                 arrayWithObject:NSMetadataQueryUbiquitousDocumentsScope]];
-        
-        // Add a predicate for finding the documents.
-        NSString* filePattern = @"*.jpg";
-        NSString* filePattern1 = @"*.MOV";
-        [aQuery setPredicate:[NSPredicate predicateWithFormat:@"%K LIKE %@ OR %K LIKE %@",
-                              NSMetadataItemFSNameKey, filePattern, NSMetadataItemFSNameKey, filePattern1]];
-    }
-    
-    return aQuery;
-}
-
-- (void)processQueryResults:(NSNotification*)aNotification
-{
-    
-    [query disableUpdates];
-    NSArray *queryResults = [query results];
-    NSLog(@"Processing iCloud query results no of items %lu\n", (unsigned long)[queryResults count]);
-    
-    for (NSMetadataItem *result in queryResults) 
-    {
-        
-        
-        NSURL *fileURL = [result valueForAttribute:NSMetadataItemURLKey];
-        
-        NSError *err;
-        if ([[result valueForAttribute:NSMetadataUbiquitousItemDownloadingStatusKey] isEqualToString:NSMetadataUbiquitousItemDownloadingStatusDownloaded] == NO&& [[result valueForAttribute:NSMetadataUbiquitousItemIsDownloadingKey] boolValue] == NO)
-        {
-            [pFlMgr startDownloadingUbiquitousItemAtURL:fileURL error:&err];
-            NSLog(@"Downloading item at URL %@ \n", fileURL);
-        }
-    }
-    [query enableUpdates];
-    return;
-}
-
-- (void)setupAndStartQuery 
-{
-    // Create the query object if it does not exist.
-    if (!query)
-        query = [self imagesQuery];
-    
-    // Register for the metadata query notifications.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(processQueryResults:)
-                                                 name:NSMetadataQueryDidFinishGatheringNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(processQueryResults:)
-                                                 name:NSMetadataQueryDidUpdateNotification
-                                               object:nil];
-    
-    // Start the query and let it run.
-    NSLog(@"In set up and  start query %@\n", query);
-    if (![query startQuery])
-        NSLog(@"Failed to start query %@\n", query);
-    if ([query isStarted])
-        NSLog(@"Started query %@\n", query);
-    if ([query isGathering])
-        NSLog(@" query Gathering %@\n", query);
 }
 
 -(void) itemEdit
@@ -303,6 +351,8 @@
     pSearchStr = nil;
     pMainVwCntrl.pSearchBar.text = nil;
     [pMainVwCntrl.pSearchBar resignFirstResponder];
+    [pMainVwCntrl setDelegate:self];
+    [pMainVwCntrl setDelegate_1:self];
     AddViewController *aViewController = [[AddViewController alloc]
                                           initWithNibName:nil bundle:nil];
     aVw = aViewController;
@@ -443,6 +493,16 @@
       return;
 }
 
+-(NSString *) getEmailFbMsg:(LocalItem *)item
+{
+    NSString *message = @"";
+    NSString *msg =[message stringByAppendingFormat:@"Name:%@\nModel: %@\nMake: %@  Year: %d\nPrice: %.2f  Miles: %d\n Notes: %@\nStreet: %@\nCity: %@\nState: %@\nCountry: %@\n Postal Code: %@\n\n\n",item.name, item.model,
+                    item.make,
+                    item.year == 3000? 0: item.year, [item.price floatValue] < 0.0? 0.0:[item.price floatValue] < 0.0? 0.0: [item.price floatValue], item.miles, item.notes, item.street,
+                    item.city, item.state, item.country, item.zip];
+    return msg;
+}
+
 -(void) emailRightNow
 {
     
@@ -450,7 +510,10 @@
      MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
      controller.mailComposeDelegate = self;
      [controller setSubject:@"Car details"];
-    [controller setMessageBody:[pMainVwCntrl.pAllItms getMessage:PHOTOREQSOURCE_EMAIL] isHTML:NO];
+    
+    LocalItem *item =[pMainVwCntrl.pAllItms getMessage:PHOTOREQSOURCE_EMAIL];
+    
+    [controller setMessageBody:[self getEmailFbMsg:item] isHTML:NO];
      
     NSUInteger cnt = [pMainVwCntrl.pAllItms.attchments count];
     NSLog (@"Attaching %lu images\n",(unsigned long)cnt);
@@ -470,6 +533,7 @@
     [self iCloudEmailCancel];
     return;
 }
+
 
 -(void) fbshareNow
 {
@@ -510,7 +574,8 @@
     SLComposeViewController *fbVwCntrl = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
     if (fbVwCntrl != nil)
     {
-        [fbVwCntrl setInitialText:[pMainVwCntrl.pAllItms getMessage:PHOTOREQSOURCE_FB]];
+        LocalItem *item =[pMainVwCntrl.pAllItms getMessage:PHOTOREQSOURCE_FB];
+        [fbVwCntrl setInitialText:[self getEmailFbMsg:item]];
         NSUInteger cnt = [pMainVwCntrl.pAllItms.attchments count];
         NSLog (@"Attaching %lu images\n",(unsigned long)cnt);
         for (NSUInteger i=0; i < cnt; ++i)
@@ -1100,37 +1165,8 @@
     //NSLog(@"sizeof double=%ld sizeof long long = %ld",sizeof(double), sizeof(long long));
    // return YES;
     
-    /*
-    UIApplication *sharedApp1 = [UIApplication sharedApplication];
-    sharedApp1.applicationIconBadgeNumber = 0;
-    [kvlocal removeObjectForKey:@"ToDownload"];
-    [kvlocal removeObjectForKey:@"DownLoadItems"];
-  //  toDownLoad = [kvlocal integerForKey:@"ToDownload"];
-  //  NSArray *dwldArr = [kvlocal arrayForKey:@"DownLoadItems"];
-  //  return YES;
-     */
-    
-
  
     NSError *error;
-    /*
-    NSUbiquitousKeyValueStore *kvstore = [NSUbiquitousKeyValueStore defaultStore];
-    [kvstore removeObjectForKey:@"TotRows"];
-    [kvstore removeObjectForKey:@"TotTrans"];
-    [kvstore synchronize];
-    BOOL removed = [pFlMgr removeItemAtPath:pHdir error:&error];
-    if (removed == YES)
-    {
-        NSLog(@"Removed contents of home directory\n");
-    }
-    else
-    {
-        NSLog(@"Failed to remove contents of home directory %@\n", error);
-    }
-     abort();
-  
-     */
-    
     kchain = [[KeychainItemWrapper alloc] initWithIdentifier:@"LoginData" accessGroup:@"3JEQ693MKL.com.rekhaninan.sinacama"];
     
 #ifdef CLEANUP
@@ -1159,6 +1195,8 @@
     aViewController.pAllItms.bInICloudSync = false;
     aViewController.pAllItms.bInEmail = false;
     aViewController.pAllItms.bAttchmentsInit = false;
+    aViewController.delegate = self;
+    aViewController.delegate_1  = self;
     
     fetchQueue = dispatch_queue_create("com.rekhaninan.fetchQueue", NULL);
         userName = [kchain objectForKey:(__bridge id)kSecAttrAccount];
@@ -1234,7 +1272,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMainScreen:) name:@"RefetchAllDatabaseData" object:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:@"RefreshAllViews" object:self];
-    [self setupAndStartQuery];
     
     if (biCloudAvail)
         NSLog (@"iCloud available\n");

@@ -8,7 +8,6 @@
 
 #import "EditViewController.h"
 #import "AppDelegate.h"
-#import "MainViewController.h"
 #include <sys/types.h>
 #include <dirent.h>
 #import "common/MapViewController.h"
@@ -1336,6 +1335,7 @@
         [albumContentsViewController setPFlMgr:pDlg.pFlMgr];
         [albumContentsViewController setPAlName:pDlg.pAlName];
         [albumContentsViewController setNavViewController:pDlg.navViewController];
+        [albumContentsViewController setDelegate:self];
         [albumContentsViewController setDelphoto:true];
         [self.navigationController pushViewController:albumContentsViewController animated:NO];
         [albumContentsViewController  setTitle:title];

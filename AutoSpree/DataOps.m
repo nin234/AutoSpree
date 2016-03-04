@@ -10,7 +10,7 @@
 #import "Item.h"
 #import "AppDelegate.h"
 #import <sys/stat.h>
-#import "MainViewController.h"
+#import "common/MainViewController.h"
 #import "ShareItems.h"
 #import <sharing/FriendDetails.h>
 #import "AVFoundation/AVAssetImageGenerator.h"
@@ -202,8 +202,6 @@
     
     return;
 }
-
-
 
 
 -(void) addItem:(LocalItem*)item

@@ -26,7 +26,6 @@
 #import "AVFoundation/AVAsset.h"
 #import "AVFoundation/AVTime.h"
 #import "CoreMedia/CMTime.h"
-#import "MainViewController.h"
 #import "common/textdefs.h"
 
 
@@ -1483,6 +1482,7 @@ tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPat
         [albumContentsViewController setPFlMgr:pDlg.pFlMgr];
         [albumContentsViewController setPAlName:pDlg.pAlName];
         [albumContentsViewController setNavViewController:pDlg.navViewController];
+        [albumContentsViewController setDelegate:self];
         [self.navigationController pushViewController:albumContentsViewController animated:NO];
      
         [albumContentsViewController  setTitle:title];
