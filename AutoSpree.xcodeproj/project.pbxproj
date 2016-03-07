@@ -36,8 +36,6 @@
 		DB858FAD15D206240075CBC6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB858F9215D206230075CBC6 /* CoreData.framework */; };
 		DB858FB515D206240075CBC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB858FB315D206240075CBC6 /* InfoPlist.strings */; };
 		DB858FB815D206240075CBC6 /* AutoSpreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FB715D206240075CBC6 /* AutoSpreeTests.m */; };
-		DB858FD215D256820075CBC6 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FC915D256820075CBC6 /* AddViewController.m */; };
-		DB858FD315D256820075CBC6 /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FCA15D256820075CBC6 /* AddViewController.xib */; };
 		DB858FDE15D256F20075CBC6 /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FD915D256F20075CBC6 /* DisplayViewController.m */; };
 		DB858FDF15D256F20075CBC6 /* DisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FDA15D256F20075CBC6 /* DisplayViewController.xib */; };
 		DB858FE015D256F20075CBC6 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FDC15D256F20075CBC6 /* EditViewController.m */; };
@@ -68,6 +66,7 @@
 		DBB16A4217A2040400C46AC0 /* ShareItems.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB16A4117A2040400C46AC0 /* ShareItems.m */; };
 		DBB16A8117B8441E00C46AC0 /* IphoneButton_Green.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB16A7F17B8441C00C46AC0 /* IphoneButton_Green.png */; };
 		DBB16A8217B8441E00C46AC0 /* IphoneButton_White.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB16A8017B8441D00C46AC0 /* IphoneButton_White.png */; };
+		DBD16AE81C8BA12D00052A03 /* AddEditDispDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD16AE71C8BA12C00052A03 /* AddEditDispDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -159,9 +158,6 @@
 		DB858FB615D206240075CBC6 /* AutoSpreeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoSpreeTests.h; sourceTree = "<group>"; };
 		DB858FB715D206240075CBC6 /* AutoSpreeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoSpreeTests.m; sourceTree = "<group>"; };
 		DB858FC115D206640075CBC6 /* AutoSpree.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AutoSpree.entitlements; sourceTree = "<group>"; };
-		DB858FC815D256820075CBC6 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
-		DB858FC915D256820075CBC6 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
-		DB858FCA15D256820075CBC6 /* AddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
 		DB858FD815D256F20075CBC6 /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
 		DB858FD915D256F20075CBC6 /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayViewController.m; sourceTree = "<group>"; };
 		DB858FDA15D256F20075CBC6 /* DisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplayViewController.xib; sourceTree = "<group>"; };
@@ -199,6 +195,8 @@
 		DBB16A6D17A724A100C46AC0 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DBB16A7F17B8441C00C46AC0 /* IphoneButton_Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IphoneButton_Green.png; path = Images/IphoneButton_Green.png; sourceTree = "<group>"; };
 		DBB16A8017B8441D00C46AC0 /* IphoneButton_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IphoneButton_White.png; path = Images/IphoneButton_White.png; sourceTree = "<group>"; };
+		DBD16AE61C8BA12C00052A03 /* AddEditDispDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEditDispDelegate.h; sourceTree = "<group>"; };
+		DBD16AE71C8BA12C00052A03 /* AddEditDispDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEditDispDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +299,8 @@
 		DB858F9415D206230075CBC6 /* AutoSpree */ = {
 			isa = PBXGroup;
 			children = (
+				DBD16AE61C8BA12C00052A03 /* AddEditDispDelegate.h */,
+				DBD16AE71C8BA12C00052A03 /* AddEditDispDelegate.m */,
 				DB00E49D1C79112300E898F7 /* AutoSpreeTranslator.h */,
 				DB00E49E1C79112300E898F7 /* AutoSpreeTranslator.m */,
 				DB00E4951C79108900E898F7 /* AutoSpreeShareMgr.m */,
@@ -329,9 +329,6 @@
 				DB858FDB15D256F20075CBC6 /* EditViewController.h */,
 				DB858FDC15D256F20075CBC6 /* EditViewController.m */,
 				DB858FDD15D256F20075CBC6 /* EditViewController.xib */,
-				DB858FC815D256820075CBC6 /* AddViewController.h */,
-				DB858FC915D256820075CBC6 /* AddViewController.m */,
-				DB858FCA15D256820075CBC6 /* AddViewController.xib */,
 				DB858F9515D206230075CBC6 /* Supporting Files */,
 			);
 			path = AutoSpree;
@@ -510,7 +507,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB858F9915D206230075CBC6 /* InfoPlist.strings in Resources */,
-				DB858FD315D256820075CBC6 /* AddViewController.xib in Resources */,
 				DB858FDF15D256F20075CBC6 /* DisplayViewController.xib in Resources */,
 				DB858FE115D256F20075CBC6 /* EditViewController.xib in Resources */,
 				DB85901215D2586C0075CBC6 /* SortOptionViewController.xib in Resources */,
@@ -568,7 +564,6 @@
 				DB858F9B15D206240075CBC6 /* main.m in Sources */,
 				DB858F9F15D206240075CBC6 /* AppDelegate.m in Sources */,
 				DB858FA215D206240075CBC6 /* AutoSpree.xcdatamodeld in Sources */,
-				DB858FD215D256820075CBC6 /* AddViewController.m in Sources */,
 				DB00E49F1C79112300E898F7 /* AutoSpreeTranslator.m in Sources */,
 				DB858FDE15D256F20075CBC6 /* DisplayViewController.m in Sources */,
 				DB858FE015D256F20075CBC6 /* EditViewController.m in Sources */,
@@ -578,6 +573,7 @@
 				DB00E4991C79108900E898F7 /* AutoSpreeShareMgr.m in Sources */,
 				DB598BDB169E5A930073CB2A /* LocalItem.m in Sources */,
 				DB598BDE169E5B460073CB2A /* DataOps.m in Sources */,
+				DBD16AE81C8BA12D00052A03 /* AddEditDispDelegate.m in Sources */,
 				DBB16A4217A2040400C46AC0 /* ShareItems.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
