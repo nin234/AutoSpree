@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LocalItem.h"
 #import "common/AddViewController.h"
+#import "common/EditViewController.h"
 
-@interface AddEditDispDelegate : NSObject<AddViewControllerDelegate>
+@interface AddEditDispDelegate : NSObject<AddViewControllerDelegate, EditViewControllerDelegate>
 
 @property (nonatomic, retain) LocalItem *pNewItem;
 -(void) initializeNewItem;
@@ -36,4 +37,18 @@
 -(NSString *) getNotes;
 -(double) getLongitude;
 -(double) getLatitude;
+-(void) deleteEditItem;
+-(void) setEditAlbumNames:(NSString *)noStr fullName:(NSString *)urlStr;
+-(void) itemEditCancel;
+-(void) itemEditDone;
+-(void) incrementEditPicCnt;
+- (void) populateEditValues:(UITextField *)textField;
+-(void) populateEditTextFields:(UITextField *) textField textField1:(UITextField *) textField1 row:(NSUInteger)row;
+-(bool) isSingleFieldEditRow:(NSUInteger) row;
+-(NSString *) deleteButtonTitle;
+-(NSString *) getEditItemTitle;
+-(double) getEditLongitude;
+-(double) getEditLatitude;
+-(NSString *) getEditNotes;
+
 @end
