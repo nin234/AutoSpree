@@ -353,6 +353,77 @@
     
     return;
 }
+
+-(void) populateDispTextFields:(UILabel *) textField textField1:(UILabel *) textField1 row:(NSUInteger)row
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    switch (row)
+    {
+        case 1:
+        {
+            textField.text = pDlg.selectedItem.model;
+            textField1.text = pDlg.selectedItem.color;
+            
+        }
+            break;
+            
+        case 2:
+        {
+            textField.text = pDlg.selectedItem.make;
+            if (pDlg.selectedItem.year != 3000)
+            {
+                char year1[64];
+                sprintf(year1, "%d", pDlg.selectedItem.year);
+                textField1.text = [NSString stringWithUTF8String:year1];
+            }
+            
+        }
+            break;
+            
+        case 3:
+        {
+            if ([pDlg.selectedItem.price  doubleValue] >= 0.0 )
+            {
+                char price1[64];
+                sprintf(price1, "%.2f", [pDlg.selectedItem.price floatValue]);
+                textField.text = [NSString stringWithUTF8String:price1];
+            }
+            
+            char miles1[64];
+            sprintf(miles1, "%d", pDlg.selectedItem.miles);
+            textField1.text = [NSString stringWithUTF8String:miles1];
+            
+        }
+        break;
+            
+        case 0:
+            textField.text = pDlg.selectedItem.name;
+            break;
+            
+        case 7:
+            textField.text = pDlg.selectedItem.street;
+            break;
+            
+        case 8:
+            textField.text = pDlg.selectedItem.city ;
+            break;
+            
+        case 9:
+            textField.text = pDlg.selectedItem.state;
+            break;
+            
+        case 10:
+            textField.text = pDlg.selectedItem.country;
+            break;
+        case 11:
+            textField.text = pDlg.selectedItem.zip;
+            break;
+            
+        default:
+            break;
+    }
+}
+
 -(NSArray *) getFieldNames
 {
     return [NSArray arrayWithObjects:@"Name", @"Model", @"Make", @"Price", @"Camera", @"Notes", @"Pictures", @"Map", @"Street", @"City", @"State", @"Country", @"Postal Code", nil];
@@ -394,6 +465,13 @@
     return false;
 }
 
+-(bool) isSingleFieldDispRow:(NSUInteger) row
+{
+    if (row < 1 || row > 6)
+        return true;
+    return false;
+}
+
 -(void) incrementEditPicCnt
 {
     AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -427,6 +505,13 @@
     return;
 }
 
+-(void) itemEdit
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [pDlg itemEdit];
+    return;
+}
+
 -(NSString *) setTitle
 {
     NSString *title = @"Car Info";
@@ -454,6 +539,28 @@
     }
     return title;
     
+}
+
+-(NSString *) getDispItemTitle
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *title ;
+    if (pDlg.selectedItem.year != 3000)
+    {
+        char year1[64];
+        sprintf(year1, "%d", pDlg.selectedItem.year);
+        title = [NSString stringWithUTF8String:year1];
+    }
+    else
+    {
+        title = @" ";
+    }
+    if (pDlg.selectedItem.model != nil)
+    {
+        title = [title stringByAppendingString:@" "];
+        title = [title stringByAppendingString:pDlg.selectedItem.model];
+    }
+    return title;
 }
 
 -(NSString *) getAlbumTitle;
@@ -487,6 +594,13 @@
     AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     return pDlg.editItem.notes;
 }
+
+-(NSString *) getDispNotes
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return pDlg.selectedItem.notes;
+}
+
 
 -(bool) changeCharacters:(NSInteger) tag
 {
@@ -535,6 +649,18 @@
 {
     AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     return pDlg.editItem.latitude;
+}
+
+-(double) getDispLongitude
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return pDlg.selectedItem.longitude;
+}
+
+-(double) getDispLatitude
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return pDlg.selectedItem.latitude;
 }
 
 -(double) getLatitude

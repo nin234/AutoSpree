@@ -36,8 +36,6 @@
 		DB858FAD15D206240075CBC6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB858F9215D206230075CBC6 /* CoreData.framework */; };
 		DB858FB515D206240075CBC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB858FB315D206240075CBC6 /* InfoPlist.strings */; };
 		DB858FB815D206240075CBC6 /* AutoSpreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FB715D206240075CBC6 /* AutoSpreeTests.m */; };
-		DB858FDE15D256F20075CBC6 /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FD915D256F20075CBC6 /* DisplayViewController.m */; };
-		DB858FDF15D256F20075CBC6 /* DisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FDA15D256F20075CBC6 /* DisplayViewController.xib */; };
 		DB858FE715D257E20075CBC6 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FE615D257E20075CBC6 /* Item.m */; };
 		DB85901115D2586C0075CBC6 /* SortOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858FFE15D2586B0075CBC6 /* SortOptionViewController.m */; };
 		DB85901215D2586C0075CBC6 /* SortOptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB858FFF15D2586C0075CBC6 /* SortOptionViewController.xib */; };
@@ -156,9 +154,6 @@
 		DB858FB615D206240075CBC6 /* AutoSpreeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoSpreeTests.h; sourceTree = "<group>"; };
 		DB858FB715D206240075CBC6 /* AutoSpreeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoSpreeTests.m; sourceTree = "<group>"; };
 		DB858FC115D206640075CBC6 /* AutoSpree.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AutoSpree.entitlements; sourceTree = "<group>"; };
-		DB858FD815D256F20075CBC6 /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
-		DB858FD915D256F20075CBC6 /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayViewController.m; sourceTree = "<group>"; };
-		DB858FDA15D256F20075CBC6 /* DisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplayViewController.xib; sourceTree = "<group>"; };
 		DB858FE515D257E20075CBC6 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		DB858FE615D257E20075CBC6 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		DB858FFD15D2586B0075CBC6 /* SortOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortOptionViewController.h; sourceTree = "<group>"; };
@@ -318,9 +313,6 @@
 				DB858F9E15D206240075CBC6 /* AppDelegate.m */,
 				DBB16A4017A2040400C46AC0 /* ShareItems.h */,
 				DBB16A4117A2040400C46AC0 /* ShareItems.m */,
-				DB858FD815D256F20075CBC6 /* DisplayViewController.h */,
-				DB858FD915D256F20075CBC6 /* DisplayViewController.m */,
-				DB858FDA15D256F20075CBC6 /* DisplayViewController.xib */,
 				DB858F9515D206230075CBC6 /* Supporting Files */,
 			);
 			path = AutoSpree;
@@ -499,7 +491,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB858F9915D206230075CBC6 /* InfoPlist.strings in Resources */,
-				DB858FDF15D256F20075CBC6 /* DisplayViewController.xib in Resources */,
 				DB85901215D2586C0075CBC6 /* SortOptionViewController.xib in Resources */,
 				DB85903915D26B160075CBC6 /* camera1.png in Resources */,
 				DB85903A15D26B160075CBC6 /* delete_button.png in Resources */,
@@ -556,7 +547,6 @@
 				DB858F9F15D206240075CBC6 /* AppDelegate.m in Sources */,
 				DB858FA215D206240075CBC6 /* AutoSpree.xcdatamodeld in Sources */,
 				DB00E49F1C79112300E898F7 /* AutoSpreeTranslator.m in Sources */,
-				DB858FDE15D256F20075CBC6 /* DisplayViewController.m in Sources */,
 				DB858FE715D257E20075CBC6 /* Item.m in Sources */,
 				DB00E49A1C79108900E898F7 /* AutoSpreeDecoder.m in Sources */,
 				DB85901115D2586C0075CBC6 /* SortOptionViewController.m in Sources */,
