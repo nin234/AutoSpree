@@ -13,7 +13,7 @@
 #import <MapKit/MapKit.h>
 #import "common/MySlider.h"
 #import "common/AddViewController.h"
-#import "DataOps.h"
+#import "common/DataOps.h"
 #import "LocalItem.h"
 #import <CoreLocation/CLLocationManager.h>
 #import "common/KeychainItemWrapper.h"
@@ -51,8 +51,6 @@
 
 @property (nonatomic, retain) AutoSpreeShareMgr *pShrMgr;
 
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
 @property (nonatomic, retain) IBOutlet UINavigationController *navViewController;
 @property (nonatomic, retain)  UITabBarController  *tabBarController;
 @property (nonatomic, retain) LocalItem* selectedItem;
@@ -135,10 +133,6 @@
 -(void) storeFriends;
 -(NSString *) getPassword;
 -(void) showShareView;
--(void) addToDownLoadItems:(NSArray *)dwldItems;
--(NSArray *)itemsToDownLoad;
--(void) removeFromDownLoadItems:(NSString *)item;
--(void) removeAllDownLoadItems;
 -(void) friendsAddDelDone;
 -(void) switchRootView;
 
