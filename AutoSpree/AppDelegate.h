@@ -20,6 +20,7 @@
 #import "common/InAppPurchase.h"
 #import "AutoSpreeShareMgr.h"
 #import "common/MainViewController.h"
+#import "common/AppUtil.h"
 
 
 #define   PHOTOREQSOURCE_FB 1
@@ -67,6 +68,8 @@
 @property (nonatomic, retain) DataOps *dataSync;
 @property (nonatomic, retain) KeychainItemWrapper *kchain;
 @property (nonatomic, retain) InAppPurchase *inapp;
+@property (nonatomic, retain) AppUtil *apputil;
+
 @property bool unlocked;
 @property int attchmnts;
 @property int editIndx;
