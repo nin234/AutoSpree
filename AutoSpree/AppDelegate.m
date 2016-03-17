@@ -78,21 +78,11 @@
 @synthesize bFromShareAction;
 @synthesize beingLoggedIn;
 @synthesize inapp;
-@synthesize purchased;
 @synthesize tabBarController;
 @synthesize pShrMgr;
 @synthesize appUtl;
+@synthesize apputil;
 
-- (NSString *) getAlbumDir: (NSString *) album_name
-{
-    NSString *pHdir = NSHomeDirectory();
-    NSString *pAlbums = @"/Documents/albums";
-    NSString *pAlbumsDir = [pHdir stringByAppendingString:pAlbums];
-    pAlbumsDir = [pAlbumsDir stringByAppendingString:@"/"];
-    NSString *pNewAlbum = [pAlbumsDir stringByAppendingString:album_name];
-    NSURL *url = [NSURL fileURLWithPath:pNewAlbum isDirectory:YES];
-    return [url absoluteString];
-}
 
 -(void) setAlbumName:(id) item albumcntrl:(AlbumContentsViewController *) cntrl
 {
@@ -100,7 +90,7 @@
     if (selectedItem.icloudsync == YES)
         pAlName = itm.album_name;
     else
-        pAlName  = [self getAlbumDir:itm.album_name];
+        pAlName  = [apputil getAlbumDir:itm.album_name];
     [cntrl setPFlMgr:pFlMgr];
     [cntrl setPAlName:pAlName];
     [cntrl setName:itm.name];
@@ -198,7 +188,7 @@
     if (selectedItem.icloudsync == YES)
         pAlName = selectedItem.album_name;
     else
-        pAlName = [self getAlbumDir:selectedItem.album_name];
+        pAlName = [apputil getAlbumDir:selectedItem.album_name];
     NSLog(@"Setting pDlg.pAlName=%@", pAlName);
     
     DisplayViewController *aViewController = [[DisplayViewController alloc]
@@ -330,9 +320,9 @@
 - (void)itemAdd
 {    
   //  UIBarButtonItem *pBarItem1 = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(itemAddCancel) ];
-    NSLog(@"Adding item purchase = %d COUNT = %lld", purchased, COUNT);
+    NSLog(@"Adding item purchase = %d COUNT = %lld", appUtl.purchased, COUNT);
     
-    if (!purchased)
+    if (!appUtl.purchased)
     {
         if (COUNT >= 2)
         {
@@ -718,7 +708,7 @@
         {
             case 0:
                 NSLog(@"Purchasing autospree_full");
-                if (!purchased)
+                if (!appUtl.purchased)
                     [inapp start:true];
                 else
                     NSLog(@"Already upgraded, ignoring");
@@ -728,7 +718,7 @@
             case 1:
                 NSLog(@"Restoring autospree_full");
                 
-                if (!purchased)
+                if (!appUtl.purchased)
                     [inapp start:false];
                 else
                     NSLog(@"Already upgraded, ignoring");
@@ -881,14 +871,14 @@
             [aVw setLocation:loc];
 }
 
--(void) setPurchsd
+-(void) setPurchsd:(NSString *) trid
 {
     NSLog(@"Setting purchased to true");
-    purchased = true;
-    NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
-    [kvlocal setBool:YES forKey:@"Purchased"];
-    if (kvstore)
-        [kvstore setBool:YES forKey:@"Purchased"];
+    NSLog(@"Setting purchased to true");
+    [appUtl setPurchsdTokens:trid];
+    appUtl.purchased = true;
+    [kchain setObject:@"true" forKey:(__bridge id)kSecAttrAccount];
+    [inapp stop];
     if (!bShrMgrStarted)
     {
         pShrMgr = [[AutoSpreeShareMgr alloc] init];
@@ -911,12 +901,12 @@
     COUNT = [kvstore longLongForKey:@"TotRows"];
     totcount = [kvstore longLongForKey:@"TotTrans"];
     NSLog(@"Got storeDidChange counts COUNT=%lld totcount=%lld\n", COUNT, totcount);
-    if (!purchased)
+    if (!appUtl.purchased)
     {
         BOOL purch = [kvstore boolForKey:@"Purchased"];
         if (purch == YES)
         {
-            purchased = true;
+            appUtl.purchased = true;
             NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
             [kvlocal setBool:YES forKey:@"Purchased"];
         }
@@ -1167,7 +1157,7 @@
     bInBackGround = false;
     bFromShareAction = false;
     beingLoggedIn = false;
-    purchased = false;
+    appUtl.purchased = false;
     bUpgradeAction = false;
     bSystemAbrt = false;
     NSLog(@"Launching Autospree");
@@ -1178,6 +1168,7 @@
     NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
     [self populateOneMonth];
     kvstore = [NSUbiquitousKeyValueStore defaultStore];
+    apputil = [[AppUtil alloc] init];
     //NSLog(@"sizeof double=%ld sizeof long long = %ld",sizeof(double), sizeof(long long));
    // return YES;
     
@@ -1260,7 +1251,7 @@
     
     BOOL purch = [kvlocal boolForKey:@"Purchased"];
     if (purch == YES)
-        purchased = true;
+        appUtl.purchased = true;
     
         // Override point for customization after application launch.
     UINavigationController *navCntrl = [[UINavigationController alloc] initWithRootViewController:aViewController];

@@ -20,7 +20,9 @@
 #import "sharing/InAppPurchase.h"
 #import "AutoSpreeShareMgr.h"
 #import "common/MainViewController.h"
- #import "sharing/AppShrUtil.h"
+#import "sharing/AppShrUtil.h"
+#import "common/AppUtil.h"
+
 
 
 #define   PHOTOREQSOURCE_FB 1
@@ -68,6 +70,8 @@
 @property (nonatomic, retain) DataOps *dataSync;
 @property (nonatomic, retain) KeychainItemWrapper *kchain;
 @property (nonatomic, retain) InAppPurchase *inapp;
+@property (nonatomic, retain) AppUtil *apputil;
+
 @property bool unlocked;
 @property int attchmnts;
 @property int editIndx;
@@ -104,7 +108,6 @@
 @property bool bInBackGround;
 @property bool bFromShareAction;
 @property bool beingLoggedIn;
-@property bool purchased;
 
 @property (nonatomic, retain) NSFileManager *pFlMgr;
 
@@ -113,7 +116,7 @@
 -(void) iCloudOrEmail;
 - (void) itemAddCancel;
 -(void) itemEdit;
--(void) setPurchsd;
+-(void) setPurchsd:(NSString *)trid;
 -(void) itemEditDone;
 -(void) itemEditCancel;
 -(void) popView;
