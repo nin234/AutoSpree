@@ -81,6 +81,7 @@
 @synthesize purchased;
 @synthesize tabBarController;
 @synthesize pShrMgr;
+@synthesize appUtl;
 
 - (NSString *) getAlbumDir: (NSString *) album_name
 {
@@ -1172,6 +1173,7 @@
     NSLog(@"Launching Autospree");
     inapp = [[InAppPurchase alloc] init];
     [inapp setDelegate:self];
+    [inapp setProductId:@"com.rekhaninan.autospree_full"];
     [[SKPaymentQueue defaultQueue] addTransactionObserver:inapp];
     NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
     [self populateOneMonth];
@@ -1295,6 +1297,8 @@
     //[self.window addSubview:self.navViewController.view];
     [self.window setRootViewController:self.navViewController];
     [self.window makeKeyAndVisible];
+    if (appUtl.purchased)
+        [appUtl registerForRemoteNotifications];
     
     return YES;
 }

@@ -17,9 +17,10 @@
 #import "LocalItem.h"
 #import <CoreLocation/CLLocationManager.h>
 #import "common/KeychainItemWrapper.h"
-#import "common/InAppPurchase.h"
+#import "sharing/InAppPurchase.h"
 #import "AutoSpreeShareMgr.h"
 #import "common/MainViewController.h"
+ #import "sharing/AppShrUtil.h"
 
 
 #define   PHOTOREQSOURCE_FB 1
@@ -135,5 +136,6 @@
 -(void) showShareView;
 -(void) friendsAddDelDone;
 -(void) switchRootView;
+@property (nonatomic, retain) AppShrUtil *appUtl;
 
 @end
