@@ -13,8 +13,6 @@
 #import "common/DisplayViewController.h"
 #import "Item.h"
 #import <MapKit/MapKit.h>
-#import <Social/SLComposeViewController.h>
-#import <Social/SLServiceTypes.h>
 #import <sharing/FriendDetails.h>
 #import <sharing/AddFriendViewController.h>
 #import "SortOptionViewController.h"
@@ -23,9 +21,6 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize managedObjectContext = __managedObjectContext;
-@synthesize managedObjectModel = __managedObjectModel;
-@synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize navViewController = _navViewController;
 @synthesize selectedItem;
 @synthesize editItem;
@@ -48,8 +43,6 @@
 @synthesize cloudDocsURL;
 @synthesize toggle;
 @synthesize loc;
-@synthesize attchmnts;
-@synthesize bEmailConfirm;
 @synthesize bPtoPShare;
 @synthesize userName;
 @synthesize passWord;
@@ -62,7 +55,6 @@
 @synthesize photo_scale;
 @synthesize sysver;
 @synthesize bNoICloudAlrt;
-@synthesize bFBAction;
 @synthesize unlocked;
 @synthesize bRegistered;
 @synthesize bPassword;
@@ -83,6 +75,27 @@
 @synthesize appUtl;
 @synthesize apputil;
 
+-(void) setPurchsed
+{
+    [kchain setObject:@"true" forKey:(__bridge id)kSecAttrAccount];
+    return;
+}
+
+-(void) iCloudOrEmail
+{
+    [apputil iCloudOrEmail];
+}
+
+- (NSString *) getAlbumDir: (NSString *) album_name
+{
+    NSString *pHdir = NSHomeDirectory();
+    NSString *pAlbums = @"/Documents/albums";
+    NSString *pAlbumsDir = [pHdir stringByAppendingString:pAlbums];
+    pAlbumsDir = [pAlbumsDir stringByAppendingString:@"/"];
+    NSString *pNewAlbum = [pAlbumsDir stringByAppendingString:album_name];
+    NSURL *url = [NSURL fileURLWithPath:pNewAlbum isDirectory:YES];
+    return [url absoluteString];
+}
 
 -(void) setAlbumName:(id) item albumcntrl:(AlbumContentsViewController *) cntrl
 {
@@ -101,25 +114,7 @@
 
 -(void) photoActions:(int) source
 {
-    switch (source)
-    {
-        case PHOTOREQSOURCE_EMAIL:
-            [self emailRightNow];
-            break;
-            
-        case PHOTOREQSOURCE_SHARE:
-            [self shareSelFrnds];
-            break;
-            
-        case PHOTOREQSOURCE_FB:
-            [self fbshareRightNow];
-            break;
-            
-        default:
-            break;
-    }
-    
-
+    [apputil photoActions:source];
     return;
 }
 
@@ -202,6 +197,18 @@
     return;
 }
 
+-(NSString *) getEmailFbMsg:(id)itm
+{
+    LocalItem *item = itm;
+    NSString *message = @"";
+    NSString *msg =[message stringByAppendingFormat:@"Name:%@\nModel: %@\nMake: %@  Year: %d\nPrice: %.2f  Miles: %d\n Notes: %@\nStreet: %@\nCity: %@\nState: %@\nCountry: %@\n Postal Code: %@\n\n\n",item.name, item.model,
+                    item.make,
+                    item.year == 3000? 0: item.year, [item.price floatValue] < 0.0? 0.0:[item.price floatValue] < 0.0? 0.0: [item.price floatValue], item.miles, item.notes, item.street,
+                    item.city, item.state, item.country, item.zip];
+    return msg;
+}
+
+
 -(void) populateOneMonth
 {
     oneMonth = 30*24*60*60*1000000;
@@ -272,7 +279,6 @@
 
 -(void) itemAddCancel
 {
-    bEmailConfirm =false;
     UIAlertView *pAvw = [[UIAlertView alloc] initWithTitle:@"Discard Changes" message:@"" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
     [pAvw show];   
 }
@@ -378,247 +384,28 @@
     
 }
 
--(void) iCloudEmailCancel
-{
-    
-    MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
-    pMainVwCntrl.pAllItms.bInEmail = false;
-    pMainVwCntrl.pAllItms.bInICloudSync = false;
-    [pMainVwCntrl.pAllItms unlockItems];
-    [pMainVwCntrl.pAllItms attchmentsClear];
-    self.dataSync.dontRefresh = false;
-    UIBarButtonItem *pBarItem1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(iCloudOrEmail)];
-    pMainVwCntrl.pAllItms.tableView.tableFooterView = nil;
-    
-    self.navViewController.navigationBar.topItem.leftBarButtonItem = pBarItem1;
-
-    self.dataSync.updateNow = true;
-    [pMainVwCntrl.pAllItms resetSelectedItems];
-    self.navViewController.toolbarHidden = YES;
-    return;
-}
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSLog(@"Clicked button at index %ld", (long)buttonIndex);
-    if (bSystemAbrt)
-    {
-        bSystemAbrt = false;
-        return;
-    }
     if (bUpgradeAlert)
     {
         NSLog(@"Resetting bUpgradeAlert in alertview action");
         bUpgradeAlert = false;
         return;
     }
-    
-    if (bPersistError)
-    {
-        bPersistError = false;
-      //  abort();
-        return;
-    }
-    MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
-    attchmnts = (int)buttonIndex;
-    
-    if(bNoICloudAlrt)
-    {
-         [self iCloudEmailCancel];
-        bNoICloudAlrt = false;
-        return;
-    }
+     int attchmnts = (int)buttonIndex;
     
     switch (attchmnts)
     {
-        case 0:
-            NSLog(@"Attaching no photos\n");
-            if (bFBAction)
-            {
-                bFBAction = false;
-                [self fbshareRightNow];
-                return;
-            }
-            if (bShare)
-            {
-                bShare = false;
-                [self shareSelFrnds];
-            }
-            if (bEmailConfirm)
-            {
-                bEmailConfirm = false;
-                [self emailRightNow];
-            }
-            if (bShareAction)
-            {
-                bShareAction = false;
-                bFromShareAction = true;
-                [self.dataSync setLoginNow:true];
-               
-            }
-
-            
-            break;
-            
         case 1:
         {
-            NSLog(@"Attaching all the photos\n");
-            if (bFBAction)
-            {
-                bFBAction = false;
-                [pMainVwCntrl.pAllItms getPhotos:0 source:PHOTOREQSOURCE_FB];
-                return;
-            }
-            
-            if (bShare)
-            {
-                bShare = false;
-                [pMainVwCntrl.pAllItms getPhotos:0 source:PHOTOREQSOURCE_SHARE];
-                return;
-            }
-            
-                        
-            if(bEmailConfirm)
-            {
-                bEmailConfirm =false;
-                [pMainVwCntrl.pAllItms getPhotos:0 source:PHOTOREQSOURCE_EMAIL];
-            }
-            else
-            {
-                [self itemAddCancelConfirm];
-            }
+            [self itemAddCancelConfirm];
         }
             break;
             
         default:
             break;
     }
-    
-    NSLog(@"Email selected items\n");
-      return;
-}
-
--(NSString *) getEmailFbMsg:(LocalItem *)item
-{
-    NSString *message = @"";
-    NSString *msg =[message stringByAppendingFormat:@"Name:%@\nModel: %@\nMake: %@  Year: %d\nPrice: %.2f  Miles: %d\n Notes: %@\nStreet: %@\nCity: %@\nState: %@\nCountry: %@\n Postal Code: %@\n\n\n",item.name, item.model,
-                    item.make,
-                    item.year == 3000? 0: item.year, [item.price floatValue] < 0.0? 0.0:[item.price floatValue] < 0.0? 0.0: [item.price floatValue], item.miles, item.notes, item.street,
-                    item.city, item.state, item.country, item.zip];
-    return msg;
-}
-
--(void) emailRightNow
-{
-    
-    MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];  
-     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
-     controller.mailComposeDelegate = self;
-     [controller setSubject:@"Car details"];
-    
-    LocalItem *item =[pMainVwCntrl.pAllItms getMessage:PHOTOREQSOURCE_EMAIL];
-    
-    [controller setMessageBody:[self getEmailFbMsg:item] isHTML:NO];
-     
-    NSUInteger cnt = [pMainVwCntrl.pAllItms.attchments count];
-    NSLog (@"Attaching %lu images\n",(unsigned long)cnt);
-    for (NSUInteger i=0; i < cnt; ++i) 
-    {
-        if ([[pMainVwCntrl.pAllItms.movOrImg objectAtIndex:i] boolValue])
-        {
-            [controller addAttachmentData:[NSData dataWithContentsOfURL:[pMainVwCntrl.pAllItms.attchments objectAtIndex:i]] mimeType:@"image/jpeg" fileName:@"photo"];
-        }
-        else 
-        {
-            [controller addAttachmentData:[NSData dataWithContentsOfURL:[pMainVwCntrl.pAllItms.attchments objectAtIndex:i]] mimeType:  @"video/quicktime" fileName:@"video"];    
-        }
-    }
-    if (controller) 
-        [pMainVwCntrl presentViewController:controller animated:YES completion:nil];
-    [self iCloudEmailCancel];
-    return;
-}
-
-
--(void) fbshareNow
-{
-    MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
-    if(![pMainVwCntrl.pAllItms itemsSelected])
-    {
-        [self iCloudEmailCancel];
-        return;
-    }
-    bFBAction = true;
-    UIAlertView *pAvw = [[UIAlertView alloc] initWithTitle:@"Post Pictures" message:@"Only images can be posted. Movies cannot be posted" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
-    [pAvw show];
-
-    return;
-}
-
--(void) shareRightNow
-{
-
-}
-
--(void) shareSelFrnds
-{
-        return;
-}
-
--(void) friendsAddDelDone
-{
-    
-      return;
-}
-
-
-
--(void) fbshareRightNow
-{
-     MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0]; 
-    SLComposeViewController *fbVwCntrl = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    if (fbVwCntrl != nil)
-    {
-        LocalItem *item =[pMainVwCntrl.pAllItms getMessage:PHOTOREQSOURCE_FB];
-        [fbVwCntrl setInitialText:[self getEmailFbMsg:item]];
-        NSUInteger cnt = [pMainVwCntrl.pAllItms.attchments count];
-        NSLog (@"Attaching %lu images\n",(unsigned long)cnt);
-        for (NSUInteger i=0; i < cnt; ++i)
-        {
-            [fbVwCntrl addImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[pMainVwCntrl.pAllItms.attchments objectAtIndex:i]]]];
-        }
-        [fbVwCntrl setCompletionHandler:^(SLComposeViewControllerResult result)
-         {
-            if (result == SLComposeViewControllerResultCancelled)
-                NSLog(@"User cancelled fb post\n");
-             else
-                 NSLog(@"Posted to fb\n");
-             [self iCloudEmailCancel];
-         }
-         ];
-        [pMainVwCntrl presentViewController:fbVwCntrl animated:YES completion:nil];
-    }
-    return;
-}
-
--(void) emailNow
-{
-    if ([MFMailComposeViewController canSendMail])
-    {
-        MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
-        if(![pMainVwCntrl.pAllItms itemsSelected])
-        {
-            [self iCloudEmailCancel];
-            return;
-        }
-        bEmailConfirm = true;
-        
-        UIAlertView *pAvw = [[UIAlertView alloc] initWithTitle:@"Attach Pictures" message:@"" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
-        [pAvw show];
-        
-    }
-   
-    return;
 }
 
 -(void) syncNow
@@ -626,7 +413,7 @@
     NSLog(@"Syncing to iCloud selected items\n");
     MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
     [pMainVwCntrl.pAllItms syncSelectedtoiCloud];
-    [self iCloudEmailCancel];
+    [self.apputil iCloudEmailCancel];
     return;
 }
 
@@ -637,7 +424,7 @@
     MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
     if(![pMainVwCntrl.pAllItms itemsSelected])
     {
-        [self iCloudEmailCancel];
+        [self.apputil iCloudEmailCancel];
         return;
     }
     bShare = true;
@@ -686,159 +473,8 @@
     return;
 }
 
--(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-     MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
-    printf("Clicked button at index %ld\n", (long)buttonIndex);
-    UIBarButtonItem *pBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(iCloudEmailCancel) ];
-    self.navViewController.navigationBar.topItem.leftBarButtonItem = pBarItem;
-     self.navViewController.toolbarHidden = NO;
-   
-    UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc]
-                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                target:nil action:nil];
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 45)];
-	footer.backgroundColor = [UIColor clearColor];
-	pMainVwCntrl.pAllItms.tableView.tableFooterView = footer;
-    UIBarButtonItem *pBarItem1;
-    if (bUpgradeAction)
-    {
-        bUpgradeAction = false;
-        switch (buttonIndex)
-        {
-            case 0:
-                NSLog(@"Purchasing autospree_full");
-                if (!appUtl.purchased)
-                    [inapp start:true];
-                else
-                    NSLog(@"Already upgraded, ignoring");
-                [self iCloudEmailCancel];
-            break;
-                
-            case 1:
-                NSLog(@"Restoring autospree_full");
-                
-                if (!appUtl.purchased)
-                    [inapp start:false];
-                else
-                    NSLog(@"Already upgraded, ignoring");
-                [self iCloudEmailCancel];
-                
-            break;
-                
-            default:
-                [self iCloudEmailCancel];
-              
-            break;
-        }
-        return;
-    }
- 
-    if (buttonIndex == 0)
-    {
-        NSLog(@"In email \n");
-        pMainVwCntrl.pAllItms.bInEmail = true;
-        pMainVwCntrl.emailAction = true;
-        pBarItem1 = [[UIBarButtonItem alloc] initWithTitle:@"Email" style:UIBarButtonItemStylePlain target:self action:@selector(emailNow)];
-        
-    }
-    else if (buttonIndex == 1)
-    {
-        UIDevice *dev = [UIDevice currentDevice];
-        if ([[dev systemVersion] doubleValue] < 6.0)
-        {
-            [self iCloudEmailCancel];
-            return;
-        }
-        NSLog(@"In facebook share\n");
-        pMainVwCntrl.pAllItms.bInEmail = true;
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-        {
-            pBarItem1 = [[UIBarButtonItem alloc] initWithTitle:@"Facebook" style:UIBarButtonItemStylePlain target:self action:@selector(fbshareNow)];
-            
-
-        }
-        else
-        {
-            UIAlertView *pAvw = [[UIAlertView alloc] initWithTitle:@"No Facebook Account" message:@"Please set up facebook account in settings. House details including pictures can be shared with selected group of friends on Facebook" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            bNoICloudAlrt = true;
-            [pAvw show];
-        }
-    }
-    else if (buttonIndex == 2)
-    {
-        
-        [self iCloudEmailCancel];
-        bUpgradeAction = true;
-        UIActionSheet *pSh;
-        
-        pSh= [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Purchase", @"Restore Purchases", nil];
-        
-        MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
-        [pMainVwCntrl.pAllItms lockItems];
-        [pSh setDelegate:self];
-        [pSh showInView:pMainVwCntrl.pAllItms.tableView];
-        
-
-        
-    }
-    else
-    {
-        [self iCloudEmailCancel];
-        return;
-    }
-
-    [pMainVwCntrl setToolbarItems:[NSArray arrayWithObjects:
-                                   flexibleSpaceButtonItem,
-                                   pBarItem1,
-                                   flexibleSpaceButtonItem,
-                                   nil]
-                         animated:YES];   
-    self.dataSync.updateNowSetDontRefresh = true;
-    //[pMainVwCntrl.pAllItms.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
-        return;
-    
-
-}
 
 
--(void) iCloudOrEmail
-{
-    NSLog(@"Showing iCloud email action sheet \n");
-    
-    //Move files to iCloud, pull files from iCloud
-    //how to reconcile
-    //Album directory name by time of
-   
-    UIActionSheet *pSh;
-    
-    pSh= [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Email", @"Facebook share", @"Upgrade", nil];
-   
-   MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
-    [pMainVwCntrl.pAllItms lockItems];
-    [pSh setDelegate:self];
-    [pSh showInView:pMainVwCntrl.pAllItms.tableView];
-    
-    
-
-
-    return;
-}
-
-- (void)initializeiCloudAccess 
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *containerID = @"3JEQ693MKL.com.rekhaninan.AutoSpree";
-        if ([[NSFileManager defaultManager]
-             URLForUbiquityContainerIdentifier:containerID] != nil)
-        {
-            NSLog(@"iCloud is available\n");
-            biCloudAvail = true;
-        }
-        else
-            NSLog(@"iCloud,  is not available.\n");
-    });
-}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
@@ -871,24 +507,6 @@
             [aVw setLocation:loc];
 }
 
--(void) setPurchsd:(NSString *) trid
-{
-    NSLog(@"Setting purchased to true");
-    NSLog(@"Setting purchased to true");
-    [appUtl setPurchsdTokens:trid];
-    appUtl.purchased = true;
-    [kchain setObject:@"true" forKey:(__bridge id)kSecAttrAccount];
-    [inapp stop];
-    if (!bShrMgrStarted)
-    {
-        pShrMgr = [[AutoSpreeShareMgr alloc] init];
-        [pShrMgr start];
-        bShrMgrStarted = true;
-    }
-
-}
-
-
 -(void) storeDidChange:(NSUbiquitousKeyValueStore *)kstore
 {
     if (!bKvInit)
@@ -914,7 +532,6 @@
     }
 
     
-    //    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
     if (userName == nil)
     {
         userName = [kvstore stringForKey:@"UserName"];
@@ -943,8 +560,8 @@
     }
     
         NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
-        [kvlocal setInteger:(NSInteger)COUNT forKey:@"TotRows"];
-        [kvlocal setInteger:(NSInteger) totcount forKey:@"TotTrans"];
+        [kvlocal setInteger:(NSInteger)COUNT  forKey:@"TotRows"];
+        [kvlocal setInteger:(NSInteger)totcount forKey:@"TotTrans"];
     
     return;
 }
@@ -1001,43 +618,15 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    
+    
     return;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-
-  @try
-  {
-    NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
-    NSData *tokenNow = [kvlocal dataForKey:@"NotToken"];
-    NSLog(@"Did register for remote notification with token %@ tokenNow=%@", deviceToken, tokenNow);
-    bool bChange = false;
-    if (tokenNow == nil)
-    {
-        [kvlocal setObject:deviceToken forKey:@"NotToken"];
-        bChange = true;
-    }
-    else
-    {
-            if (![deviceToken isEqualToData:tokenNow])
-            {
-                [kvlocal setObject:deviceToken forKey:@"NotToken"];
-                bChange = true;
-            }
-    }
-    
-    NSLog(@"bRegistered=%s, bChange=%s bTokPut=%s", bRegistered?"true":"false", bChange?"true":"false", bTokPut?"YES":"NO");
-    }
-   @catch (NSException *exception)
-   {
-        NSLog(@" Caught %@: %@", [exception name], [exception reason]);
-   }
-   @finally
-   {
-       NSLog(@"Doing nothing");
-   }
-    return;
+    [appUtl didRegisterForRemoteNotification:deviceToken];
+      return;
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
@@ -1054,7 +643,8 @@
         bFirstActive = false;
         return;
     }
-        if (!bRegistered)
+    
+    if (!bRegistered)
     {
         NSString *unameInKChain = [kchain objectForKey:(__bridge id)kSecAttrAccount];
         if (unameInKChain != nil && [unameInKChain length] > 0)
@@ -1103,7 +693,7 @@
         [kvstore setLongLong:0 forKey:@"TotTrans"];
     }
     [kchain resetKeychainItem];
-    
+   
     [kvlocal setInteger:0 forKey:@"SelfHelp"];
     [kvlocal setInteger:0 forKey:@"TotRows"];
     [kvlocal setInteger:0 forKey:@"TotTrans"];
@@ -1127,7 +717,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    bShrMgrStarted = false;
     bFirstActive = true;
     pFlMgr = [[NSFileManager alloc] init];
     NSString *pHdir = NSHomeDirectory();
@@ -1142,46 +731,37 @@
     bMilesAsc = true;
     bColorAsc = true;
     biCloudAvail = false;
-    bEmailConfirm  = false;
     toggle = 0;
     bPtoPShare = false;
     bInitRefresh = true;
     photo_scale = 1.0;
-    bNoICloudAlrt = false;
-    bFBAction = false;
     bRegistered = false;
     bSharingDisabled = true;
     bShareAction = false;
     bChkdFrndLst = false;
-    bPersistError = false;
     bInBackGround = false;
     bFromShareAction = false;
     beingLoggedIn = false;
+    appUtl = [[AppShrUtil alloc] init];
     appUtl.purchased = false;
-    bUpgradeAction = false;
-    bSystemAbrt = false;
+    pShrMgr = [[AutoSpreeShareMgr alloc] init];
+    appUtl.pShrMgr = pShrMgr;
     NSLog(@"Launching Autospree");
-    inapp = [[InAppPurchase alloc] init];
-    [inapp setDelegate:self];
-    [inapp setProductId:@"com.rekhaninan.autospree_full"];
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:inapp];
     NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
     [self populateOneMonth];
     kvstore = [NSUbiquitousKeyValueStore defaultStore];
-    apputil = [[AppUtil alloc] init];
-    //NSLog(@"sizeof double=%ld sizeof long long = %ld",sizeof(double), sizeof(long long));
-   // return YES;
-    
- 
-    NSError *error;
     kchain = [[KeychainItemWrapper alloc] initWithIdentifier:@"LoginData" accessGroup:@"3JEQ693MKL.com.rekhaninan.sinacama"];
+    apputil = [AppUtil alloc];
+    apputil.delegate = self;
+    [apputil setProductId:@"com.rekhaninan.autospree_full"];
+     apputil = [apputil init];
     
 #ifdef CLEANUP
          [self cleanUpEverything];
           return YES ;
 #endif
     
-   
+    NSError *error;
     dataSync = [[DataOps alloc] init];
     [dataSync start];
     
@@ -1215,7 +795,7 @@
     }
     else
     {
-        if (kvstore)
+        if(kvstore)
             userName = [kvstore stringForKey:@"UserName"];
         if(userName != nil && [userName length] > 0)
         {
@@ -1256,6 +836,7 @@
         // Override point for customization after application launch.
     UINavigationController *navCntrl = [[UINavigationController alloc] initWithRootViewController:aViewController];
     self.navViewController = navCntrl;
+    apputil.navViewController = navCntrl;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window addSubview:self.navViewController.view];
     [self.window makeKeyAndVisible];

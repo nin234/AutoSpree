@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Item.h"
 #import <Foundation/Foundation.h>
-#import <MessageUI/MFMailComposeViewController.h>
 #import <MapKit/MapKit.h>
 #import "common/MySlider.h"
 #import "common/AddViewController.h"
@@ -17,20 +16,16 @@
 #import "LocalItem.h"
 #import <CoreLocation/CLLocationManager.h>
 #import "common/KeychainItemWrapper.h"
-#import "sharing/InAppPurchase.h"
 #import "AutoSpreeShareMgr.h"
 #import "common/MainViewController.h"
 #import "sharing/AppShrUtil.h"
 #import "common/AppUtil.h"
 
 
-
-#define   PHOTOREQSOURCE_FB 1
-#define  PHOTOREQSOURCE_EMAIL 0
 #define PHOTOREQSOURCE_SHARE 2
 #define AWS_AUTOSPREE_APPID 1
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate,InAppPurchaseDelegate, MainViewControllerDelegate, MainListViewControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, MainViewControllerDelegate, MainListViewControllerDelegate, AppUtilDelegate>
 {
     NSMetadataQuery *query;
     MKMapView    *mapView;
@@ -39,18 +34,10 @@
     NSUbiquitousKeyValueStore *kvstore;
     bool bKvInit;
     bool bFirstActive;
-    bool bPersistError;
     bool bUpgradeAlert;
-    bool bUpgradeAction;
-    bool bSystemAbrt;
-    bool bShrMgrStarted;
 }
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (nonatomic, retain) AutoSpreeShareMgr *pShrMgr;
 
@@ -73,7 +60,6 @@
 @property (nonatomic, retain) AppUtil *apputil;
 
 @property bool unlocked;
-@property int attchmnts;
 @property int editIndx;
 @property int selectIndx;
 @property int sortIndx;
@@ -85,7 +71,6 @@
 @property bool bMilesAsc;
 @property bool bColorAsc;
 @property bool biCloudAvail;
-@property bool bEmailConfirm;
 @property bool bPtoPShare;
 @property int toggle;
 @property bool bInitRefresh;
@@ -96,7 +81,6 @@
 @property CGFloat photo_scale;
 @property double sysver;
 @property bool bNoICloudAlrt;
-@property bool bFBAction;
 @property bool bRegistered;
 @property bool bPassword;
 @property bool bShare;
@@ -110,22 +94,17 @@
 @property bool beingLoggedIn;
 
 @property (nonatomic, retain) NSFileManager *pFlMgr;
+@property (nonatomic, retain) AppShrUtil *appUtl;
 
 - (void)itemAdd;
 - (void)itemAddDone;
--(void) iCloudOrEmail;
 - (void) itemAddCancel;
 -(void) itemEdit;
--(void) setPurchsd:(NSString *)trid;
 -(void) itemEditDone;
 -(void) itemEditCancel;
+-(void) setPurchsed;
 -(void) popView;
--(void) emailRightNow;
--(void) fbshareRightNow;
--(void) shareSelFrnds;
--(void) shareRightNow;
 - (void) launchWithSearchStr;
-- (void)initializeiCloudAccess;
 -(void) reloadFetchedResults:(NSNotification*)note;
 -(void) reloadMainScreen:(NSNotification*)note;
 -(void) stopLocUpdate;
@@ -137,8 +116,6 @@
 -(void) storeFriends;
 -(NSString *) getPassword;
 -(void) showShareView;
--(void) friendsAddDelDone;
 -(void) switchRootView;
-@property (nonatomic, retain) AppShrUtil *appUtl;
-
+-(NSString *) getEmailFbMsg:(id)itm;
 @end
