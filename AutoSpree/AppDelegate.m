@@ -70,7 +70,6 @@
 @synthesize bFromShareAction;
 @synthesize beingLoggedIn;
 @synthesize inapp;
-@synthesize tabBarController;
 @synthesize pShrMgr;
 @synthesize appUtl;
 @synthesize apputil;
@@ -215,11 +214,6 @@
     return;
 }
 
--(void) switchRootView
-{
-    [self.window setRootViewController:self.navViewController];
-    tabBarController.selectedIndex = 0;
-}
 
 
 -(void) popView
@@ -444,36 +438,6 @@
     }
     [pMainVwCntrl dismissViewControllerAnimated:YES completion:nil];
 }
-
--(void) showShareView
-{
-    MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
-    UIBarButtonItem *pBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(iCloudEmailCancel) ];
-    self.navViewController.navigationBar.topItem.leftBarButtonItem = pBarItem;
-    self.navViewController.toolbarHidden = NO;
-    
-    UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc]
-                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                target:nil action:nil];
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 45)];
-	footer.backgroundColor = [UIColor clearColor];
-	pMainVwCntrl.pAllItms.tableView.tableFooterView = footer;
-    UIBarButtonItem *pBarItem1;
-    pMainVwCntrl.pAllItms.bInEmail = true;
-    self.dataSync.loginNow = true;
-    pBarItem1 = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareNow)];
-    
-    [pMainVwCntrl setToolbarItems:[NSArray arrayWithObjects:
-                                   flexibleSpaceButtonItem,
-                                   pBarItem1,
-                                   flexibleSpaceButtonItem,
-                                   nil]
-                         animated:YES];
-    self.dataSync.updateNowSetDontRefresh = true;
-    return;
-}
-
-
 
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -829,10 +793,6 @@
         
     bTokPut = [kvlocal boolForKey:@"TokInAws"];
     
-    BOOL purch = [kvlocal boolForKey:@"Purchased"];
-    if (purch == YES)
-        appUtl.purchased = true;
-    
         // Override point for customization after application launch.
     UINavigationController *navCntrl = [[UINavigationController alloc] initWithRootViewController:aViewController];
     self.navViewController = navCntrl;
@@ -869,11 +829,9 @@
     //[self.window addSubview:self.navViewController.view];
     [self.window setRootViewController:self.navViewController];
     [self.window makeKeyAndVisible];
-    appUtl.window = self.window;
-    appUtl.tabBarController = self.tabBarController;
-    if (appUtl.purchased)
-        [appUtl registerForRemoteNotifications];
-    
+    [apputil setWindow:self.window];
+    apputil.navViewController = self.navViewController;
+    [apputil initializeShrUtl];
     return YES;
 }
 
