@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB00E4991C79108900E898F7 /* AutoSpreeShareMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = DB00E4951C79108900E898F7 /* AutoSpreeShareMgr.m */; };
-		DB00E49A1C79108900E898F7 /* AutoSpreeDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = DB00E4971C79108900E898F7 /* AutoSpreeDecoder.m */; };
-		DB00E49F1C79112300E898F7 /* AutoSpreeTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = DB00E49E1C79112300E898F7 /* AutoSpreeTranslator.m */; };
 		DB00E4A51C791B8600E898F7 /* libsharing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB881C901C67BBC900A2D0EA /* libsharing.a */; };
 		DB00E4DE1C7B3C1200E898F7 /* libcommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00E4DA1C7B3A1E00E898F7 /* libcommon.a */; };
 		DB32A9691784C50200C9700B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB32A9681784C50200C9700B /* Security.framework */; };
@@ -115,12 +112,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DB00E4951C79108900E898F7 /* AutoSpreeShareMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSpreeShareMgr.m; sourceTree = "<group>"; };
-		DB00E4961C79108900E898F7 /* AutoSpreeShareMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoSpreeShareMgr.h; sourceTree = "<group>"; };
-		DB00E4971C79108900E898F7 /* AutoSpreeDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSpreeDecoder.m; sourceTree = "<group>"; };
-		DB00E4981C79108900E898F7 /* AutoSpreeDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoSpreeDecoder.h; sourceTree = "<group>"; };
-		DB00E49D1C79112300E898F7 /* AutoSpreeTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoSpreeTranslator.h; sourceTree = "<group>"; };
-		DB00E49E1C79112300E898F7 /* AutoSpreeTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSpreeTranslator.m; sourceTree = "<group>"; };
 		DB00E4D41C7B3A1D00E898F7 /* common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = common.xcodeproj; path = ../common/common.xcodeproj; sourceTree = "<group>"; };
 		DB32A9681784C50200C9700B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DB51F6A11ADDC91E00C3ADB7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -288,12 +279,6 @@
 			children = (
 				DBD16AE61C8BA12C00052A03 /* AddEditDispDelegate.h */,
 				DBD16AE71C8BA12C00052A03 /* AddEditDispDelegate.m */,
-				DB00E49D1C79112300E898F7 /* AutoSpreeTranslator.h */,
-				DB00E49E1C79112300E898F7 /* AutoSpreeTranslator.m */,
-				DB00E4951C79108900E898F7 /* AutoSpreeShareMgr.m */,
-				DB00E4961C79108900E898F7 /* AutoSpreeShareMgr.h */,
-				DB00E4971C79108900E898F7 /* AutoSpreeDecoder.m */,
-				DB00E4981C79108900E898F7 /* AutoSpreeDecoder.h */,
 				DB598BD9169E5A930073CB2A /* LocalItem.h */,
 				DB598BDA169E5A930073CB2A /* LocalItem.m */,
 				DBB16A6D17A724A100C46AC0 /* Constants.h */,
@@ -541,11 +526,8 @@
 				DB858F9B15D206240075CBC6 /* main.m in Sources */,
 				DB858F9F15D206240075CBC6 /* AppDelegate.m in Sources */,
 				DB858FA215D206240075CBC6 /* AutoSpree.xcdatamodeld in Sources */,
-				DB00E49F1C79112300E898F7 /* AutoSpreeTranslator.m in Sources */,
 				DB858FE715D257E20075CBC6 /* Item.m in Sources */,
-				DB00E49A1C79108900E898F7 /* AutoSpreeDecoder.m in Sources */,
 				DB85901115D2586C0075CBC6 /* SortOptionViewController.m in Sources */,
-				DB00E4991C79108900E898F7 /* AutoSpreeShareMgr.m in Sources */,
 				DB598BDB169E5A930073CB2A /* LocalItem.m in Sources */,
 				DBD16AE81C8BA12D00052A03 /* AddEditDispDelegate.m in Sources */,
 				DBD16B1F1C948D1F00052A03 /* DataOpsDelegate.m in Sources */,

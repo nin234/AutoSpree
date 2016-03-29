@@ -196,13 +196,25 @@
     return;
 }
 
+-(NSString *) getShareMsg:(id)itm
+{
+    LocalItem *item = itm;
+    NSString *message = @"";
+    NSString *msg =[message stringByAppendingFormat:@"Name:%@:;Model: %@:;Make: %@ :; Color: %@:;Year: %d :;Price: %.2f:;  Miles: %d:; Notes: %@:;Street: %@:;City: %@:;State: %@:;Country: %@:; Postal Code: %@:;latitude:%f:;longitude:%f:;str1:%@:;",item.name, item.model,
+                    item.make, item.color,
+                    item.year == 3000? 0: item.year, [item.price floatValue] < 0.0? 0.0:[item.price floatValue], item.miles, item.notes, item.street,
+                    item.city, item.state, item.country, item.zip, item.latitude, item.longitude, item.str1];
+    return msg;
+
+}
+
 -(NSString *) getEmailFbMsg:(id)itm
 {
     LocalItem *item = itm;
     NSString *message = @"";
     NSString *msg =[message stringByAppendingFormat:@"Name:%@\nModel: %@\nMake: %@  Year: %d\nPrice: %.2f  Miles: %d\n Notes: %@\nStreet: %@\nCity: %@\nState: %@\nCountry: %@\n Postal Code: %@\n\n\n",item.name, item.model,
                     item.make,
-                    item.year == 3000? 0: item.year, [item.price floatValue] < 0.0? 0.0:[item.price floatValue] < 0.0? 0.0: [item.price floatValue], item.miles, item.notes, item.street,
+                    item.year == 3000? 0: item.year, [item.price floatValue] < 0.0? 0.0:[item.price floatValue], item.miles, item.notes, item.street,
                     item.city, item.state, item.country, item.zip];
     return msg;
 }
@@ -411,24 +423,14 @@
     return;
 }
 
--(void) shareNow
+-(void) shareContactsAdd
 {
-    NSLog(@"Sharing to openhouses\n");
-    
-    MainViewController *pMainVwCntrl = [self.navViewController.viewControllers objectAtIndex:0];
-    if(![pMainVwCntrl.pAllItms itemsSelected])
-    {
-        [self.apputil iCloudEmailCancel];
-        return;
-    }
-    bShare = true;
-    UIAlertView *pAvw = [[UIAlertView alloc] initWithTitle:@"Share Pictures" message:@"" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
-    [pAvw show];
-
+    self.appUtl.selFrndCntrl.bModeShare = true;
+    self.appUtl.tabBarController.selectedIndex = 1;
     return;
 }
 
-- (void)mailComposeController:(MFMailComposeViewController*)controller  
+- (void)mailComposeController:(MFMailComposeViewController*)controller
           didFinishWithResult:(MFMailComposeResult)result 
                         error:(NSError*)error;
 {

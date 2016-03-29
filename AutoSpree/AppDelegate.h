@@ -111,9 +111,10 @@
 -(void) addToCount;
 -(void) addToTotCount;
 -(void) addToTotCountNoR;
-
+-(void) shareContactsAdd;
 -(void) storeInKeyChain;
 -(void) storeFriends;
 -(NSString *) getPassword;
 -(NSString *) getEmailFbMsg:(id)itm;
+-(NSString *) getShareMsg:(id)itm;
 @end
