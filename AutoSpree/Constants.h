@@ -51,7 +51,7 @@
 #define ACCESS_KEY_ID                @"USED-ONLY-FOR-TESTING"  // Leave this value as is.
 #define SECRET_KEY                   @"USED-ONLY-FOR-TESTING"  // Leave this value as is.
 
-#define GET_AUTOSPREE_ITEMS 80
+
 
 
 
