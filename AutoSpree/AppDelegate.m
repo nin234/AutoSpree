@@ -717,6 +717,8 @@
     appUtl = [[AppShrUtil alloc] init];
     appUtl.purchased = false;
     pShrMgr = [[CommonShareMgr alloc] init];
+    pShrMgr.pNtwIntf.connectAddr = @"autospree.ddns.net";
+    pShrMgr.pNtwIntf.connectAddr = @"16972";
     appUtl.pShrMgr = pShrMgr;
     NSLog(@"Launching Autospree");
     NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
@@ -727,6 +729,7 @@
     apputil.delegate = self;
     [apputil setProductId:@"com.rekhaninan.autospree_full"];
      apputil = [apputil init];
+    apputil.pShrMgr = pShrMgr;
     
 #ifdef CLEANUP
          [self cleanUpEverything];
