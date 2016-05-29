@@ -25,7 +25,7 @@
 #define PHOTOREQSOURCE_SHARE 2
 #define AWS_AUTOSPREE_APPID 1
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, MainViewControllerDelegate, MainListViewControllerDelegate, AppUtilDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, MainViewControllerDelegate, MainListViewControllerDelegate, AppUtilDelegate, CommonShareMgrDelegate>
 {
     NSMetadataQuery *query;
     MKMapView    *mapView;
@@ -96,6 +96,7 @@
 @property (nonatomic, retain) NSFileManager *pFlMgr;
 @property (nonatomic, retain) AppShrUtil *appUtl;
 
+-(void) decodeAndStoreItem :(NSString *) ItemStr;
 - (void)itemAdd;
 - (void)itemAddDone;
 - (void) itemAddCancel;
