@@ -22,4 +22,6 @@
 -(void) copyFromItem:(id) itm local:(id)litm;
 -(MainViewController *) getMainViewController;
 -(NSString *)getAddtionalPredStr:(NSUInteger) scnt predStrng:(NSString *)predStr;
+-(NSString *)getAlbumName:(long long) shareId itemName:(NSString *) name item:(id)itm;
+
 @end

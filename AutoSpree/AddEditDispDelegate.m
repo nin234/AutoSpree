@@ -20,6 +20,7 @@
     pNewItem.year = 3000;
     pNewItem.price = [NSNumber numberWithDouble:-2.0];
     pNewItem.miles = 0;
+    pNewItem.val2 = 0.0;
     return;
 }
 

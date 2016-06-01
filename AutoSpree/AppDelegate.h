@@ -25,7 +25,7 @@
 #define PHOTOREQSOURCE_SHARE 2
 #define AWS_AUTOSPREE_APPID 1
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, MainViewControllerDelegate, MainListViewControllerDelegate, AppUtilDelegate, CommonShareMgrDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MKMapViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, MainViewControllerDelegate, MainListViewControllerDelegate, AppUtilDelegate, CommonShareMgrDelegate, ShareMgrDelegate>
 {
     NSMetadataQuery *query;
     MKMapView    *mapView;
@@ -119,4 +119,6 @@
 -(NSString *) getEmailFbMsg:(id)itm;
 -(NSString *) getShareMsg:(id)itm;
 -(NSString *) getItemName:(id)itm;
+-(NSURL *) getPicUrl:(long long ) shareId picName:(NSString *) name itemName:(NSString *) iName;
+
 @end
