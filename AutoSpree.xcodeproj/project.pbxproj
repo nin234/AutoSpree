@@ -675,14 +675,17 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoSpree/AutoSpree-Prefix.pch";
 				GCC_STRICT_ALIASING = NO;
-				"HEADER_SEARCH_PATHS[arch=*]" = /Users/nin234/projects/sharing;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/Users/ninanthomas/projects/sharing,
+					/Users/ninanthomas/projects/common,
+				);
 				INFOPLIST_FILE = "AutoSpree/AutoSpree-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
 				"OTHER_CFLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rekhaninan.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = /Users/nin234/projects/common;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "/Users/ninanthomas/projects/sharing /Users/ninanthomas/projects/common";
 				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -705,7 +708,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoSpree/AutoSpree-Prefix.pch";
 				GCC_STRICT_ALIASING = NO;
-				"HEADER_SEARCH_PATHS[arch=*]" = /Users/nin234/projects/sharing;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/Users/ninanthomas/projects/sharing,
+					/Users/ninanthomas/projects/common,
+				);
 				INFOPLIST_FILE = "AutoSpree/AutoSpree-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
@@ -719,7 +725,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rekhaninan.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = /Users/nin234/projects/common;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "/Users/ninanthomas/projects/sharing /Users/ninanthomas/projects/common";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

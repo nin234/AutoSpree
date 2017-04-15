@@ -18,6 +18,7 @@
 #import "SortOptionViewController.h"
 #import "AddEditDispDelegate.h"
 
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -73,6 +74,7 @@
 @synthesize pShrMgr;
 @synthesize appUtl;
 @synthesize apputil;
+@synthesize dataOpsDelegate;
 
 -(void) setPurchsed
 {
@@ -876,7 +878,7 @@
     appUtl.purchased = false;
     pShrMgr = [[CommonShareMgr alloc] init];
     pShrMgr.pNtwIntf.connectAddr = @"autospree.ddns.net";
-    pShrMgr.pNtwIntf.connectAddr = @"16972";
+    pShrMgr.pNtwIntf.connectAddr = @"16971";
     pShrMgr.delegate = self;
     pShrMgr.shrMgrDelegate = self;
     appUtl.pShrMgr = pShrMgr;
@@ -899,6 +901,8 @@
     NSError *error;
     dataSync = [[DataOps alloc] init];
     [dataSync start];
+    apputil.dataSync = dataSync;
+    
     
     NSString *pAlbumsDir = [pHdir stringByAppendingPathComponent:@"/Documents/albums"];
     saveQ = [[NSOperationQueue alloc] init];
@@ -967,6 +971,9 @@
         // Override point for customization after application launch.
     UINavigationController *navCntrl = [[UINavigationController alloc] initWithRootViewController:aViewController];
     self.navViewController = navCntrl;
+      dataSync.navViewController = navCntrl;
+    dataOpsDelegate = [[DataOpsDelegate alloc] init];
+    dataSync.delegate = dataOpsDelegate;
     apputil.navViewController = navCntrl;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window addSubview:self.navViewController.view];

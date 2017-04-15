@@ -26,10 +26,13 @@
 - (void) populateValues:(UITextField *)textField;
 -(void) populateTextFields:(UITextField *) textField textField1:(UITextField *) textField1 row:(NSUInteger)row;
 -(NSArray *) getFieldNames;
+-(NSString *) getName;
 -(NSArray *) getSecondFieldNames;
 -(bool) isTwoFieldRow:(NSUInteger) row;
 -(CGRect) getTextFrame;
 -(UILabel *) getLabel;
+-(NSString *) getEditName;
+-(NSString *) getDispName;
 -(bool) isSingleFieldRow:(NSUInteger) row;
 -(void) itemAddCancel;
 -(void) itemAddDone;

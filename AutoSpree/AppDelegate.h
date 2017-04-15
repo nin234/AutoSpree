@@ -20,6 +20,7 @@
 #import "common/MainViewController.h"
 #import "sharing/AppShrUtil.h"
 #import "common/AppUtil.h"
+#import "DataOpsDelegate.h"
 
 
 #define PHOTOREQSOURCE_SHARE 2
@@ -58,6 +59,8 @@
 @property (nonatomic, retain) KeychainItemWrapper *kchain;
 @property (nonatomic, retain) InAppPurchase *inapp;
 @property (nonatomic, retain) AppUtil *apputil;
+@property  (nonatomic, retain) DataOpsDelegate *dataOpsDelegate;
+
 
 @property bool unlocked;
 @property int editIndx;

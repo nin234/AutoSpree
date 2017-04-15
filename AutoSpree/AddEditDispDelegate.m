@@ -54,6 +54,24 @@
     return;
 }
 
+-(NSString *) getName
+{
+    return pNewItem.name;
+}
+
+-(NSString *) getEditName
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return pDlg.editItem.name;
+}
+
+
+-(NSString *) getDispName
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return pDlg.selectedItem.name;
+}
+
 -(void) stopLocUpdate
 {
     AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
