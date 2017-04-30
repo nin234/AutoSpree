@@ -151,6 +151,16 @@
     
 }
 
+- (void) ratingsToggle
+{
+    NSLog(@"Received ratings toggle \n");
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    pDlg.bRatingsAsc = !pDlg.bRatingsAsc;
+    [self.tableView reloadData];
+    return;
+    
+}
+
 
 - (void) milesToggle
 {
@@ -175,7 +185,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 7;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -184,7 +194,7 @@
     static NSArray* fieldNames = nil;
     if (!fieldNames)
     {
-        fieldNames = [NSArray arrayWithObjects:@"Viewed", @"Price", @"Make", @"Year", @"Model", @"Miles", @"Color", nil];
+        fieldNames = [NSArray arrayWithObjects:@"Viewed", @"Price", @"Make", @"Year", @"Model", @"Miles", @"Color", @"Ratings", nil];
     }
     NSLog(@"Sortoption cellforRowAtIndexPath %ld", (long)indexPath.row);
     
@@ -221,6 +231,7 @@
     NSString *model = pDlg.bModelAsc?@"A":@"Z";
     NSString *miles = pDlg.bMilesAsc?@"low":@"high";
     NSString *color = pDlg.bColorAsc?@"A":@"Z";
+    NSString *ratings = pDlg.bRatingsAsc?@"low":@"high";
     
     switch (indexPath.row)
     {
@@ -278,6 +289,15 @@
             button.backgroundColor = pDlg.bColorAsc?[UIColor brownColor]:[UIColor blueColor];
             [button addTarget:self action:@selector(colorToggle) forControlEvents:UIControlEventTouchDown];
             break;
+            
+        case 7:
+            NSLog(@"Setting ratings button title %@ \n" , ratings);
+            [button setTitle:ratings forState:UIControlStateNormal];
+            button.backgroundColor = [UIColor brownColor];
+            button.backgroundColor = pDlg.bRatingsAsc?[UIColor brownColor]:[UIColor blueColor];
+            [button addTarget:self action:@selector(ratingsToggle) forControlEvents:UIControlEventTouchDown];
+            break;
+            
         default:
         
             break;
@@ -317,6 +337,9 @@
             label1.text = pDlg.bColorAsc?@" to   Z":@" to   A";
             break;
 
+        case 7:
+            label1.text = pDlg.bRatingsAsc?@" to high":@" to low";
+            break;
             
         default:
             

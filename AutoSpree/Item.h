@@ -29,7 +29,7 @@
 @property (nonatomic, retain) NSNumber * price;
 @property (nonatomic, retain) NSString *state;
 @property (nonatomic, retain) NSString *str1;
-@property (nonatomic, retain) NSString *str2;
+@property (nonatomic, retain) NSString *str2; //Stores the ratings value
 @property (nonatomic, retain) NSString *str3;
 @property (nonatomic, retain) NSString *street;
 @property double val1;

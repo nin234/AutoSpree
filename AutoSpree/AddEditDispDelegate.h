@@ -31,6 +31,7 @@
 -(bool) isTwoFieldRow:(NSUInteger) row;
 -(CGRect) getTextFrame;
 -(UILabel *) getLabel;
+-(bool) ratingsTag:(NSInteger) tag;
 -(NSString *) getEditName;
 -(NSString *) getDispName;
 -(bool) isSingleFieldRow:(NSUInteger) row;
@@ -40,6 +41,7 @@
 -(NSString *) getAlbumTitle;
 -(NSString *) getNotes;
 -(double) getLongitude;
+-(NSArray *) getFieldDispNames;
 -(double) getLatitude;
 -(void) deleteEditItem;
 -(void) setEditAlbumNames:(NSString *)noStr fullName:(NSString *)urlStr;

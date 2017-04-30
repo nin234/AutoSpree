@@ -163,6 +163,21 @@ if ([album_name isEqualToString:lalbum_name])
             return @"miles";
         }
         break;
+            
+        case 6:
+        {
+            *ascending = pDlg.bColorAsc;
+            return @"color";
+        }
+        break;
+            
+        case 7:
+        {
+            *ascending = pDlg.bRatingsAsc;
+            return @"str2";
+        }
+            break;
+            
         case 0:
         {
             *ascending = pDlg.bDateAsc;

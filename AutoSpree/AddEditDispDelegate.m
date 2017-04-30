@@ -149,6 +149,9 @@
             pNewItem.miles = atoi([pr UTF8String]);
         }
             break;
+        case CAR_RATINGS:
+            pNewItem.str2 = textField.text;
+            break;
             
         case CAR_STREET:
             pNewItem.street = textField.text;
@@ -252,12 +255,18 @@
         }
             break;
             
-        case 8:
+        case 9:
+            textField.text = pNewItem.str2;
+            textField.tag = CAR_RATINGS ;
+            textField.keyboardType = UIKeyboardTypeNumberPad;
+            break;
+            
+        case 10:
             textField.text = pNewItem.street;
             textField.tag = CAR_STREET;
             break;
             
-        case 9:
+        case 11:
         {
             textField.text = pNewItem.city;
             NSLog(@"Setting city to %@\n", pNewItem.city);
@@ -265,15 +274,15 @@
         }
             break;
             
-        case 10:
+        case 12:
             textField.text = pNewItem.state;
             textField.tag = CAR_STATE;
             break;
-        case 11:
+        case 13:
             textField.text = pNewItem.country;
             textField.tag = CAR_COUNTRY;
             break;
-        case 12:
+        case 14:
             textField.text = pNewItem.zip;
             textField.tag = CAR_ZIP;
             break;
@@ -337,12 +346,18 @@
             textField.tag = CAR_NAME;
             break;
             
-        case 8:
+        case 9:
+            textField.text = pDlg.editItem.str2;
+            textField.tag = CAR_RATINGS ;
+            textField.keyboardType = UIKeyboardTypeNumberPad;
+            break;
+            
+        case 10:
             textField.text = pDlg.editItem.street;
             textField.tag = CAR_STREET;
             break;
             
-        case 9:
+        case 11:
         {
             textField.text = pDlg.editItem.city;
             textField.tag = CAR_CITY;
@@ -350,15 +365,15 @@
         }
             break;
             
-        case 10:
+        case 12:
             textField.text = pDlg.editItem.state;
             textField.tag = CAR_STATE;
             break;
-        case 11:
+        case 13:
             textField.text = pDlg.editItem.country;
             textField.tag = CAR_COUNTRY;
             break;
-        case 12:
+        case 14:
             textField.text = pDlg.editItem.zip;
             textField.tag = CAR_ZIP;
             break;
@@ -419,22 +434,26 @@
             textField.text = pDlg.selectedItem.name;
             break;
             
-        case 7:
-            textField.text = pDlg.selectedItem.street;
-            break;
-            
         case 8:
-            textField.text = pDlg.selectedItem.city ;
+            textField.text = pDlg.selectedItem.str2;
             break;
             
         case 9:
-            textField.text = pDlg.selectedItem.state;
+            textField.text = pDlg.selectedItem.street;
             break;
             
         case 10:
+            textField.text = pDlg.selectedItem.city ;
+            break;
+            
+        case 11:
+            textField.text = pDlg.selectedItem.state;
+            break;
+            
+        case 12:
             textField.text = pDlg.selectedItem.country;
             break;
-        case 11:
+        case 13:
             textField.text = pDlg.selectedItem.zip;
             break;
             
@@ -445,8 +464,14 @@
 
 -(NSArray *) getFieldNames
 {
-    return [NSArray arrayWithObjects:@"Name", @"Model", @"Make", @"Price", @"Camera", @"Notes", @"Pictures", @"Map", @"Street", @"City", @"State", @"Country", @"Postal Code", nil];
+    return [NSArray arrayWithObjects:@"Name", @"Model", @"Make", @"Price", @"Camera",  @"Check List", @"Notes", @"Pictures", @"Map", @"Ratings", @"Street", @"City", @"State", @"Country", @"Postal Code", nil];
 }
+
+-(NSArray *) getFieldDispNames
+{
+    return [NSArray arrayWithObjects:@"Name", @"Model", @"Make", @"Price", @"Check List",  @"Notes", @"Pictures", @"Map", @"Ratings",  @"Street", @"City", @"State", @"Country", @"Postal Code", nil];
+}
+
 
 -(NSArray *) getSecondFieldNames
 {
@@ -472,21 +497,21 @@
 
 -(bool) isSingleFieldEditRow:(NSUInteger) row
 {
-    if(row < 2 || (row > 7 && row < 13))
+    if(row < 1 || (row > 8 && row < 15))
         return true;
     return false;
 }
 
 -(bool) isSingleFieldRow:(NSUInteger) row
 {
-  if (row < 1 || row > 7)
+  if (row < 1 || row > 8)
       return true;
     return false;
 }
 
 -(bool) isSingleFieldDispRow:(NSUInteger) row
 {
-    if (row < 1 || row > 6)
+    if (row < 1 || row > 7)
         return true;
     return false;
 }
@@ -653,6 +678,103 @@
     return false;
 }
 
+-(bool) ratingsTag:(NSInteger) tag
+{
+    return tag == CAR_RATINGS;
+}
+
+- (BOOL)characterChk:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSLog(@"Text field should change character %s %ld %lu %lu\n", [textField.text UTF8String], (long)textField.tag, (unsigned long)range.location , (unsigned long)range.length);
+    switch (textField.tag)
+    {
+        
+        case CAR_YEAR:
+        case CAR_PRICE:
+        case CAR_MILES:
+            
+            break;
+            
+        default:
+            return YES;
+            break;
+    }
+    
+    static NSString *numbers = @"0123456789";
+    static NSString *numbersPeriod = @"01234567890.";
+    
+    
+    //NSLog(@"%d %d %@", range.location, range.length, string);
+    if (range.length > 0 && [string length] == 0) {
+        // enable delete
+        return YES;
+    }
+    
+    // NSString *symbol = [[NSLocale currentLocale] objectForKey:NSLocaleDecimalSeparator];
+    NSString *symbol = @".";
+    if (range.location == 0 && [string isEqualToString:symbol]) {
+        // decimalseparator should not be first
+        return NO;
+    }
+    NSCharacterSet *characterSet;
+    if (textField.tag == CAR_YEAR)
+    {
+        if ([string rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet].invertedSet].location != NSNotFound)
+        {
+            return NO;
+        }
+        NSString *proposedText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        
+        if (proposedText.length > 4)        {
+            return NO;
+        }
+        characterSet = [[NSCharacterSet characterSetWithCharactersInString:numbers] invertedSet];
+    }
+    else if (textField.tag == CAR_MILES)
+    {
+       characterSet = [[NSCharacterSet characterSetWithCharactersInString:numbers] invertedSet]; 
+    }
+    else if (textField.tag == CAR_RATINGS)
+    {
+        if ([string rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet].invertedSet].location != NSNotFound)
+        {
+            return NO;
+        }
+        NSString *proposedText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if (proposedText.length > 2)
+        {
+            return NO;
+        }
+        
+        if ([proposedText intValue] < 0 || [proposedText intValue] >10)
+            return NO;
+        characterSet = [[NSCharacterSet characterSetWithCharactersInString:numbers] invertedSet];
+    }
+    else
+    {
+        
+        NSRange separatorRange = [textField.text rangeOfString:symbol];
+        if (separatorRange.location == NSNotFound)
+        {
+            //  if ([symbol isEqualToString:@"."]) {
+            characterSet = [[NSCharacterSet characterSetWithCharactersInString:numbersPeriod] invertedSet];
+        }
+        else
+        {
+            // allow 2 characters after the decimal separator
+            if (range.location > (separatorRange.location + 2))
+            {
+                return NO;
+            }
+            characterSet = [[NSCharacterSet characterSetWithCharactersInString:numbers] invertedSet];
+        }
+    }
+    return ([[string stringByTrimmingCharactersInSet:characterSet] length] > 0);
+    
+    
+}
+
+
 -(double) getLongitude
 {
     return pNewItem.longitude;
@@ -731,6 +853,10 @@
             
         case CAR_STREET:
             pDlg.editItem.street = textField.text;
+            break;
+            
+        case CAR_RATINGS:
+            pDlg.editItem.str2 = textField.text;
             break;
             
         case CAR_CITY:

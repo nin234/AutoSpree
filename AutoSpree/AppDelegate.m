@@ -75,6 +75,7 @@
 @synthesize appUtl;
 @synthesize apputil;
 @synthesize dataOpsDelegate;
+@synthesize bRatingsAsc;
 
 -(void) setPurchsed
 {
@@ -862,6 +863,7 @@
     bModelAsc = true;
     bMilesAsc = true;
     bColorAsc = true;
+    bRatingsAsc = true;
     biCloudAvail = false;
     toggle = 0;
     bPtoPShare = false;
