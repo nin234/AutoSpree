@@ -751,7 +751,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    
+    [pShrMgr getItems];
     
     return;
 }
