@@ -11,10 +11,16 @@
 #import "common/AddViewController.h"
 #import "common/EditViewController.h"
 #import "common/DisplayViewController.h"
+#import "common/NotesViewController.h"
 
-@interface AddEditDispDelegate : NSObject<AddViewControllerDelegate, EditViewControllerDelegate, DisplayViewControllerDelegate>
+@interface AddEditDispDelegate : NSObject<AddViewControllerDelegate, EditViewControllerDelegate, DisplayViewControllerDelegate, NotesViewControllerDelegate>
 
 @property (nonatomic, retain) LocalItem *pNewItem;
+
+-(void ) setAddNotes:(NSString *)notes;
+-(void) setEditNotes: (NSString *)notes;
+
+
 -(void) initializeNewItem;
 -(void) setAlbumNames:(NSString *)noStr fullName:(NSString *)urlStr;
 -(void) setLocation:(double) lat longitude:(double) longtde;
@@ -63,4 +69,7 @@
 -(bool) isSingleFieldDispRow:(NSUInteger) row;
 -(NSString *) getDispItemTitle;
 -(NSString *) getDispNotes;
+
+
+
 @end

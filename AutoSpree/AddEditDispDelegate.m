@@ -185,6 +185,7 @@
     return @"Delete House";
 }
 
+
 -(void) populateTextFields:(UITextField *) textField textField1:(UITextField *) textField1 row:(NSUInteger)row
 {
     switch (row)
@@ -808,6 +809,19 @@
 {
     return pNewItem.latitude;
 }
+
+-(void ) setAddNotes:(NSString *)notes
+{
+    pNewItem.notes = notes;
+}
+
+-(void) setEditNotes: (NSString *)notes
+{
+  AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    pDlg.editItem.notes = notes;
+}
+
+
 
 - (void) populateEditValues:(UITextField *)textField
 {

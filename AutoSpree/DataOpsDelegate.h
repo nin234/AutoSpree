@@ -24,5 +24,6 @@
 -(NSString *)getAddtionalPredStr:(NSUInteger) scnt predStrng:(NSString *)predStr;
 -(NSString *)getAlbumName:(long long) shareId itemName:(NSString *) name item:(id)itm;
 -(bool ) isEqualToLclItem:(id) item local:(id) litem;
+-(NSString *) getEntityName;
 
 @end

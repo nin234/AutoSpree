@@ -188,12 +188,13 @@
         pAlName = [apputil getAlbumDir:selectedItem.album_name];
     NSLog(@"Setting pDlg.pAlName=%@", pAlName);
     
-    DisplayViewController *aViewController = [[DisplayViewController alloc]
-                                              initWithNibName:nil bundle:nil];
+    DisplayViewController *aViewController = [DisplayViewController alloc];
+    
     [aViewController setPFlMgr:pFlMgr];
     [aViewController setPAlName:pAlName];
     [aViewController setNavViewController:self.navViewController];
-    [aViewController setDelegate:[[AddEditDispDelegate alloc]init]];
+    [aViewController setDelegate:[[AddEditDispDelegate alloc] init]];
+    aViewController = [aViewController initWithNibName:nil bundle:nil];
     
     [self.navViewController pushViewController:aViewController animated:YES];
     return;
@@ -500,7 +501,7 @@
 {    
   //  UIBarButtonItem *pBarItem1 = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(itemAddCancel) ];
     NSLog(@"Adding item purchase = %d COUNT = %lld", appUtl.purchased, COUNT);
-    
+   /*
     if (!appUtl.purchased)
     {
         if (COUNT >= 2)
@@ -513,6 +514,9 @@
 
         }
     }
+    
+    */
+    
     NSLog(@"Authorization status %d", [CLLocationManager authorizationStatus]);
     UIDevice *dev = [UIDevice currentDevice];
     if (!([[dev systemVersion] doubleValue] < 8.0))
@@ -534,11 +538,12 @@
     [pMainVwCntrl.pSearchBar resignFirstResponder];
     [pMainVwCntrl setDelegate:self];
     [pMainVwCntrl setDelegate_1:self];
-    AddViewController *aViewController = [[AddViewController alloc]
-                                          initWithNibName:nil bundle:nil];
+    AddViewController *aViewController = [AddViewController alloc];
+                                        
     [aViewController setPFlMgr:pFlMgr];
     [aViewController setNavViewController:self.navViewController];
     [aViewController setDelegate:[[AddEditDispDelegate alloc]init]];
+    aViewController = [aViewController initWithNibName:nil bundle:nil];
     aVw = aViewController;
     mapView.showsUserLocation = YES;
     [self.navViewController pushViewController:aViewController animated:YES];
@@ -814,6 +819,11 @@
     return;
 }
 
+-(NSString* ) mainVwCntrlTitle
+{
+    return @"Car List";
+}
+
 -(void) cleanUpEverything
 {
     NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
@@ -902,6 +912,7 @@
     
     NSError *error;
     dataSync = [[DataOps alloc] init];
+    dataSync.appName = @"AutoSpree";
     [dataSync start];
     apputil.dataSync = dataSync;
     
