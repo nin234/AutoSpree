@@ -10,6 +10,7 @@
 		3B188F5F1EE6B12200371F20 /* EasyGrocList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B188F5D1EE6B12200371F20 /* EasyGrocList.xcdatamodeld */; };
 		3B188F7A1EE9758400371F20 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B188F791EE9758400371F20 /* MapViewController.xib */; };
 		3B9CF8A81EF007FE004F009D /* AlbumContentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9CF8A71EF007FE004F009D /* AlbumContentsViewController.xib */; };
+		3B9CF8C81EF3E982004F009D /* AlbumContentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9CF8C71EF3E982004F009D /* AlbumContentsTableViewCell.xib */; };
 		3BE9C8691EF003CB00F69D48 /* DisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BE9C8681EF003CB00F69D48 /* DisplayViewController.xib */; };
 		3BE9C86D1EF003D600F69D48 /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BE9C86C1EF003D600F69D48 /* NotesViewController.xib */; };
 		DB00E4A51C791B8600E898F7 /* libsharing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB881C901C67BBC900A2D0EA /* libsharing.a */; };
@@ -120,6 +121,7 @@
 		3B188F5E1EE6B12200371F20 /* EasyGrocList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyGrocList.xcdatamodel; sourceTree = "<group>"; };
 		3B188F791EE9758400371F20 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		3B9CF8A71EF007FE004F009D /* AlbumContentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumContentsViewController.xib; sourceTree = "<group>"; };
+		3B9CF8C71EF3E982004F009D /* AlbumContentsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumContentsTableViewCell.xib; sourceTree = "<group>"; };
 		3BE9C8681EF003CB00F69D48 /* DisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplayViewController.xib; sourceTree = "<group>"; };
 		3BE9C86C1EF003D600F69D48 /* NotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesViewController.xib; sourceTree = "<group>"; };
 		DB00E4D41C7B3A1D00E898F7 /* common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = common.xcodeproj; path = ../common/common.xcodeproj; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			children = (
 				3BE9C86C1EF003D600F69D48 /* NotesViewController.xib */,
 				3B9CF8A71EF007FE004F009D /* AlbumContentsViewController.xib */,
+				3B9CF8C71EF3E982004F009D /* AlbumContentsTableViewCell.xib */,
 				3BE9C8681EF003CB00F69D48 /* DisplayViewController.xib */,
 				3B188F791EE9758400371F20 /* MapViewController.xib */,
 				DBD16AE61C8BA12C00052A03 /* AddEditDispDelegate.h */,
@@ -497,6 +500,7 @@
 				DB85903B15D26B160075CBC6 /* IsSelected.png in Resources */,
 				DB85903C15D26B160075CBC6 /* map.png in Resources */,
 				DB85903D15D26B160075CBC6 /* note.png in Resources */,
+				3B9CF8C81EF3E982004F009D /* AlbumContentsTableViewCell.xib in Resources */,
 				DB85903E15D26B160075CBC6 /* NotSelected.png in Resources */,
 				DB85903F15D26B160075CBC6 /* Record-Button-off.png in Resources */,
 				DB85904015D26B160075CBC6 /* Record-Button-on.png in Resources */,
@@ -710,6 +714,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rekhaninan.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"REZ_SEARCH_PATHS[sdk=*]" = /Users/ninanthomas/projects/common/common;
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "/Users/ninanthomas/projects/sharing /Users/ninanthomas/projects/common";
 				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -752,6 +757,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rekhaninan.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"REZ_SEARCH_PATHS[sdk=*]" = /Users/ninanthomas/projects/common/common;
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "/Users/ninanthomas/projects/sharing /Users/ninanthomas/projects/common";
 				WRAPPER_EXTENSION = app;
 			};

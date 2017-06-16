@@ -11,6 +11,7 @@
 #import "common/AddViewController.h"
 #import "common/EditViewController.h"
 #import "common/DisplayViewController.h"
+#import "common/ThumbnailImageView.h"
 #import "Item.h"
 #import <MapKit/MapKit.h>
 #import <sharing/FriendDetails.h>
@@ -904,6 +905,7 @@
     [apputil setProductId:@"com.rekhaninan.autospree_full"];
      apputil = [apputil init];
     apputil.pShrMgr = pShrMgr;
+    [ThumbnailImageView class];
     
 #ifdef CLEANUP
          [self cleanUpEverything];

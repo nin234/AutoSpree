@@ -31,12 +31,16 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Take pictures of car</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location info needed for Map/Address</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Need location info for Map/Address</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location info needed for Map/Address</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record sound in videos of cars</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
