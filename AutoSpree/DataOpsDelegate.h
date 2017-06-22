@@ -22,6 +22,7 @@
 -(void) copyFromItem:(id) itm local:(id)litm;
 -(MainViewController *) getMainViewController;
 -(NSString *)getAddtionalPredStr:(NSUInteger) scnt predStrng:(NSString *)predStr;
+-(int ) getAdditionalPredArgs;
 -(NSString *)getAlbumName:(long long) shareId itemName:(NSString *) name item:(id)itm;
 -(bool ) isEqualToLclItem:(id) item local:(id) litem;
 -(NSString *) getEntityName;

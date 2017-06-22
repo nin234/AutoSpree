@@ -22,10 +22,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="321" height="82.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView contentMode="scaleToFill" id="7" customClass="ThumbnailImageView">
-                        <rect key="frame" x="5" y="4" width="71" height="71"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <imageView contentMode="scaleToFill" id="5" customClass="ThumbnailImageView">
                         <rect key="frame" x="163" y="5" width="71" height="71"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -36,6 +32,10 @@
                     </imageView>
                     <imageView contentMode="scaleToFill" id="4" customClass="ThumbnailImageView">
                         <rect key="frame" x="242" y="5" width="71" height="71"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView contentMode="scaleToFill" id="7" customClass="ThumbnailImageView">
+                        <rect key="frame" x="5" y="4" width="71" height="71"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>

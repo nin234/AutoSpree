@@ -248,6 +248,12 @@ if ([album_name isEqualToString:lalbum_name])
     return predStr;
 }
 
+-(int ) getAdditionalPredArgs
+{
+    
+    return 3;
+}
+
 -(id) getLocalItem
 {
     return [[LocalItem alloc] init];

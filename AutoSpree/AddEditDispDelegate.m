@@ -742,7 +742,7 @@
             return NO;
         }
         NSString *proposedText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        if (proposedText.length > 2)
+        if (proposedText.length > 1)
         {
             return NO;
         }
