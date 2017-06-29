@@ -441,8 +441,7 @@
 	self.editItem.val1 =  sec + usec ;
 
     [dataSync editedItem:self.editItem];
-    DisplayViewController *pDisp = (DisplayViewController *)[self.navViewController topViewController];
-    [pDisp.tableView reloadData];
+    [self.navViewController popViewControllerAnimated:NO];
     
 }
 
