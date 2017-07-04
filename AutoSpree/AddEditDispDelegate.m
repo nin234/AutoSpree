@@ -65,6 +65,12 @@
     return pDlg.editItem.name;
 }
 
+-(NSUInteger) getEditItemShareId
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return pDlg.editItem.share_id;
+}
+
 
 -(NSString *) getDispName
 {

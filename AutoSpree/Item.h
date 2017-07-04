@@ -36,7 +36,7 @@
 @property double val2;
 @property int year;
 @property (nonatomic, retain) NSString *zip;
-
+@property (nonatomic) long long share_id;
 -(void) copyFromLocalItem:(LocalItem *)item copyAlbumName:(bool) bCopy;
 -(void) updateItem:(LocalItem*)item;
 

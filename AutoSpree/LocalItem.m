@@ -35,6 +35,7 @@
 @synthesize str1;
 @synthesize str2;
 @synthesize str3;
+@synthesize share_id;
 
 -(id) init
 {
@@ -83,6 +84,7 @@
 	self.str1 = item.str1;
 	self.str2 = item.str2;
 	self.str3 = item.str3;
+    self.share_id = item.share_id;
 
     return self;
 }

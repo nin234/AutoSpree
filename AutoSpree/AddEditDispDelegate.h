@@ -69,7 +69,7 @@
 -(bool) isSingleFieldDispRow:(NSUInteger) row;
 -(NSString *) getDispItemTitle;
 -(NSString *) getDispNotes;
-
+-(NSUInteger) getEditItemShareId;
 
 
 @end
