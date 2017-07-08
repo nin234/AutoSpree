@@ -207,6 +207,13 @@
     return item.name;
 }
 
+-(long long ) getItemShareId:(id) itm
+{
+    LocalItem *item = itm;
+    return item.share_id;
+}
+
+
 -(NSString *) getShareMsg:(id)itm
 {
     LocalItem *item = itm;

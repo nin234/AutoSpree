@@ -71,12 +71,15 @@
     return pDlg.editItem.share_id;
 }
 
-
--(NSString *) getDispName
+-(ItemKey *) getDispItemKey
 {
     AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    return pDlg.selectedItem.name;
+    ItemKey *itk = [[ItemKey alloc] init];
+    itk.name = pDlg.selectedItem.name;
+    itk.share_id = pDlg.selectedItem.share_id;
+    return itk;
 }
+
 
 -(void) stopLocUpdate
 {

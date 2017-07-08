@@ -126,5 +126,6 @@
 -(NSURL *) getPicUrl:(long long ) shareId picName:(NSString *) name itemName:(NSString *) iName;
 -(void) storeThumbNailImage:(NSURL *)picUrl;
 -(NSString* ) mainVwCntrlTitle;
+-(long long ) getItemShareId:(id) itm;
 
 @end

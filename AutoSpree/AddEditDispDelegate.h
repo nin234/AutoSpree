@@ -39,7 +39,8 @@
 -(UILabel *) getLabel;
 -(bool) ratingsTag:(NSInteger) tag;
 -(NSString *) getEditName;
--(NSString *) getDispName;
+-(ItemKey *) getDispItemKey;
+
 -(bool) isSingleFieldRow:(NSUInteger) row;
 -(void) itemAddCancel;
 -(void) itemAddDone;
