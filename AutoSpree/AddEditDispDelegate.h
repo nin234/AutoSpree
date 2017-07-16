@@ -71,6 +71,6 @@
 -(NSString *) getDispItemTitle;
 -(NSString *) getDispNotes;
 -(NSUInteger) getEditItemShareId;
-
+-(long long) getShareId;
 
 @end

@@ -207,6 +207,11 @@
     return item.name;
 }
 
+-(long long) getShareId
+{
+    return pShrMgr.share_id;
+}
+
 -(long long ) getItemShareId:(id) itm
 {
     LocalItem *item = itm;
@@ -912,6 +917,7 @@
      apputil = [apputil init];
     apputil.pShrMgr = pShrMgr;
     [ThumbnailImageView class];
+    apputil.appShrUtl = appUtl;
     
 #ifdef CLEANUP
          [self cleanUpEverything];

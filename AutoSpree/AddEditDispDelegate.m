@@ -80,6 +80,12 @@
     return itk;
 }
 
+-(long long) getShareId
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return [pDlg getShareId];
+}
+
 
 -(void) stopLocUpdate
 {
