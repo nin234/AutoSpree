@@ -1036,7 +1036,8 @@
     [self.window makeKeyAndVisible];
     [apputil setWindow:self.window];
     apputil.navViewController = self.navViewController;
-    [apputil initializeShrUtl];
+    [apputil initShareTabBar];
+   
     return YES;
 }
 
