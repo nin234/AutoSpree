@@ -128,5 +128,8 @@
 -(NSString* ) mainVwCntrlTitle;
 -(long long ) getItemShareId:(id) itm;
 -(long long) getShareId;
+-(void) refreshShareView;
+
+
 
 @end

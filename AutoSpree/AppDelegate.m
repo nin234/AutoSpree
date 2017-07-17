@@ -870,6 +870,12 @@
     return;
 }
 
+-(void) refreshShareView
+{
+    [apputil refreshShareView];
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     bFirstActive = true;
@@ -944,7 +950,7 @@
    // [self initializeiCloudAccess];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     MainViewController *aViewController = [MainViewController alloc];
-                                           
+    
     aViewController.pAllItms.bInICloudSync = false;
     aViewController.pAllItms.bInEmail = false;
     aViewController.pAllItms.bAttchmentsInit = false;
