@@ -908,7 +908,7 @@
     appUtl.purchased = false;
     pShrMgr = [[CommonShareMgr alloc] init];
     pShrMgr.pNtwIntf.connectAddr = @"autospree.ddns.net";
-    pShrMgr.pNtwIntf.connectAddr = @"16790";
+    pShrMgr.pNtwIntf.connectPort = @"16790";
     pShrMgr.delegate = self;
     pShrMgr.shrMgrDelegate = self;
     appUtl.pShrMgr = pShrMgr;
