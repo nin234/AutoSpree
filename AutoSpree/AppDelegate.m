@@ -223,10 +223,63 @@
 {
     LocalItem *item = itm;
     NSString *message = @"";
-    NSString *msg =[message stringByAppendingFormat:@"Name:|:%@]:;Model:|:%@]:;Make:|:%@]:;Color:|:%@]:;Year:|:%d]:;Price:|:%.2f]:;Miles:|:%d]:;Notes:|:%@]:;Street:|:%@]:;City:|:%@]:;State:|:%@]:;Country:|:%@]:;PostalCode:|: %@]:;latitude:|:%f]:;longitude:|:%f]:;str1:|:%@]:;shareId:|:%.2lld",item.name, item.model,
-                    item.make, item.color,
-                    item.year == 3000? 0: item.year, [item.price floatValue] < 0.0? 0.0:[item.price floatValue], item.miles, item.notes, item.street,
-                    item.city, item.state, item.country, item.zip, item.latitude, item.longitude, item.str1, pShrMgr.share_id];
+    NSString *msg =[message stringByAppendingFormat:@"Name:|:%@]:;Year:|:%d]:;Price:|:%.2f]:;Miles:|:%d]:;latitude:|:%f]:;longitude:|:%f]:;shareId:|:%.2lld]:;",item.name,
+                    item.year == 3000? 0: item.year, [item.price floatValue] < 0.0? 0.0:[item.price floatValue], item.miles, item.latitude, item.longitude, item.share_id];
+    
+    if (item.model && [item.model length])
+    {
+        msg = [msg stringByAppendingFormat:@"Model:|:%@]:;", item.model];
+    }
+    
+    if (item.make && [item.make length])
+    {
+        msg = [msg stringByAppendingFormat:@"Make:|:%@]:;", item.make];
+    }
+    
+    if (item.color && [item.color length])
+    {
+        msg = [msg stringByAppendingFormat:@"Color:|:%@]:;", item.color];
+    }
+    
+
+
+    
+    if (item.notes && [item.notes length])
+    {
+        msg = [msg stringByAppendingFormat:@"Notes:|:%@]:;", item.notes];
+    }
+    
+    if (item.street && [item.street length])
+    {
+        msg = [msg stringByAppendingFormat:@"Street:|:%@]:;", item.street];
+    }
+    
+    if (item.city && [item.city length])
+    {
+        msg = [msg stringByAppendingFormat:@"City:|:%@]:;", item.street];
+    }
+    
+    if (item.state && [item.state length])
+    {
+        msg = [msg stringByAppendingFormat:@"State:|:%@]:;", item.state];
+    }
+    
+    if (item.country && [item.country length])
+    {
+        msg = [msg stringByAppendingFormat:@"Country:|:%@]:;", item.country];
+    }
+    
+    if (item.zip && [item.zip length])
+    {
+        msg = [msg stringByAppendingFormat:@"PostalCode:|:%@]:;", item.zip];
+    }
+    
+    if (item.str1 && [item.str1 length])
+    {
+        msg = [msg stringByAppendingFormat:@"str1:|:%@]:;", item.str1];
+    }
+    
+
     return msg;
 
 }
@@ -868,6 +921,15 @@
     
 
     return;
+}
+
+-(ItemKey *) getItemKey:(id) itm
+{
+    LocalItem *item = itm;
+    ItemKey *itk = [[ItemKey alloc] init];
+    itk.share_id = item.share_id;
+    itk.name = item.name;
+    return itk;
 }
 
 -(void) refreshShareView

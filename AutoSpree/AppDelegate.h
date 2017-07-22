@@ -129,7 +129,7 @@
 -(long long ) getItemShareId:(id) itm;
 -(long long) getShareId;
 -(void) refreshShareView;
-
+-(ItemKey *) getItemKey:(id) itm;
 
 
 @end
