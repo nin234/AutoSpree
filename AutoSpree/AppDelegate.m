@@ -309,7 +309,7 @@
     
     if (item.city && [item.city length])
     {
-        msg = [msg stringByAppendingFormat:@"City:|:%@]:;", item.street];
+        msg = [msg stringByAppendingFormat:@"City:|:%@]:;", item.city];
     }
     
     if (item.state && [item.state length])
@@ -399,6 +399,9 @@
     NSString *pState = [pItemDic objectForKey:@"State"];
     if (pState != nil)
         pItem.state = pState;
+    NSString *pCountry = [pItemDic objectForKey:@"Country"];
+    if (pCountry != nil)
+        pItem.country = pCountry;
     NSString *pZip = [pItemDic objectForKey:@"PostalCode"];
     if (pZip != nil)
         pItem.zip = pZip;
