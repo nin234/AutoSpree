@@ -36,6 +36,7 @@
     bool bKvInit;
     bool bFirstActive;
     bool bUpgradeAlert;
+    UINavigationController *mainVwNavCntrl;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -96,6 +97,7 @@
 @property bool bInBackGround;
 @property bool bFromShareAction;
 @property bool beingLoggedIn;
+@property long long share_id;
 
 @property (nonatomic, retain) NSFileManager *pFlMgr;
 @property (nonatomic, retain) AppShrUtil *appUtl;

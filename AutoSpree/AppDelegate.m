@@ -18,6 +18,7 @@
 #import <sharing/AddFriendViewController.h>
 #import "SortOptionViewController.h"
 #import "AddEditDispDelegate.h"
+#import "common/AppCmnUtil.h"
 
 
 @implementation AppDelegate
@@ -77,6 +78,18 @@
 @synthesize apputil;
 @synthesize dataOpsDelegate;
 @synthesize bRatingsAsc;
+@synthesize share_id;
+
+
+
+-(void ) setShareId:(long long)shareId
+{
+    share_id = shareId;
+    AppCmnUtil *pAppCmnUtil = [AppCmnUtil sharedInstance];
+    pAppCmnUtil.share_id = share_id;
+}
+
+
 
 -(void) setPurchsed
 {
@@ -175,6 +188,46 @@
 
     return;
 }
+
+
+-(AlbumContentsViewController *) pushAlbumContentsViewController:(id) itm indx:(int)Indx source:(int)source delegate:(id )albumVwCntrlDelegate
+{
+    LocalItem *item = itm;
+    selectedItem = item;
+    editItem = item;
+    selectIndx = Indx;
+    editIndx = Indx;
+    if (selectedItem.icloudsync == YES)
+        pAlName = selectedItem.album_name;
+    else
+        pAlName = [apputil getAlbumDir:selectedItem.album_name];
+    NSLog(@"Setting pDlg.pAlName=%@", pAlName);
+    
+    AlbumContentsViewController *albumContentsViewController = [AlbumContentsViewController alloc] ;
+    NSLog(@"Pushing AlbumContents view controller %s %d\n" , __FILE__, __LINE__);
+    //  albumContentsViewController.assetsGroup = group_;
+    
+    [albumContentsViewController setDelphoto:false];
+    [albumContentsViewController setEmailphoto:true];
+    [albumContentsViewController setPFlMgr:pFlMgr];
+    [albumContentsViewController setPAlName:pAlName];
+    [albumContentsViewController setDelegate:albumVwCntrlDelegate];
+    [albumContentsViewController setNavViewController:self.navViewController];
+    [albumContentsViewController setPhotoreqsource:source];
+    albumContentsViewController = [albumContentsViewController initWithNibName:@"AlbumContentsViewController" bundle:nil];
+    
+    NSString *title ;
+    if (selectedItem.street != nil)
+        title = selectedItem.street;
+    else
+        title = @" ";
+    [albumContentsViewController  setTitle:title];
+    
+    [appUtl pushAlbumContentsViewController:albumContentsViewController title:title];
+    return albumContentsViewController;
+}
+
+
 
 -(void) pushDisplayViewController:(id) itm indx:(int)Indx
 {
@@ -366,10 +419,6 @@
     long long sec = ((long long)tv.tv_sec)*1000000;
     long long usec =tv.tv_usec;
     pItem.val1 = sec + usec;
-    NSString *pHdir = NSHomeDirectory();
-    NSString *pAlbums = @"/Documents/albums";
-    NSString *pAlbumsDir = [pHdir stringByAppendingString:pAlbums];
-    NSLog(@"create new album name in directory %@", pAlbumsDir);
     gettimeofday(&tv, NULL);
     sec = ((long long)tv.tv_sec)*1000000;
     usec = tv.tv_usec;
@@ -384,6 +433,23 @@
     if (bNewItem)
     {
         [dataSync addItem:pItem];
+        NSString *pHdir = NSHomeDirectory();
+        NSString *pAlbums = @"/Documents/albums";
+        NSString *pAlbumsDir = [pHdir stringByAppendingString:pAlbums];
+        NSLog(@"create new album name in directory %@", pAlbumsDir);
+        
+        NSLog(@"Album params alNo=%lld tv_sec=%ld tv_usec=%d intStr=%@ sec=%lld usec=%lld", alNo,tv.tv_sec, tv.tv_usec, intStr, sec, usec);
+        pAlbumsDir = [pAlbumsDir stringByAppendingString:@"/"];
+        NSString *pNewAlbum = [pAlbumsDir stringByAppendingString:intStr];
+        NSString *pThumpnail = [pNewAlbum stringByAppendingPathComponent:@"thumbnails"];
+        BOOL  bDirCr = [pFlMgr createDirectoryAtPath:pThumpnail withIntermediateDirectories:YES attributes:nil error:nil];
+        
+        if(bDirCr == YES)
+        {
+            NSLog (@"Created new album %s album_name %@\n", [pThumpnail UTF8String], intStr);
+        }
+
+        //create directory
     }
     else
     {
