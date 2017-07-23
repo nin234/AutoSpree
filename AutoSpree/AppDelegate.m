@@ -260,10 +260,6 @@
     return item.name;
 }
 
--(long long) getShareId
-{
-    return pShrMgr.share_id;
-}
 
 -(long long ) getItemShareId:(id) itm
 {
@@ -579,6 +575,10 @@
     
 }
 
+-(long long) getShareId
+{
+    return pShrMgr.share_id;
+}
 -(void) stopLocUpdate
 {
   mapView.showsUserLocation = NO;
@@ -623,6 +623,7 @@
     AddEditDispDelegate *pAddView = (AddEditDispDelegate *)pAddViewCntrl.delegate;
     
 	pAddView.pNewItem.val1 = sec + usec;
+    	pAddView.pNewItem.share_id = share_id;
 
     [dataSync addItem:pAddView.pNewItem];
     NSLog(@"New Item added %@\n", pAddView.pNewItem);
@@ -1040,9 +1041,9 @@
     pShrMgr = [[CommonShareMgr alloc] init];
     pShrMgr.pNtwIntf.connectAddr = @"autospree.ddns.net";
     pShrMgr.pNtwIntf.connectPort = @"16790";
+    appUtl.pShrMgr = pShrMgr;
     pShrMgr.delegate = self;
     pShrMgr.shrMgrDelegate = self;
-    appUtl.pShrMgr = pShrMgr;
     NSLog(@"Launching Autospree");
     NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
     [self populateOneMonth];
@@ -1141,10 +1142,13 @@
       dataSync.navViewController = navCntrl;
     dataOpsDelegate = [[DataOpsDelegate alloc] init];
     dataSync.delegate = dataOpsDelegate;
-    apputil.navViewController = navCntrl;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window addSubview:self.navViewController.view];
     [self.window makeKeyAndVisible];
+    
+    appUtl.window = self.window;
+    appUtl.navViewController = self.navViewController;
+        
      CGRect mapFrame = CGRectMake(90, 12, 200, 25);
     mapView = [[MKMapView alloc] initWithFrame:mapFrame];
     mapView.showsUserLocation = NO;
@@ -1174,9 +1178,12 @@
     //[self.window addSubview:self.navViewController.view];
     [self.window setRootViewController:self.navViewController];
     [self.window makeKeyAndVisible];
+    [appUtl registerForRemoteNotifications];
+    
     [apputil setWindow:self.window];
-    apputil.navViewController = self.navViewController;
+    [apputil setNavViewController:self.navViewController];
     [apputil initShareTabBar];
+    [pShrMgr start];
    
     return YES;
 }
