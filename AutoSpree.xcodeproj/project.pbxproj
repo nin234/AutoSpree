@@ -449,6 +449,9 @@
 					DB858F8715D206230075CBC6 = {
 						DevelopmentTeam = 3JEQ693MKL;
 						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};

@@ -18,5 +18,11 @@
 	</array>
 	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
 	<string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)com.rekhaninan.AutoSpree</string>
+		<string>$(AppIdentifierPrefix)com.rekhaninan.frndlst</string>
+		<string>$(AppIdentifierPrefix)3JEQ693MKL.com.rekhaninan.sharing</string>
+	</array>
 </dict>
 </plist>
