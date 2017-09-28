@@ -411,8 +411,13 @@
     if (pStr1 != nil)
         pItem.str1 = pStr1;
     NSString *pShrId = [pItemDic objectForKey:@"shareId"];
+    
     if (pShrId != nil)
+    {
         pItem.val2 = [pShrId doubleValue];
+        pItem.share_id = [pShrId longLongValue];
+    }
+
     struct timeval tv;
     gettimeofday(&tv, 0);
     long long sec = ((long long)tv.tv_sec)*1000000;
