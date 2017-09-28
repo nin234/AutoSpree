@@ -71,6 +71,15 @@
     return pDlg.editItem.share_id;
 }
 
+-(ItemKey *) getEditItemKey
+{
+    AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    ItemKey *itk = [[ItemKey alloc] init];
+    itk.name = pDlg.editItem.name;
+    itk.share_id = pDlg.editItem.share_id;
+    return itk;
+}
+
 -(ItemKey *) getDispItemKey
 {
     AppDelegate *pDlg = (AppDelegate *)[[UIApplication sharedApplication] delegate];

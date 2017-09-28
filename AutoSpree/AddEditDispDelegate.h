@@ -66,6 +66,8 @@
 -(double) getEditLatitude;
 -(NSString *) getEditNotes;
 -(void) itemEdit;
+-(ItemKey *) getEditItemKey;
+
 -(void) populateDispTextFields:(UILabel *) textField textField1:(UILabel *) textField1 row:(NSUInteger)row;
 -(bool) isSingleFieldDispRow:(NSUInteger) row;
 -(NSString *) getDispItemTitle;
