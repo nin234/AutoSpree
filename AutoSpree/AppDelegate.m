@@ -473,7 +473,7 @@
 {
     UIImage  *fullScreenImage ;
     NSString *pFlName = [picUrl lastPathComponent];
-    if ([pFlName hasSuffix:@".mp4"])
+    if ([pFlName hasSuffix:@".mp4"] || [pFlName hasSuffix:@".MOV"] )
     {
         AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:[AVAsset assetWithURL:picUrl]];
         CMTime thumbTime = CMTimeMakeWithSeconds(0.0, 600);
@@ -482,6 +482,7 @@
     
         CGImageRef startImage = [generator copyCGImageAtTime:thumbTime actualTime:&actualTime error:&error];
     fullScreenImage = [UIImage imageWithCGImage:startImage];
+        NSLog(@"Creating thumbnail image for movie %@", pFlName);
     }
     else
     {
@@ -511,6 +512,10 @@
     {
         pFlName = [pFlName stringByReplacingOccurrencesOfString:@"mp4" withString:@"jpg"];
        
+    }
+    else if ([pFlName hasSuffix:@".MOV"])
+    {
+        pFlName = [pFlName stringByReplacingOccurrencesOfString:@"MOV" withString:@"jpg"];
     }
 
     NSURL *pFlUrl;
