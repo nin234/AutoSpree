@@ -19,6 +19,11 @@
 #import "SortOptionViewController.h"
 #import "AddEditDispDelegate.h"
 #import "common/AppCmnUtil.h"
+#import "AVFoundation/AVAssetImageGenerator.h"
+#import "AVFoundation/AVAsset.h"
+#import "AVFoundation/AVTime.h"
+#import "CoreMedia/CMTime.h"
+
 
 
 @implementation AppDelegate
@@ -466,7 +471,22 @@
 
 -(void) storeThumbNailImage:(NSURL *)picUrl
 {
-    UIImage  *fullScreenImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:picUrl] scale:1.0];
+    UIImage  *fullScreenImage ;
+    NSString *pFlName = [picUrl lastPathComponent];
+    if ([pFlName hasSuffix:@".mp4"])
+    {
+        AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:[AVAsset assetWithURL:picUrl]];
+        CMTime thumbTime = CMTimeMakeWithSeconds(0.0, 600);
+        NSError *error = nil;
+        CMTime actualTime;
+    
+        CGImageRef startImage = [generator copyCGImageAtTime:thumbTime actualTime:&actualTime error:&error];
+    fullScreenImage = [UIImage imageWithCGImage:startImage];
+    }
+    else
+    {
+        fullScreenImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:picUrl] scale:1.0];
+    }
     CGSize oImgSize;
     oImgSize.height = 71;
     oImgSize.width = 71;
@@ -486,7 +506,7 @@
     albumurl = [albumurl URLByAppendingPathComponent:@"thumbnails" isDirectory:YES];
     // NSURL  *albumurl = pDlg.pThumbNailsDir;
     NSError *err;
-    NSString *pFlName = [picUrl lastPathComponent];
+    
     if ([pFlName hasSuffix:@".mp4"])
     {
         pFlName = [pFlName stringByReplacingOccurrencesOfString:@"mp4" withString:@"jpg"];
