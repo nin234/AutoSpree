@@ -206,7 +206,7 @@
 
 -(NSString *) deleteButtonTitle
 {
-    return @"Delete House";
+    return @"Delete Car";
 }
 
 
