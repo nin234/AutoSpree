@@ -19,6 +19,7 @@
 		3B9CF8C81EF3E982004F009D /* AlbumContentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9CF8C71EF3E982004F009D /* AlbumContentsTableViewCell.xib */; };
 		3BE9C8691EF003CB00F69D48 /* DisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BE9C8681EF003CB00F69D48 /* DisplayViewController.xib */; };
 		3BE9C86D1EF003D600F69D48 /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BE9C86C1EF003D600F69D48 /* NotesViewController.xib */; };
+		3BFE75EE1FA6880A005A4B56 /* sharing.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE75EC1FA6880A005A4B56 /* sharing.xcdatamodeld */; };
 		DB00E4A51C791B8600E898F7 /* libsharing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB881C901C67BBC900A2D0EA /* libsharing.a */; };
 		DB00E4DE1C7B3C1200E898F7 /* libcommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00E4DA1C7B3A1E00E898F7 /* libcommon.a */; };
 		DB32A9691784C50200C9700B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB32A9681784C50200C9700B /* Security.framework */; };
@@ -136,6 +137,7 @@
 		3B9CF8C71EF3E982004F009D /* AlbumContentsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumContentsTableViewCell.xib; sourceTree = "<group>"; };
 		3BE9C8681EF003CB00F69D48 /* DisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplayViewController.xib; sourceTree = "<group>"; };
 		3BE9C86C1EF003D600F69D48 /* NotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesViewController.xib; sourceTree = "<group>"; };
+		3BFE75ED1FA6880A005A4B56 /* sharing.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sharing.xcdatamodel; sourceTree = "<group>"; };
 		DB00E4D41C7B3A1D00E898F7 /* common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = common.xcodeproj; path = ../common/common.xcodeproj; sourceTree = "<group>"; };
 		DB32A9681784C50200C9700B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DB51F6A11ADDC91E00C3ADB7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -318,6 +320,7 @@
 				DBB16A6D17A724A100C46AC0 /* Constants.h */,
 				DBD16B1E1C948D1F00052A03 /* DataOpsDelegate.h */,
 				DBD16B1D1C948D1F00052A03 /* DataOpsDelegate.m */,
+				3BFE75EC1FA6880A005A4B56 /* sharing.xcdatamodeld */,
 				3BE9C8681EF003CB00F69D48 /* DisplayViewController.xib */,
 				3B188F5D1EE6B12200371F20 /* EasyGrocList.xcdatamodeld */,
 				DB858FE515D257E20075CBC6 /* Item.h */,
@@ -584,6 +587,7 @@
 				3B188F5F1EE6B12200371F20 /* EasyGrocList.xcdatamodeld in Sources */,
 				DB598BDB169E5A930073CB2A /* LocalItem.m in Sources */,
 				DBD16AE81C8BA12D00052A03 /* AddEditDispDelegate.m in Sources */,
+				3BFE75EE1FA6880A005A4B56 /* sharing.xcdatamodeld in Sources */,
 				DBD16B1F1C948D1F00052A03 /* DataOpsDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -736,6 +740,7 @@
 					/Users/ninanthomas/projects/common,
 				);
 				INFOPLIST_FILE = "AutoSpree/AutoSpree-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_CFLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rekhaninan.${PRODUCT_NAME:rfc1034identifier}";
@@ -772,6 +777,7 @@
 					/Users/ninanthomas/projects/common,
 				);
 				INFOPLIST_FILE = "AutoSpree/AutoSpree-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
@@ -866,6 +872,16 @@
 			);
 			currentVersion = 3B188F5E1EE6B12200371F20 /* EasyGrocList.xcdatamodel */;
 			path = EasyGrocList.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		3BFE75EC1FA6880A005A4B56 /* sharing.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3BFE75ED1FA6880A005A4B56 /* sharing.xcdatamodel */,
+			);
+			currentVersion = 3BFE75ED1FA6880A005A4B56 /* sharing.xcdatamodel */;
+			path = sharing.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
