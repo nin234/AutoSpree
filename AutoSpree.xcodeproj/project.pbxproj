@@ -452,6 +452,9 @@
 					DB858F8715D206230075CBC6 = {
 						DevelopmentTeam = 3JEQ693MKL;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};

@@ -41,6 +41,11 @@
 	<string>Location info needed for Map/Address</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Record sound in videos of cars</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
