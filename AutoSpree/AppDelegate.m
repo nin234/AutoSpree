@@ -346,7 +346,10 @@
 {
     NSString *pAlbumName = [dataSync getAlbumName:shareId itemName:iName];
     if (pAlbumName == nil)
+    {
+        NSLog(@"Cannot obtain album name for shareId=%lld itemName=%@", shareId, iName);
         return nil;
+    }
     NSString *pAlbumDir = [apputil getAlbumDir:pAlbumName];
     NSString *picFil = [pAlbumDir stringByAppendingString:@"/"];
     picFil  = [picFil stringByAppendingString:name];
