@@ -1220,7 +1220,10 @@
     [apputil setNavViewController:self.navViewController];
     [apputil initShareTabBar];
     [pShrMgr start];
-   
+    
+     [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+        [pShrMgr getItems];
+    
     return YES;
 }
 
