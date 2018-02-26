@@ -780,7 +780,7 @@
 
 -(void) shareContactsAdd
 {
-    self.appUtl.selFrndCntrl.bModeShare = true;
+    self.appUtl.selFrndCntrl.eViewCntrlMode = eModeShareToSelected;
     self.appUtl.tabBarController.selectedIndex = 1;
     return;
 }
