@@ -1093,6 +1093,8 @@
     [ThumbnailImageView class];
     apputil.appShrUtl = appUtl;
     
+    appUtl.delegate = apputil;
+    
 #ifdef CLEANUP
          [self cleanUpEverything];
           return YES ;
