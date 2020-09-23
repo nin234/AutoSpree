@@ -61,7 +61,7 @@
 @property (nonatomic, retain) InAppPurchase *inapp;
 @property (nonatomic, retain) AppUtil *apputil;
 @property  (nonatomic, retain) DataOpsDelegate *dataOpsDelegate;
-
+@property (nonatomic, retain)  UITabBarController  *tabBarController;
 
 @property bool unlocked;
 @property int editIndx;
@@ -132,6 +132,6 @@
 -(long long) getShareId;
 -(void) refreshShareView;
 -(ItemKey *) getItemKey:(id) itm;
-
+-(NSString* ) helpTxt;
 
 @end
