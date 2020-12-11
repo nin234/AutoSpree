@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,7 +37,6 @@
 		DB858F8F15D206230075CBC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB858F8E15D206230075CBC6 /* Foundation.framework */; };
 		DB858F9115D206230075CBC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB858F9015D206230075CBC6 /* CoreGraphics.framework */; };
 		DB858F9315D206230075CBC6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB858F9215D206230075CBC6 /* CoreData.framework */; };
-		DB858F9915D206230075CBC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB858F9715D206230075CBC6 /* InfoPlist.strings */; };
 		DB858F9B15D206240075CBC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858F9A15D206240075CBC6 /* main.m */; };
 		DB858F9F15D206240075CBC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB858F9E15D206240075CBC6 /* AppDelegate.m */; };
 		DB858FA215D206240075CBC6 /* AutoSpree.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB858FA015D206240075CBC6 /* AutoSpree.xcdatamodeld */; };
@@ -74,17 +73,35 @@
 		DBB16A8217B8441E00C46AC0 /* IphoneButton_White.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB16A8017B8441D00C46AC0 /* IphoneButton_White.png */; };
 		DBD16AE81C8BA12D00052A03 /* AddEditDispDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD16AE71C8BA12C00052A03 /* AddEditDispDelegate.m */; };
 		DBD16B1F1C948D1F00052A03 /* DataOpsDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD16B1D1C948D1F00052A03 /* DataOpsDelegate.m */; };
+		E800D1AD2582592600C4D48F /* sharing_new.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E800D1AB2582592600C4D48F /* sharing_new.xcdatamodeld */; };
+		E8CEC87D2516FD4900D31395 /* AutoSpree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CEC87C2516FD4800D31395 /* AutoSpree.swift */; };
+		E8CEC8832517F54300D31395 /* client.der in Resources */ = {isa = PBXBuildFile; fileRef = E8CEC8822517F53100D31395 /* client.der */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
 		DB62BF0E15D52C1800799582 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
-			fileType = wrapper.xcdatamodel;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 			);
-			script = "$(SYSTEM_DEVELOPER_DIR)/usr/bin/momc\n";
+			runOncePerArchitecture = 0;
+			script = "
+";
+		};
+		E8CEC86C2515ADDA00D31395 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = text.plist.strings;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# builtin-copyStrings\n";
 		};
 /* End PBXBuildRule section */
 
@@ -205,6 +222,10 @@
 		DBD16AE71C8BA12C00052A03 /* AddEditDispDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEditDispDelegate.m; sourceTree = "<group>"; };
 		DBD16B1D1C948D1F00052A03 /* DataOpsDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataOpsDelegate.m; sourceTree = "<group>"; };
 		DBD16B1E1C948D1F00052A03 /* DataOpsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataOpsDelegate.h; sourceTree = "<group>"; };
+		E800D1AC2582592600C4D48F /* sharing_new.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sharing_new.xcdatamodel; sourceTree = "<group>"; };
+		E8CEC87B2516FD4800D31395 /* AutoSpree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoSpree-Bridging-Header.h"; sourceTree = "<group>"; };
+		E8CEC87C2516FD4800D31395 /* AutoSpree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoSpree.swift; sourceTree = "<group>"; };
+		E8CEC8822517F53100D31395 /* client.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = client.der; path = /Users/ninan/ios/AutoSpree/AutoSpree/client.der; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +336,7 @@
 				3B9CF8A71EF007FE004F009D /* AlbumContentsViewController.xib */,
 				DB858F9D15D206240075CBC6 /* AppDelegate.h */,
 				DB858F9E15D206240075CBC6 /* AppDelegate.m */,
+				E8CEC87C2516FD4800D31395 /* AutoSpree.swift */,
 				3B3D291A1F1BE33900AC3D5D /* 802-dog-house-selected@2x.png */,
 				3B3D291B1F1BE33900AC3D5D /* 802-dog-house@2x.png */,
 				3B3D291C1F1BE33900AC3D5D /* 895-user-group-selected@2x.png */,
@@ -322,11 +344,13 @@
 				3B3D291E1F1BE33900AC3D5D /* 895-user-group@2x.png */,
 				3B3D291F1F1BE33900AC3D5D /* 895-user-group@3x.png */,
 				DB858FC115D206640075CBC6 /* AutoSpree.entitlements */,
+				E8CEC8822517F53100D31395 /* client.der */,
 				DB858FA015D206240075CBC6 /* AutoSpree.xcdatamodeld */,
 				DBB16A6D17A724A100C46AC0 /* Constants.h */,
 				DBD16B1E1C948D1F00052A03 /* DataOpsDelegate.h */,
 				DBD16B1D1C948D1F00052A03 /* DataOpsDelegate.m */,
 				3BFE75EC1FA6880A005A4B56 /* sharing.xcdatamodeld */,
+				E800D1AB2582592600C4D48F /* sharing_new.xcdatamodeld */,
 				3BE9C8681EF003CB00F69D48 /* DisplayViewController.xib */,
 				3B188F5D1EE6B12200371F20 /* EasyGrocList.xcdatamodeld */,
 				DB858FE515D257E20075CBC6 /* Item.h */,
@@ -339,6 +363,7 @@
 				DB858FFE15D2586B0075CBC6 /* SortOptionViewController.m */,
 				DB858FFF15D2586C0075CBC6 /* SortOptionViewController.xib */,
 				DB858F9515D206230075CBC6 /* Supporting Files */,
+				E8CEC87B2516FD4800D31395 /* AutoSpree-Bridging-Header.h */,
 			);
 			path = AutoSpree;
 			sourceTree = "<group>";
@@ -416,6 +441,7 @@
 				DB858F8615D206230075CBC6 /* Resources */,
 			);
 			buildRules = (
+				E8CEC86C2515ADDA00D31395 /* PBXBuildRule */,
 				DB62BF0E15D52C1800799582 /* PBXBuildRule */,
 			);
 			dependencies = (
@@ -457,6 +483,7 @@
 				TargetAttributes = {
 					DB858F8715D206230075CBC6 = {
 						DevelopmentTeam = 3JEQ693MKL;
+						LastSwiftMigration = 1170;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -479,6 +506,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = DB858F7D15D206230075CBC6;
@@ -524,8 +552,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8CEC8832517F54300D31395 /* client.der in Resources */,
 				3B9CF8A81EF007FE004F009D /* AlbumContentsViewController.xib in Resources */,
-				DB858F9915D206230075CBC6 /* InfoPlist.strings in Resources */,
 				3B3D29231F1BE33900AC3D5D /* 895-user-group-selected@3x.png in Resources */,
 				DB85901215D2586C0075CBC6 /* SortOptionViewController.xib in Resources */,
 				3B93190F1FE5A9C600BE38E3 /* ASpree_120x120.png in Resources */,
@@ -591,9 +619,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB858F9B15D206240075CBC6 /* main.m in Sources */,
+				E800D1AD2582592600C4D48F /* sharing_new.xcdatamodeld in Sources */,
 				DB858F9F15D206240075CBC6 /* AppDelegate.m in Sources */,
 				DB858FA215D206240075CBC6 /* AutoSpree.xcdatamodeld in Sources */,
 				DB858FE715D257E20075CBC6 /* Item.m in Sources */,
+				E8CEC87D2516FD4900D31395 /* AutoSpree.swift in Sources */,
 				DB85901115D2586C0075CBC6 /* SortOptionViewController.m in Sources */,
 				3B188F5F1EE6B12200371F20 /* EasyGrocList.xcdatamodeld in Sources */,
 				DB598BDB169E5A930073CB2A /* LocalItem.m in Sources */,
@@ -731,7 +761,7 @@
 		DB858FBC15D206240075CBC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-3";
@@ -739,6 +769,9 @@
 				CODE_SIGN_ENTITLEMENTS = AutoSpree/AutoSpree.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 3.7;
+				DEAD_CODE_STRIPPING = NO;
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AutoSpree\"",
@@ -749,18 +782,29 @@
 				GCC_PREFIX_HEADER = "AutoSpree/AutoSpree-Prefix.pch";
 				GCC_STRICT_ALIASING = NO;
 				"HEADER_SEARCH_PATHS[arch=*]" = (
-					/Users/ninanthomas/projects/sharing,
-					/Users/ninanthomas/projects/common,
+					/Users/ninan/ios/sharing,
+					/Users/ninan/ios/common,
 				);
 				INFOPLIST_FILE = "AutoSpree/AutoSpree-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 3.5;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_CFLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rekhaninan.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"REZ_SEARCH_PATHS[sdk=*]" = /Users/ninanthomas/projects/common/common;
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = "/Users/ninanthomas/projects/sharing /Users/ninanthomas/projects/common";
+				"REZ_SEARCH_PATHS[sdk=*]" = "$(SRCROOT)/common/common";
+				SWIFT_OBJC_BRIDGING_HEADER = "AutoSpree/AutoSpree-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(SRCROOT)/sharing",
+					"$(SRCROOT)/common",
+				);
 				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -769,15 +813,18 @@
 		DB858FBD15D206240075CBC6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-3";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AutoSpree/AutoSpree.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 3.7;
+				DEAD_CODE_STRIPPING = NO;
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AutoSpree\"",
@@ -788,11 +835,16 @@
 				GCC_PREFIX_HEADER = "AutoSpree/AutoSpree-Prefix.pch";
 				GCC_STRICT_ALIASING = NO;
 				"HEADER_SEARCH_PATHS[arch=*]" = (
-					/Users/ninanthomas/projects/sharing,
-					/Users/ninanthomas/projects/common,
+					/Users/ninan/ios/sharing,
+					/Users/ninan/ios/common,
 				);
 				INFOPLIST_FILE = "AutoSpree/AutoSpree-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 3.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
@@ -805,8 +857,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rekhaninan.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"REZ_SEARCH_PATHS[sdk=*]" = /Users/ninanthomas/projects/common/common;
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = "/Users/ninanthomas/projects/sharing /Users/ninanthomas/projects/common";
+				"REZ_SEARCH_PATHS[sdk=*]" = "$(SRCROOT)/common/common";
+				SWIFT_OBJC_BRIDGING_HEADER = "AutoSpree/AutoSpree-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(SRCROOT)/sharing",
+					"$(SRCROOT)/common",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -815,6 +872,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AutoSpree.app/AutoSpree";
+				CURRENT_PROJECT_VERSION = 2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -822,6 +880,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoSpree/AutoSpree-Prefix.pch";
 				INFOPLIST_FILE = "AutoSpreeTests/AutoSpreeTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rekhaninan.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -833,6 +893,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AutoSpree.app/AutoSpree";
+				CURRENT_PROJECT_VERSION = 2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -840,6 +901,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoSpree/AutoSpree-Prefix.pch";
 				INFOPLIST_FILE = "AutoSpreeTests/AutoSpreeTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rekhaninan.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -907,6 +970,16 @@
 			);
 			currentVersion = DB858FA115D206240075CBC6 /* AutoSpree.xcdatamodel */;
 			path = AutoSpree.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		E800D1AB2582592600C4D48F /* sharing_new.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E800D1AC2582592600C4D48F /* sharing_new.xcdatamodel */,
+			);
+			currentVersion = E800D1AC2582592600C4D48F /* sharing_new.xcdatamodel */;
+			path = sharing_new.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

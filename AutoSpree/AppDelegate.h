@@ -126,6 +126,7 @@
 -(NSString *) getShareMsg:(id)itm;
 -(NSString *) getItemName:(id)itm;
 -(NSURL *) getPicUrl:(long long ) shareId picName:(NSString *) name itemName:(NSString *) iName;
+-(NSURL *) getShareUrl:(long long ) shareId picName:(NSString *) name itemName:(NSString *) iName
 -(void) storeThumbNailImage:(NSURL *)picUrl;
 -(NSString* ) mainVwCntrlTitle;
 -(long long ) getItemShareId:(id) itm;
@@ -133,5 +134,6 @@
 -(void) refreshShareView;
 -(ItemKey *) getItemKey:(id) itm;
 -(NSString* ) helpTxt;
+-(void) scheduleBackGroundTask;
 
 @end

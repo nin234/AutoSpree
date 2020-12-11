@@ -22,6 +22,7 @@
 #import "AVFoundation/AVAsset.h"
 #import "AVFoundation/AVTime.h"
 #import "CoreMedia/CMTime.h"
+#import <BackgroundTasks/BackgroundTasks.h>
 
 @implementation AppDelegate
 
@@ -355,6 +356,21 @@
     return picUrl;
 }
 
+-(NSURL *) getShareUrl:(long long ) shareId picName:(NSString *) name itemName:(NSString *) iName
+{
+    NSString *pAlbumName = [dataSync getAlbumName:shareId itemName:iName];
+    if (pAlbumName == nil)
+    {
+        NSLog(@"Cannot obtain album name for shareId=%lld itemName=%@", shareId, iName);
+        return nil;
+    }
+    NSString *pAlbumDir = [apputil getAlbumDir:pAlbumName];
+    NSString *picFil = [pAlbumDir stringByAppendingString:@"sharing/"];
+    picFil  = [picFil stringByAppendingString:name];
+    NSURL *picUrl = [NSURL URLWithString:picFil];
+    return picUrl;
+}
+
 -(void) decodeAndStoreItem :(NSString *) ItemStr
 {
     NSArray *pArr = [ItemStr componentsSeparatedByString:@"]:;"];
@@ -466,6 +482,14 @@
         if(bDirCr == YES)
         {
             NSLog (@"Created new album %s album_name %@\n", [pThumpnail UTF8String], intStr);
+        }
+        
+        NSString *pSharing = [pNewAlbum stringByAppendingPathComponent:@"sharing"];
+          bDirCr = [pFlMgr createDirectoryAtPath:pSharing withIntermediateDirectories:YES attributes:nil error:nil];
+        
+        if(bDirCr == YES)
+        {
+            NSLog (@"Created sharing directory for received Item %@\n", pSharing);
         }
 
         //create directory
@@ -950,41 +974,25 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    NSLog(@"Application did become active app state=%ld %s %d", (long)[[UIApplication sharedApplication] applicationState], __FILE__, __LINE__);
     
-    NSLog(@"Application did become active %s %d", __FILE__, __LINE__);
-    
-    NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
-    BOOL download = [kvlocal boolForKey:@"ToDownload"];
-    if (download == YES)
-    {
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [dataSync start];
+  [pShrMgr start];
+  
+  
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
         
-        [pShrMgr getItems];
-        [kvlocal setBool:NO forKey:@"ToDownload"];
-    }
+  
 }
 
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    
-    UIApplicationState state = [[UIApplication sharedApplication] applicationState];
     NSLog(@"didReceiveRemoteNotification: Downloading items %s %d", __FILE__, __LINE__);
-    [pShrMgr getItems];
-    if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
-    {
-        //Do checking here.
-        NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
-        [kvlocal setBool:YES forKey:@"ToDownload"];
-        
-        [pShrMgr processItems];
-    }
-    
-    
-    
-    
-    completionHandler(UIBackgroundFetchResultNewData);
+    NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
+    [kvlocal setBool:YES forKey:@"ToDownload"];
+    completionHandler(UIBackgroundFetchResultNoData);
     return;
 }
 
@@ -1043,14 +1051,14 @@
 
 -(NSString* ) helpTxt
 {
-    return @"AutoSpree is a decision support tool to aid the car buying process. This help section shows how to use the App effectively\n\n    Create CheckLists. Click Checklists icon in the bottom tab bar to navigate to the Checklists section of the AutoSpree App.\n\n    Create a new Checklist by clicking the + button on the top right hand corner. This will create and display a blank CheckList with title List1. Start adding items to the CheckList. CheckList items are those items of interest when viewing or buying a car. A sample Checklist is as follows 1)Leather seats 3) Rearview mirror 3) Collision warning. 4) Auto navigation 5)Sunroof. Title can be changed from List1 to a more meaningful name. Click the Done button after adding items. Click the + button on top right hand corner to create another Checklist. Different sets of CheckLists can be created and saved.\n\n    AutoSpree app needs the following permissions. Access to location. This enables AutoSpree to autofill the seller's address and show the location of seller on the map. Access to camera and microphone to record pictures and videos. Push notifications should be allowed for sharing cars.\n\n    On reaching a seller to view navigate to Home screen by clicking the Home icon in the bottom tab bar. Click the + button on the top right corner of Home screen. This will bring the main screen view of the car. The street address will be auto populated with the Seller address.\n\n    To view the Map of the car seller click the Map row. Standard map view will be shown. To change the Map view click the action button on the top right corner. This will show the Action sheet with the options 1)Standard. 2)Satellite. 3)Hybrid. Click on these actions items to see different map views. Click the back button (House Info) to navigate back to main Car details screen.\n\n Click the Notes row to navigate to the Notes screen. Touch the screen. This will bring up the keyboard. Takes notes. Click the back button (House Info) to navigate back to main Car details screen.\n\n Select the Check Lists row. AutoSpree app will show a screen with all the previously created Checklist titles. Select the CheckList title appropriate for this car. This will show the Checklist. For the features present in the car being viewed place green checkmarks for Checklist items by clicking the rows on the screen. Click the back button (House Info) to navigate back to main Car details screen.\n\n Select the Camera row. This will show the Camera View. Click the Camera button in the center of bottom tab bar to take pictures. To take video slide the slider to the right. The slider is located to right of the bottom tab bar. Click the blue dot to start video recording. Click the red dot to stop recording. Click the Done button on the bottom left of tab bar to exit the Camera view. Select the Pictures row to view the photos and videos. Touch a photo to show the single picture view. Swipe left and right on pictures to navigate to the next. Double tap the Picture to go to pinch to zoom mode. Click the back button to navigate back to previous screens.\n\n Enter the Model, Color, Make, Year, Price, Miles of the car. Touch the screen in the Text field to  to bring up the keyboard . Click the Done button on the top right corner to save the changes.\n\n    The car details can be shared with friends. Notifications should be enabled for the app for sharing. Notifications can be enabled during intial start up or later in the Settings app.\n\n    The first step to share is to add Contacts to share the car with. Click the Contacts icon in the bottom tab bar to bring up the Contacts screen. There will be a ME line. Selecting the ME line, shows the share Id of the AutoSpree app on this iPhone. This number uniquely identifies the App for sharing purposes. Now navigate back to Contacts screen by clicking the Contacts button on top left corner. Click the + button on top right corner to add a new contact. Enter the share Id and a name to identify the contact.The Share Id is the number in the ME row of your friend's AutoSpree app. \n\n    Click the Share icon in the bottom tab bar. This will bring up the Share screen. Select the Car to share. Attach Pictures dialog pop up. If YES is selected the picture roll screen is shown. Select the photos to share by clicking on them. Click Done when finished or Cancel to cancel. Click the Recipients icon on the top right corner. This will bring up the Contacts screen. Select the contacts to share the item. Once the contacts are selected click the Send button. This will sent the list to the selected Contacts\n\n    Delete the car. Navigate to home screen by selecting Home icon on the bottom tab bar. Select the Car to be deleted. This will bring up the Car details screen. Click the Edit button on the top right corner. Scroll down to the bottom after the address details. There is a delete button. Click the button and confirm\n\n         Edit Car details.  Navigate to home screen by selecting Home icon on the bottom tab bar. Select the Car to be edited.  This will bring up the Car details screen. Click the Edit button on the top right corner. Edit the Car details as described earlier in the Add Car section. Click the Done button to save the car details. Click the Cancel button to discard edits.\n\n    Sort by option. Select the Sort by option to show the Sorting options screen. Select the row to change the sorting option. Click the brown button on the row to reverse the sorting criteria.\n\n    Search bar. This acts as a filter to limit the cars. Search based on street address, price , model etc. Checklist items are not yet included in the search."  ;
+    return @"AutoSpree is a decision support tool to aid the car buying process. This help section shows how to use the App effectively\n\n    Create CheckLists. Click Checklists icon in the bottom tab bar to navigate to the Checklists section of the AutoSpree App.\n\n    Create a new Checklist by clicking the + button on the top right hand corner. This will create and display a blank CheckList with title List1. Start adding items to the CheckList. CheckList items are those items of interest when viewing or buying a car. A sample Checklist is as follows 1)Leather seats 2) Rearview mirror 3) Collision warning. 4) Auto navigation 5)Sunroof. Title can be changed from List1 to a more meaningful name. Click the Done button after adding items. Click the + button on top right hand corner to create another Checklist. Different sets of CheckLists can be created and saved.\n\n    AutoSpree app needs the following permissions. Access to location. This enables AutoSpree to autofill the seller's address and show the location of seller on the map. Access to camera and microphone to record pictures and videos. Push notifications should be allowed for sharing cars.\n\n    On reaching a seller's location to view navigate to Home screen by clicking the Home icon in the bottom tab bar. Click the + button on the top right corner of Home screen. This will bring the main screen view of the car. The street address will be auto populated with the Seller address.\n\n    To view the Map of the car seller location click the Map row. Standard map view will be shown. To change the Map view click the action button on the top right corner. This will show the Action sheet with the options 1)Standard. 2)Satellite. 3)Hybrid. Click on these actions items to see different map views. Click the back button (House Info) to navigate back to main Car details screen.\n\n Click the Notes row to navigate to the Notes screen. Touch the screen. This will bring up the keyboard. Takes notes. Click the back button (House Info) to navigate back to main Car details screen.\n\n Select the Check Lists row. AutoSpree app will show a screen with all the previously created Checklist titles. Select the CheckList title appropriate for this car. This will show the Checklist. For the features present in the car being viewed place green checkmarks for Checklist items by clicking the rows on the screen. Click the back button (House Info) to navigate back to main Car details screen.\n\n Select the Camera row. This will show the Camera View. Click the Camera button in the center of bottom tab bar to take pictures. To take video slide the slider to the right. The slider is located to right of the bottom tab bar. Click the blue dot to start video recording. Click the red dot to stop recording. Click the Done button on the bottom left of tab bar to exit the Camera view. Select the Pictures row to view the photos and videos. Touch a photo to show the single picture view. Swipe left and right on pictures to navigate to the next. Double tap the Picture to go to pinch to zoom mode. Click the back button to navigate back to previous screens.\n\n Enter the Model, Color, Make, Year, Price, Miles of the car. Touch the screen in the Text field to  to bring up the keyboard . Click the Done button on the top right corner to save the changes.\n\n    The car details can be shared with friends. Notifications should be enabled for the app for sharing. Notifications can be enabled during intial start up or later in the Settings app.\n\n    The first step to share is to add Contacts to share the car with. Click the Contacts icon in the bottom tab bar to bring up the Contacts screen. There will be a ME line. Selecting the ME line, shows the share Id of the AutoSpree app on this iPhone. This number uniquely identifies the App for sharing purposes. Now navigate back to Contacts screen by clicking the Contacts button on top left corner. Click the + button on top right corner to add a new contact. Enter the share Id and a name to identify the contact.The Share Id is the number in the ME row of your friend's AutoSpree app. \n\n    Click the Share icon in the bottom tab bar. This will bring up the Share screen. Select the Car to share. Attach Pictures dialog pop up. If YES is selected the picture roll screen is shown. Select the photos to share by clicking on them. Click Done when finished or Cancel to cancel. Click the Recipients icon on the top right corner. This will bring up the Contacts screen. Select the contacts to share the item. Once the contacts are selected click the Send button. This will sent the list to the selected Contacts\n\n    Delete the car. Navigate to home screen by selecting Home icon on the bottom tab bar. Select the Car to be deleted. This will bring up the Car details screen. Click the Edit button on the top right corner. Scroll down to the bottom after the address details. There is a delete button. Click the button and confirm\n\n         Edit Car details.  Navigate to home screen by selecting Home icon on the bottom tab bar. Select the Car to be edited.  This will bring up the Car details screen. Click the Edit button on the top right corner. Edit the Car details as described earlier in the Add Car section. Click the Done button to save the car details. Click the Cancel button to discard edits.\n\n    Sort by option. Select the Sort by option to show the Sorting options screen. Select the row to change the sorting option. Click the brown button on the row to reverse the sorting criteria.\n\n    Search bar. This acts as a filter to limit the cars. Search based on street address, price , model etc. Checklist items are not yet included in the search."  ;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+-(void) initVariables
 {
     bFirstActive = true;
     pFlMgr = [[NSFileManager alloc] init];
-    NSString *pHdir = NSHomeDirectory();
+    
     sortIndx = 0;
     bUpgradeAlert = false;
     unlocked = false;
@@ -1096,6 +1104,17 @@
     apputil.pShrMgr = pShrMgr;
     
     apputil.appShrUtl = appUtl;
+    
+    COUNT = [kvlocal integerForKey:@"TotRows"];
+    totcount = [kvlocal integerForKey:@"TotTrans"];
+        
+    bTokPut = [kvlocal boolForKey:@"TokInAws"];
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    NSString *pHdir = NSHomeDirectory();
+    
     [ThumbnailImageView class];
    
     tabBarController = [[UITabBarController alloc] init];
@@ -1175,10 +1194,7 @@
             [self storeDidChange:kvstore];
         });
     }
-    COUNT = [kvlocal integerForKey:@"TotRows"];
-    totcount = [kvlocal integerForKey:@"TotTrans"];
-        
-    bTokPut = [kvlocal boolForKey:@"TokInAws"];
+  
     
         // Override point for customization after application launch.
     UINavigationController *navCntrl = [[UINavigationController alloc] initWithRootViewController:aViewController];
@@ -1232,16 +1248,54 @@
      appUtl.navViewController = self.navViewController;
     [apputil setNavViewController:self.navViewController];
     
-   
-    
-    
-      [dataSync start];
-    [pShrMgr start];
+    NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
+    [kvlocal setBool:YES forKey:@"ToDownload"];
     
      [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
-        [pShrMgr getItems];
-    
+    [self setUpBackGroundTasks];
     return YES;
+}
+
+-(void) setUpBackGroundTasks
+{
+    if (@available(iOS 13.0, *)) {
+        [[BGTaskScheduler sharedScheduler] registerForTaskWithIdentifier:@"com.rekhaninan.sharing" usingQueue:nil launchHandler:^(BGTask *task)
+         {
+            [self initVariables];
+            dataSync.bBackGroundMode = true;
+            pShrMgr.bBackGroundMode = true;
+            [dataSync start];
+            [pShrMgr start];
+            [task setExpirationHandler:^{
+                
+                [pShrMgr stopBackGroundTask];
+                [dataSync stopBackGroundTask];
+            }];
+        }];
+    } else {
+        // Fallback on earlier versions
+    }
+}
+
+-(void) scheduleBackGroundTask
+{
+    if (@available(iOS 13.0, *)) {
+        BGProcessingTaskRequest *bgTaskRequest = [[BGProcessingTaskRequest alloc] initWithIdentifier:@"com.rekhaninan.sharing"];
+        bgTaskRequest.requiresExternalPower = false;
+        bgTaskRequest.requiresNetworkConnectivity = true;
+        NSError *error;
+        if ([[BGTaskScheduler sharedScheduler] submitTaskRequest:bgTaskRequest error:&error] == YES)
+        {
+            NSLog(@"Submitted background task request");
+        }
+        else
+        {
+            NSLog(@"Failed to submit background task error=%@", error);
+        }
+    } else {
+        // Fallback on earlier versions
+        NSLog(@"Background tasks not supported");
+    }
 }
 
 -(void) storeInKeyChain
