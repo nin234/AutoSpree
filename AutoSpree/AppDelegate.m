@@ -371,6 +371,11 @@
     return picUrl;
 }
 
+-(void) updateTotalUpload:(long)uploaded
+{
+    [apputil updateTotalUpload:uploaded];
+}
+
 -(void) decodeAndStoreItem :(NSString *) ItemStr
 {
     NSArray *pArr = [ItemStr componentsSeparatedByString:@"]:;"];
