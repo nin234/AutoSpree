@@ -373,7 +373,18 @@
 
 -(void) updateTotalUpload:(long)uploaded
 {
-    [apputil updateTotalUpload:uploaded];
+    [apputil updateTotalTransferred:uploaded];
+  
+}
+
+-(void) startDownLoadProgressVw
+{
+    [apputil startDownLoadProgressVw];
+}
+
+-(void) updateTotalDownLoaded:(long)downloaded
+{
+    [apputil updateTotalTransferred:downloaded];
 }
 
 -(void) decodeAndStoreItem :(NSString *) ItemStr
