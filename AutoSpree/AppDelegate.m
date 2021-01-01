@@ -1101,9 +1101,16 @@
     appUtl = [[AppShrUtil alloc] init];
     appUtl.purchased = false;
     pShrMgr = [[CommonShareMgr alloc] init];
-    pShrMgr.pNtwIntf.connectAddr = @"autospree.ddns.net";
+    pShrMgr.appId = @"AutoSpree";
+    if (pShrMgr.pNtwIntf.connectAddr == nil)
+    {
+        pShrMgr.pNtwIntf.connectAddr = @"autospree.ddns.net";
+        pShrMgr.pNtwIntf.port = 16804;
+        NSLog(@"Set connect address=%@ port=%d", pShrMgr.pNtwIntf.connectAddr, pShrMgr.pNtwIntf.port);
+    }
+   
     pShrMgr.pNtwIntf.connectPort = @"16790";
-    pShrMgr.pNtwIntf.port = 16804;
+    
     appUtl.pShrMgr = pShrMgr;
     pShrMgr.delegate = self;
     pShrMgr.shrMgrDelegate = self;
