@@ -1100,8 +1100,9 @@
     beingLoggedIn = false;
     appUtl = [[AppShrUtil alloc] init];
     appUtl.purchased = false;
-    pShrMgr = [[CommonShareMgr alloc] init];
+    pShrMgr = [CommonShareMgr alloc];
     pShrMgr.appId = @"AutoSpree";
+    pShrMgr = [pShrMgr init];
     if (pShrMgr.pNtwIntf.connectAddr == nil)
     {
         pShrMgr.pNtwIntf.connectAddr = @"autospree.ddns.net";
