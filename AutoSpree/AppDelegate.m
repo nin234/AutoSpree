@@ -75,7 +75,6 @@
 @synthesize bInBackGround;
 @synthesize bFromShareAction;
 @synthesize beingLoggedIn;
-@synthesize inapp;
 @synthesize pShrMgr;
 @synthesize appUtl;
 @synthesize apputil;
@@ -720,23 +719,8 @@
 
 - (void)itemAdd
 {    
-  //  UIBarButtonItem *pBarItem1 = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(itemAddCancel) ];
-    NSLog(@"Adding item purchase = %d COUNT = %lld", appUtl.purchased, COUNT);
-   /*
-    if (!appUtl.purchased)
-    {
-        if (COUNT >= 2)
-        {
-            NSLog(@"Cannot add a new item without upgrade COUNT=%lld", COUNT);
-                bUpgradeAlert = true;
-            UIAlertView *pAvw = [[UIAlertView alloc] initWithTitle:@"Upgrade now" message:@"Only two cars allowed with free version. Please upgrade now to add unlimited number of cars" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [pAvw show];
-            return;
-
-        }
-    }
+  
     
-    */
     
     NSLog(@"Authorization status %d", [CLLocationManager authorizationStatus]);
     UIDevice *dev = [UIDevice currentDevice];
@@ -878,18 +862,7 @@
     COUNT = [kvstore longLongForKey:@"TotRows"];
     totcount = [kvstore longLongForKey:@"TotTrans"];
     NSLog(@"Got storeDidChange counts COUNT=%lld totcount=%lld\n", COUNT, totcount);
-    if (!appUtl.purchased)
-    {
-        BOOL purch = [kvstore boolForKey:@"Purchased"];
-        if (purch == YES)
-        {
-            appUtl.purchased = true;
-            NSUserDefaults* kvlocal = [NSUserDefaults standardUserDefaults];
-            [kvlocal setBool:YES forKey:@"Purchased"];
-        }
-        
-    }
-
+    
     
     if (userName == nil)
     {
@@ -1099,9 +1072,9 @@
     bFromShareAction = false;
     beingLoggedIn = false;
     appUtl = [[AppShrUtil alloc] init];
-    appUtl.purchased = false;
+
     pShrMgr = [CommonShareMgr alloc];
-    pShrMgr.appId = @"AutoSpree";
+    pShrMgr.appId = 1;
     pShrMgr = [pShrMgr init];
     if (pShrMgr.pNtwIntf.connectAddr == nil)
     {
@@ -1128,6 +1101,7 @@
     apputil.pShrMgr = pShrMgr;
     
     apputil.appShrUtl = appUtl;
+    apputil.appId = AUTOSPREE_ID;
     
     COUNT = [kvlocal integerForKey:@"TotRows"];
     totcount = [kvlocal integerForKey:@"TotTrans"];
