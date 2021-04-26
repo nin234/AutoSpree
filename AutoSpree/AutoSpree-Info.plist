@@ -33,7 +33,7 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location info needed for Map/Address</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Need location info for Map/Address</string>
+	<string>Need location info for Map/Address. This will show the address of car dealer or seller</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location info needed for Map/Address</string>
 	<key>NSMicrophoneUsageDescription</key>
