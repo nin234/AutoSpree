@@ -74,6 +74,7 @@
 		DBD16AE81C8BA12D00052A03 /* AddEditDispDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD16AE71C8BA12C00052A03 /* AddEditDispDelegate.m */; };
 		DBD16B1F1C948D1F00052A03 /* DataOpsDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD16B1D1C948D1F00052A03 /* DataOpsDelegate.m */; };
 		E800D1AD2582592600C4D48F /* sharing_new.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E800D1AB2582592600C4D48F /* sharing_new.xcdatamodeld */; };
+		E8B43BB0263B5063000785EF /* SubscribeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B43BAD263B5063000785EF /* SubscribeViewController.xib */; };
 		E8CEC87D2516FD4900D31395 /* AutoSpree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CEC87C2516FD4800D31395 /* AutoSpree.swift */; };
 		E8CEC8832517F54300D31395 /* client.der in Resources */ = {isa = PBXBuildFile; fileRef = E8CEC8822517F53100D31395 /* client.der */; };
 /* End PBXBuildFile section */
@@ -223,6 +224,7 @@
 		DBD16B1D1C948D1F00052A03 /* DataOpsDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataOpsDelegate.m; sourceTree = "<group>"; };
 		DBD16B1E1C948D1F00052A03 /* DataOpsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataOpsDelegate.h; sourceTree = "<group>"; };
 		E800D1AC2582592600C4D48F /* sharing_new.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sharing_new.xcdatamodel; sourceTree = "<group>"; };
+		E8B43BAD263B5063000785EF /* SubscribeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubscribeViewController.xib; sourceTree = "<group>"; };
 		E8CEC87B2516FD4800D31395 /* AutoSpree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoSpree-Bridging-Header.h"; sourceTree = "<group>"; };
 		E8CEC87C2516FD4800D31395 /* AutoSpree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoSpree.swift; sourceTree = "<group>"; };
 		E8CEC8822517F53100D31395 /* client.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = client.der; path = /Users/ninan/ios/AutoSpree/AutoSpree/client.der; sourceTree = "<absolute>"; };
@@ -332,6 +334,7 @@
 				DBD16AE61C8BA12C00052A03 /* AddEditDispDelegate.h */,
 				DBD16AE71C8BA12C00052A03 /* AddEditDispDelegate.m */,
 				3B9319181FE6F09C00BE38E3 /* AutoSpree.xcassets */,
+				E8B43BAD263B5063000785EF /* SubscribeViewController.xib */,
 				3B9CF8C71EF3E982004F009D /* AlbumContentsTableViewCell.xib */,
 				3B9CF8A71EF007FE004F009D /* AlbumContentsViewController.xib */,
 				DB858F9D15D206240075CBC6 /* AppDelegate.h */,
@@ -582,6 +585,7 @@
 				3B3D29221F1BE33900AC3D5D /* 895-user-group-selected@2x.png in Resources */,
 				DB7F47A916B0B2CD000DD164 /* Default-568h@2x.png in Resources */,
 				DB7F47AB16B0B6C8000DD164 /* Default.png in Resources */,
+				E8B43BB0263B5063000785EF /* SubscribeViewController.xib in Resources */,
 				DBB16A8117B8441E00C46AC0 /* IphoneButton_Green.png in Resources */,
 				DBB16A8217B8441E00C46AC0 /* IphoneButton_White.png in Resources */,
 			);
