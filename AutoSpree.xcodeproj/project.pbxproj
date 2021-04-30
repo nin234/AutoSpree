@@ -505,7 +505,7 @@
 				};
 			};
 			buildConfigurationList = DB858F8215D206230075CBC6 /* Build configuration list for PBXProject "AutoSpree" */;
-			compatibilityVersion = "Xcode 8.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -773,7 +773,7 @@
 				CODE_SIGN_ENTITLEMENTS = AutoSpree/AutoSpree.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3.14;
+				CURRENT_PROJECT_VERSION = 3.15;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -809,7 +809,6 @@
 					"$(SRCROOT)/sharing",
 					"$(SRCROOT)/common",
 				);
-				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -826,7 +825,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3.14;
+				CURRENT_PROJECT_VERSION = 3.15;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -849,7 +848,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 3.9;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"-DFOR_APPSTORE",
