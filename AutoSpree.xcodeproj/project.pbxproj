@@ -773,7 +773,7 @@
 				CODE_SIGN_ENTITLEMENTS = AutoSpree/AutoSpree.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3.15;
+				CURRENT_PROJECT_VERSION = 3.16;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -795,7 +795,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.9;
+				MARKETING_VERSION = 3.10;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_CFLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rekhaninan.${PRODUCT_NAME:rfc1034identifier}";
@@ -825,7 +825,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3.15;
+				CURRENT_PROJECT_VERSION = 3.16;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -847,7 +847,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.9;
+				MARKETING_VERSION = 3.10;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
